@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "22",
+    "11"
+  ],
+  "key": {
+    "1": {
+      "tag": "forge:nuggets/silver"
+    },
+    "2": {
+      "tag": "forge:nuggets/steel"
+    }
+  },
+  "result": {
+    "item": "csaugmentations:hemostat",
+    "count": 1
+  }
+}

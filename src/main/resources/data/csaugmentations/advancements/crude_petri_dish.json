@@ -1,0 +1,36 @@
+{
+  "display": {
+    "icon": {
+      "item": "csaugmentations:crude_petri_dish"
+    },
+    "title": {
+      "translate": "advancements.csaugmentations.crude_petri_dish.title"
+    },
+    "description": {
+      "translate": "advancements.csaugmentations.crude_petri_dish.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "parent": "csaugmentations:cultivator",
+  "criteria": {
+    "root": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "csaugmentations:crude_petri_dish"
+            ]
+          },
+          {}
+        ]
+      }
+    }
+  },
+  "rewards": {
+    "experience": 1
+  }
+}

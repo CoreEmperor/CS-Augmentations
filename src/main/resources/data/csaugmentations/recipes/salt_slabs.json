@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "csaugmentations:salt"
+    }
+  },
+  "result": {
+    "item": "csaugmentations:salt_slab",
+    "count": 6
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "21",
+    "34"
+  ],
+  "key": {
+    "1": {
+      "tag": "forge:wires/gold"
+    },
+    "2": {
+      "item": "cslibrary:makeshift_circuit_board"
+    },
+    "3": {
+      "item": "csaugmentations:fuse"
+    },
+    "4": {
+      "item": "csaugmentations:transformer"
+    }
+  },
+  "result": {
+    "item": "csaugmentations:power_control_module",
+    "count": 1
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "csaugmentations:wild_somniferum"
+    }
+  ],
+  "result": {
+    "item": "csaugmentations:somniferum_seedpod",
+    "count": 1
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "212",
+    "434",
+    "212"
+  ],
+  "key": {
+    "1": {
+      "tag": "forge:wires/gold"
+    },
+    "2": {
+      "tag": "forge:nuggets/zinc"
+    },
+    "3": {
+      "item": "minecraft:comparator"
+    },
+    "4": {
+      "tag": "forge:plates/gold"
+    }
+  },
+  "result": {
+    "item": "csaugmentations:transformer",
+    "count": 1
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab_top",
+  "textures": {
+    "bottom": "csaugmentations:block/polished_salt",
+    "side": "csaugmentations:block/polished_salt",
+    "top": "csaugmentations:block/polished_salt"
+  }
+}

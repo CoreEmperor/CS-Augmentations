@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " 23",
+    "212",
+    "32 "
+  ],
+  "key": {
+    "1": {
+      "item": "csaugmentations:artificial_muscle"
+    },
+    "2": {
+      "tag": "forge:wires/steel"
+    },
+    "3": {
+      "tag": "forge:wires/copper"
+    }
+  },
+  "result": {
+    "item": "csaugmentations:crude_augmented_muscle",
+    "count": 1
+  }
+}

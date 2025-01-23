@@ -1,0 +1,32 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "251",
+    "634",
+    "162"
+  ],
+  "key": {
+    "1": {
+      "item": "csaugmentations:artificial_nerves"
+    },
+    "2": {
+      "item": "csaugmentations:crude_augmented_muscle"
+    },
+    "3": {
+      "item": "csaugmentations:crude_blood_pump"
+    },
+    "4": {
+      "item": "csaugmentations:power_control_module"
+    },
+    "5": {
+      "item": "csaugmentations:crude_logic_component"
+    },
+    "6": {
+      "tag": "forge:plates/steel"
+    }
+  },
+  "result": {
+    "item": "csaugmentations:prosthetic_heart",
+    "count": 1
+  }
+}

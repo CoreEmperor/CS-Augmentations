@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "212",
+    "131",
+    "212"
+  ],
+  "key": {
+    "1": {
+      "item": "minecraft:string"
+    },
+    "2": {
+      "tag": "forge:nuggets/brass"
+    },
+    "3": {
+      "item": "minecraft:kelp"
+    }
+  },
+  "result": {
+    "item": "csaugmentations:crude_blood_filter",
+    "count": 1
+  }
+}

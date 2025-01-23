@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "21",
+    "32",
+    "12"
+  ],
+  "key": {
+    "1": {
+      "tag": "forge:wires/gold"
+    },
+    "2": {
+      "tag": "forge:nuggets/zinc"
+    },
+    "3": {
+      "item": "minecraft:repeater"
+    }
+  },
+  "result": {
+    "item": "csaugmentations:fuse",
+    "count": 1
+  }
+}

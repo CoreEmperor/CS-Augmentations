@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "csaugmentations:mortars"
+    },
+    {
+      "tag": "csaugmentations:pestles"
+    },
+    {
+      "item": "cslibrary:beaker_water"
+    },
+    {
+      "item": "minecraft:slime_ball"
+    },
+    {
+      "item": "minecraft:slime_ball"
+    },
+    {
+      "tag": "forge:dusts/iron"
+    },
+    {
+      "item": "minecraft:glowstone_dust"
+    }
+  ],
+  "result": {
+    "item": "csaugmentations:nbs",
+    "count": 1
+  }
+}

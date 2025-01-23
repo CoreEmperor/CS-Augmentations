@@ -1,0 +1,28 @@
+{
+  "type": "csaugmentations:chemistry",
+  "ingredients": [
+    {
+      "tag": "csaugmentations:blood_filters"
+    },
+    {
+      "item": "csaugmentations:crude_oil"
+    },
+    {
+      "item": "csaugmentations:crude_oil"
+    },
+    {
+      "item": "csaugmentations:crude_oil"
+    },
+    {
+      "item": "csaugmentations:crude_oil"
+    },
+    {
+      "item": "csaugmentations:crude_oil"
+    }
+  ],
+  "result": {
+    "item": "csaugmentations:refined_oil",
+    "count": 5
+  },
+  "craftingTime": 4800
+}

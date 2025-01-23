@@ -1,0 +1,32 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "421",
+    "535",
+    "664"
+  ],
+  "key": {
+    "1": {
+      "item": "csaugmentations:crude_logic_component"
+    },
+    "2": {
+      "item": "csaugmentations:power_control_module"
+    },
+    "3": {
+      "item": "csaugmentations:brass_limb_base"
+    },
+    "4": {
+      "item": "csaugmentations:crude_augmented_muscle"
+    },
+    "5": {
+      "tag": "forge:plates/steel"
+    },
+    "6": {
+      "tag": "forge:nuggets/steel"
+    }
+  },
+  "result": {
+    "item": "csaugmentations:prosthetic_leg",
+    "count": 1
+  }
+}

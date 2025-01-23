@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "11",
+    "22"
+  ],
+  "key": {
+    "1": {
+      "tag": "forge:nuggets/silver"
+    },
+    "2": {
+      "tag": "forge:nuggets/steel"
+    }
+  },
+  "result": {
+    "item": "csaugmentations:retractors",
+    "count": 1
+  }
+}

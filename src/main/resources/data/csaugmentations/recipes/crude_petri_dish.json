@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "csaugmentations:crude_plastic"
+    },
+    {
+      "item": "cslibrary:brass_blowtorch"
+    },
+    {
+      "tag": "forge:tools/pliers"
+    }
+  ],
+  "result": {
+    "item": "csaugmentations:crude_petri_dish",
+    "count": 1
+  }
+}

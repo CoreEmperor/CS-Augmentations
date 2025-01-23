@@ -1,0 +1,66 @@
+{
+	"textures": {
+		"0": "csaugmentations:item/prosthetic_arm",
+		"particle": "csaugmentations:item/prosthetic_arm"
+	},
+	"elements": [
+		{
+			"from": [6, 2, 6],
+			"to": [10, 12, 10],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 7, 8]},
+			"faces": {
+				"north": {"uv": [0, 0, 2, 5], "texture": "#0"},
+				"east": {"uv": [2, 0, 4, 5], "texture": "#0"},
+				"south": {"uv": [4, 0, 6, 5], "texture": "#0"},
+				"west": {"uv": [0, 5, 2, 10], "texture": "#0"},
+				"up": {"uv": [4, 7, 2, 5], "texture": "#0"},
+				"down": {"uv": [6, 5, 4, 7], "texture": "#0"}
+			}
+		},
+		{
+			"from": [5.6, 2, 5.6],
+			"to": [10.4, 12, 10.4],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 7, 8]},
+			"faces": {
+				"north": {"uv": [6, 0, 8.5, 5], "texture": "#0"},
+				"east": {"uv": [6, 5, 8.5, 10], "texture": "#0"},
+				"south": {"uv": [2, 7, 4.5, 12], "texture": "#0"},
+				"west": {"uv": [8.5, 0, 11, 5], "texture": "#0"},
+				"up": {"uv": [11, 7.5, 8.5, 5], "texture": "#0"},
+				"down": {"uv": [11, 7.5, 8.5, 10], "texture": "#0"}
+			}
+		}
+	],
+	"display": {
+		"thirdperson_righthand": {
+			"rotation": [-0.32, 3.92, 9.45],
+			"translation": [0.25, 0, 0.5]
+		},
+		"thirdperson_lefthand": {
+			"rotation": [-0.28, 3.62, 8.79]
+		},
+		"firstperson_righthand": {
+			"translation": [0, 4.25, 0]
+		},
+		"firstperson_lefthand": {
+			"translation": [0, 3.75, 0]
+		},
+		"ground": {
+			"rotation": [-74.13, 3.18, -61.82],
+			"translation": [0, -0.25, 0]
+		},
+		"gui": {
+			"rotation": [-66.64, -20.92, -52.17],
+			"translation": [0.75, 0.75, 0]
+		},
+		"head": {
+			"rotation": [27.5, 0, 0],
+			"translation": [0, -5.5, -6.5]
+		},
+		"fixed": {
+			"rotation": [0, 0, 43],
+			"translation": [-0.5, 1, -2.5],
+			"scale": [1.6, 1.6, 1.6]
+		}
+	}
+}

@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "forge:storage_blocks/fossil"
+    }
+  ],
+  "result": {
+    "item": "csaugmentations:fossil",
+    "count": 9
+  }
+}

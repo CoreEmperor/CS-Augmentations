@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "csaugmentations:block/salt_slab"
+    },
+    "type=double": {
+      "model": "csaugmentations:block/salt"
+    },
+    "type=top": {
+      "model": "csaugmentations:block/salt_slab_top"
+    }
+  }
+}

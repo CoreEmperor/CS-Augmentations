@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " 2",
+    "1 "
+  ],
+  "key": {
+    "1": {
+      "item": "csaugmentations:crude_plastic"
+    },
+    "2": {
+      "tag": "forge:nuggets/steel"
+    }
+  },
+  "result": {
+    "item": "csaugmentations:scalpel",
+    "count": 1
+  }
+}

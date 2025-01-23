@@ -1,0 +1,35 @@
+{
+  "display": {
+    "icon": {
+      "item": "csaugmentations:fossil"
+    },
+    "title": {
+      "translate": "advancements.csaugmentations.root.title"
+    },
+    "description": {
+      "translate": "advancements.csaugmentations.root.description"
+    },
+    "background": "cslibrary:textures/block/block_titanium.png",
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "root": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "csaugmentations:fossil"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "rewards": {
+    "experience": 1
+  }
+}

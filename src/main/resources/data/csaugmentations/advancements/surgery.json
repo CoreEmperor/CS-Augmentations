@@ -1,0 +1,85 @@
+{
+  "display": {
+    "icon": {
+      "item": "csaugmentations:scalpel"
+    },
+    "title": {
+      "translate": "advancements.csaugmentations.surgery.title"
+    },
+    "description": {
+      "translate": "advancements.csaugmentations.surgery.description"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "parent": "csaugmentations:root",
+  "criteria": {
+    "has_scalpel": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "csaugmentations:scalpel"
+            ]
+          }
+        ]
+      }
+    },
+    "has_hemostat": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "csaugmentations:hemostat"
+            ]
+          }
+        ]
+      }
+    },
+    "has_retractors": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "csaugmentations:retractors"
+            ]
+          }
+        ]
+      }
+    },
+    "has_suture": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "csaugmentations:suture"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_scalpel"
+    ],
+    [
+      "has_hemostat"
+    ],
+    [
+      "has_retractors"
+    ],
+    [
+      "has_suture"
+    ]
+  ],
+  "rewards": {
+    "experience": 10
+  }
+}

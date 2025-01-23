@@ -1,0 +1,8 @@
+{
+  "type": "csaugmentations:cultivating",
+  "count": 2,
+  "ingredient": {
+    "item": "csaugmentations:loaded_crude_petri_dish"
+  },
+  "result": "cslibrary:flesh"
+}

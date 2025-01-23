@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "ingredients": [],
+  "pattern": [
+    "5 3",
+    "111",
+    "242"
+  ],
+  "key": {
+    "1": {
+      "tag": "forge:plates/steel"
+    },
+    "2": {
+      "tag": "forge:rods/steel"
+    },
+    "3": {
+      "item": "minecraft:brewing_stand"
+    },
+    "4": {
+      "item": "csaugmentations:refinery"
+    },
+    "5": {
+      "item": "minecraft:book"
+    }
+  },
+  "result": {
+    "item": "csaugmentations:chemistry_table",
+    "count": 1
+  }
+}

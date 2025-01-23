@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": {
+      "tag": "forge:plates/brass"
+    },
+    "$": {
+      "tag": "forge:rods/copper"
+    },
+    "%": {
+      "item": "minecraft:bone"
+    },
+    "^": {
+      "item": "cslibrary:brass_blowtorch"
+    }
+  },
+  "pattern": [
+    " #$",
+    "#%#",
+    "$#^"
+  ],
+  "result": {
+    "item": "csaugmentations:reinforced_bone",
+    "count": 1
+  },
+  "show_notification": true
+}

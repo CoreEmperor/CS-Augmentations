@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " 12",
+    "43 ",
+    "21 "
+  ],
+  "key": {
+    "1": {
+      "tag": "forge:wires/gold"
+    },
+    "2": {
+      "item": "csaugmentations:reinforced_bone"
+    },
+    "3": {
+      "item": "csaugmentations:ball_socket_joint"
+    },
+    "4": {
+      "item": "csaugmentations:hydraulic"
+    }
+  },
+  "result": {
+    "item": "csaugmentations:brass_limb_base",
+    "count": 1
+  }
+}

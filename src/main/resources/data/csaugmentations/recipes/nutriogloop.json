@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "csaugmentations:mortars"
+    },
+    {
+      "tag": "csaugmentations:pestles"
+    },
+    {
+      "item": "cslibrary:flesh"
+    },
+    {
+      "item": "minecraft:bone_meal"
+    },
+    {
+      "item": "minecraft:sugar"
+    },
+    {
+      "item": "minecraft:honeycomb"
+    }
+  ],
+  "result": {
+    "item": "csaugmentations:nutriogloop",
+    "count": 1
+  }
+}

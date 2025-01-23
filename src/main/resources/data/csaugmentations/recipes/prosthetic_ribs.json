@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "232",
+    "212",
+    "232"
+  ],
+  "key": {
+    "1": {
+      "item": "csaugmentations:natural_ribs"
+    },
+    "2": {
+      "tag": "forge:rods/steel"
+    },
+    "3": {
+      "tag": "forge:plates/steel"
+    }
+  },
+  "result": {
+    "item": "csaugmentations:prosthetic_ribs",
+    "count": 1
+  }
+}

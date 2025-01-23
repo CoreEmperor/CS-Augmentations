@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "csaugmentations:block/fossil_ore"
+    }
+  }
+}

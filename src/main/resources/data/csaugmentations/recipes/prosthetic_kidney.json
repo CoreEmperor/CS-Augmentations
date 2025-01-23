@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " 14",
+    "521",
+    "534"
+  ],
+  "key": {
+    "1": {
+      "item": "csaugmentations:artificial_nerves"
+    },
+    "2": {
+      "item": "csaugmentations:crude_blood_filter"
+    },
+    "3": {
+      "item": "csaugmentations:power_control_module"
+    },
+    "4": {
+      "tag": "forge:plates/brass"
+    },
+    "5": {
+      "tag": "forge:plates/steel"
+    }
+  },
+  "result": {
+    "item": "csaugmentations:prosthetic_kidney",
+    "count": 1
+  }
+}

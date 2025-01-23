@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "csaugmentations:mortars"
+    },
+    {
+      "tag": "csaugmentations:pestles"
+    },
+    {
+      "item": "cslibrary:acid_mushroom"
+    }
+  ],
+  "result": {
+    "item": "csaugmentations:crushed_acid_mushroom",
+    "count": 2
+  }
+}

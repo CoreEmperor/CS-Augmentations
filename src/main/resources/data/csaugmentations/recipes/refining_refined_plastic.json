@@ -1,0 +1,10 @@
+{
+  "type": "csaugmentations:refining",
+  "category": "misc",
+  "cookingtime": 800,
+  "experience": 1.0,
+  "ingredient": {
+    "item": "csaugmentations:refined_oil"
+  },
+  "result": "csaugmentations:refined_plastic"
+}

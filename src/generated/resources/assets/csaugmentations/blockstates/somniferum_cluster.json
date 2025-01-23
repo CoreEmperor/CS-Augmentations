@@ -1,0 +1,28 @@
+{
+  "variants": {
+    "age=0": {
+      "model": "csaugmentations:block/somniferum_stage0"
+    },
+    "age=1": {
+      "model": "csaugmentations:block/somniferum_stage0"
+    },
+    "age=2": {
+      "model": "csaugmentations:block/somniferum_stage0"
+    },
+    "age=3": {
+      "model": "csaugmentations:block/somniferum_stage1"
+    },
+    "age=4": {
+      "model": "csaugmentations:block/somniferum_stage1"
+    },
+    "age=5": {
+      "model": "csaugmentations:block/somniferum_stage2"
+    },
+    "age=6": {
+      "model": "csaugmentations:block/somniferum_stage2"
+    },
+    "age=7": {
+      "model": "csaugmentations:block/somniferum_stage3"
+    }
+  }
+}

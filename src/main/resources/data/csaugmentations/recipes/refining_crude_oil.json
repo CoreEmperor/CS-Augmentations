@@ -1,0 +1,10 @@
+{
+  "type": "csaugmentations:refining",
+  "category": "misc",
+  "cookingtime": 1600,
+  "experience": 2.0,
+  "ingredient": {
+    "item": "csaugmentations:fossil"
+  },
+  "result": "csaugmentations:crude_oil"
+}

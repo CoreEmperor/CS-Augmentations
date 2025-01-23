@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab",
+  "textures": {
+    "bottom": "csaugmentations:block/salt",
+    "side": "csaugmentations:block/salt",
+    "top": "csaugmentations:block/salt"
+  }
+}

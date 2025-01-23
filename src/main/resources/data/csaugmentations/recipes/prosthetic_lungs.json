@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " 5 ",
+    "232",
+    "414"
+  ],
+  "key": {
+    "1": {
+      "item": "csaugmentations:artificial_nerves"
+    },
+    "2": {
+      "item": "cslibrary:valve_train"
+    },
+    "3": {
+      "item": "csaugmentations:power_control_module"
+    },
+    "4": {
+      "item": "cslibrary:brass_tank"
+    },
+    "5": {
+      "tag": "forge:rods/copper"
+    }
+  },
+  "result": {
+    "item": "csaugmentations:prosthetic_lungs",
+    "count": 1
+  }
+}

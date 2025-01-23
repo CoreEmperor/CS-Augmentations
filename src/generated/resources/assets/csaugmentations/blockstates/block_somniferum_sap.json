@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "csaugmentations:block/block_somniferum_sap"
+    }
+  }
+}

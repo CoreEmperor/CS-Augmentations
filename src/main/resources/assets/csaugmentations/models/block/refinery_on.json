@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "north": "csaugmentations:block/refinery_front_on",
+    "south": "csaugmentations:block/refinery_side",
+    "west": "csaugmentations:block/refinery_left_on",
+    "east": "csaugmentations:block/refinery_right_on",
+    "up": "csaugmentations:block/refinery_top_on",
+    "down": "csaugmentations:block/steel_casing",
+    "particle": "csaugmentations:block/steel_casing"
+  }
+}

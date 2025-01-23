@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "343",
+    "215",
+    "343"
+  ],
+  "key": {
+    "1": {
+      "item": "cslibrary:steel_casing"
+    },
+    "2": {
+      "tag": "forge:wires/copper"
+    },
+    "3": {
+      "tag": "forge:sheets/steel"
+    },
+    "4": {
+      "item": "csaugmentations:hydraulic"
+    },
+    "5": {
+      "item": "cslibrary:makeshift_circuit_board"
+    }
+  },
+  "result": {
+    "item": "csaugmentations:refinery",
+    "count": 1
+  }
+}

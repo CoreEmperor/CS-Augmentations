@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "123",
+    "213"
+  ],
+  "key": {
+    "1": {
+      "item": "cslibrary:makeshift_circuit_board"
+    },
+    "2": {
+      "tag": "forge:wires/copper"
+    },
+    "3": {
+      "tag": "forge:bulbs/silver"
+    }
+  },
+  "result": {
+    "item": "csaugmentations:crude_logic_component",
+    "count": 1
+  }
+}

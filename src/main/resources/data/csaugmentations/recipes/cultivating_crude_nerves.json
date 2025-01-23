@@ -1,0 +1,8 @@
+{
+  "type": "csaugmentations:cultivating",
+  "count": 1,
+  "ingredient": {
+    "item": "csaugmentations:loaded_crude_petri_dish"
+  },
+  "result": "csaugmentations:artificial_nerves"
+}

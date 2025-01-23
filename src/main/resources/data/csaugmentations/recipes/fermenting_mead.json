@@ -1,0 +1,19 @@
+{
+  "type": "cslibrary:fermenting",
+  "group": "fermenting",
+  "ingredients": [
+    {
+      "item": "minecraft:honey_bottle"
+    },
+    {
+      "item": "minecraft:sugar"
+    }
+  ],
+  "result": {
+    "item": "csaugmentations:mead",
+    "count": 1
+  },
+  "craftingTime": 12800,
+  "needsYeast": "true",
+  "needsBottle": "true"
+}

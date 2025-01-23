@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "523",
+    "43 "
+  ],
+  "key": {
+    "3": {
+      "item": "csaugmentations:crude_augmented_tissue"
+    },
+    "2": {
+      "item": "csaugmentations:crude_blood_filter"
+    },
+    "4": {
+      "tag": "forge:nuggets/brass"
+    },
+    "5": {
+      "item": "csaugmentations:crude_logic_component"
+    }
+  },
+  "result": {
+    "item": "csaugmentations:prosthetic_liver",
+    "count": 1
+  }
+}

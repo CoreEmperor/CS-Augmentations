@@ -1,0 +1,17 @@
+{
+  "values": [
+    "csaugmentations:cultivator",
+    "csaugmentations:refinery",
+    "csaugmentations:fossil_ore",
+    "csaugmentations:deepslate_fossil_ore",
+    "csaugmentations:fossil_block",
+    "csaugmentations:chemistry_table",
+    "csaugmentations:invisible_chem",
+    "csaugmentations:salt",
+    "csaugmentations:salt_slab",
+    "csaugmentations:salt_stairs",
+    "csaugmentations:polished_salt",
+    "csaugmentations:polished_salt_slab",
+    "csaugmentations:polished_salt_stairs"
+  ]
+}

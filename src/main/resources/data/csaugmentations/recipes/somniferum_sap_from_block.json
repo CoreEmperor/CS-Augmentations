@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "forge:storage_blocks/somniferum"
+    }
+  ],
+  "result": {
+    "item": "csaugmentations:somniferum_sap",
+    "count": 4
+  }
+}

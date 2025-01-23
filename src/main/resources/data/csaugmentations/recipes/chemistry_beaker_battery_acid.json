@@ -1,0 +1,19 @@
+{
+  "type": "csaugmentations:chemistry",
+  "ingredients": [
+    {
+      "item": "csaugmentations:crushed_acid_mushroom"
+    },
+    {
+      "item": "csaugmentations:crushed_acid_mushroom"
+    },
+    {
+      "item": "cslibrary:beaker"
+    }
+  ],
+  "result": {
+    "item": "cslibrary:beaker_battery_acid",
+    "count": 1
+  },
+  "craftingTime": 1200
+}

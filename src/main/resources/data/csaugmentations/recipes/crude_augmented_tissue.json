@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "323",
+    "212",
+    "323"
+  ],
+  "key": {
+    "1": {
+      "item": "csaugmentations:artificial_tissue"
+    },
+    "2": {
+      "tag": "forge:wires/steel"
+    },
+    "3": {
+      "tag": "forge:wires/gold"
+    }
+  },
+  "result": {
+    "item": "csaugmentations:crude_augmented_tissue",
+    "count": 1
+  }
+}

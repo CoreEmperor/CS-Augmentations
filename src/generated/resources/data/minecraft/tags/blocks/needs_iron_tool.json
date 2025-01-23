@@ -1,0 +1,9 @@
+{
+  "values": [
+    "csaugmentations:cultivator",
+    "csaugmentations:refinery",
+    "csaugmentations:fossil_ore",
+    "csaugmentations:deepslate_fossil_ore",
+    "csaugmentations:fossil_block"
+  ]
+}

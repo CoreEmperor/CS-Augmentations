@@ -1,0 +1,12 @@
+{
+  "required": true,
+  "compatibilityLevel": "JAVA_17",
+  "package": "net.corespring.csaugmentations.mixin",
+  "refmap": "csaugmentations.mixin-refmap.json",
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "mixins": [
+    "MixinMobEffectInstance"
+  ]
+}

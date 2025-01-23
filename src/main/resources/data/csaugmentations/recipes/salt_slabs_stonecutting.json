@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "csaugmentations:salt"
+  },
+  "result": "csaugmentations:salt_slab",
+  "count": 2
+}

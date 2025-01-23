@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " 14",
+    "235",
+    "452"
+  ],
+  "key": {
+    "1": {
+      "item": "csaugmentations:artificial_nerves"
+    },
+    "2": {
+      "item": "csaugmentations:crude_augmented_tissue"
+    },
+    "3": {
+      "item": "cslibrary:beaker_battery_acid"
+    },
+    "4": {
+      "tag": "forge:rods/copper"
+    },
+    "5": {
+      "tag": "forge:nuggets/zinc"
+    }
+  },
+  "result": {
+    "item": "csaugmentations:prosthetic_stomach",
+    "count": 1
+  }
+}

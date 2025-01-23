@@ -1,0 +1,55 @@
+{
+  "display": {
+    "icon": {
+      "item": "csaugmentations:mortar"
+    },
+    "title": {
+      "translate": "advancements.csaugmentations.mp.title"
+    },
+    "description": {
+      "translate": "advancements.csaugmentations.mp.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "parent": "csaugmentations:root",
+  "criteria": {
+    "mortar": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "csaugmentations:mortar"
+            ]
+          }
+        ]
+      }
+    },
+    "pestle": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "csaugmentations:pestle"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "mortar"
+    ],
+    [
+      "pestle"
+    ]
+  ],
+  "rewards": {
+    "experience": 1
+  }
+}

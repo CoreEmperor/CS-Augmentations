@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "csaugmentations:block/cultivator",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "csaugmentations:block/cultivator"
+    },
+    "facing=south": {
+      "model": "csaugmentations:block/cultivator",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "csaugmentations:block/cultivator",
+      "y": 270
+    }
+  }
+}

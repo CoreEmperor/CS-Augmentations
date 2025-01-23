@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "csaugmentations:block/chemistry_table",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "csaugmentations:block/chemistry_table"
+    },
+    "facing=south": {
+      "model": "csaugmentations:block/chemistry_table",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "csaugmentations:block/chemistry_table",
+      "y": 270
+    }
+  }
+}

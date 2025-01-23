@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "csaugmentations:block/deepslate_fossil_ore"
+    }
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "csaugmentations:dmem"
+    },
+    {
+      "item": "csaugmentations:crude_petri_dish"
+    },
+    {
+      "item": "cslibrary:flesh"
+    }
+  ],
+  "result": {
+    "item": "csaugmentations:loaded_crude_petri_dish",
+    "count": 1
+  }
+}

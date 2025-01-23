@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "2 2",
+    "131",
+    "2 2"
+  ],
+  "key": {
+    "1": {
+      "item": "minecraft:piston"
+    },
+    "2": {
+      "tag": "forge:nuggets/brass"
+    },
+    "3": {
+      "tag": "forge:wires/copper"
+    }
+  },
+  "result": {
+    "item": "csaugmentations:crude_blood_pump",
+    "count": 1
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "121",
+    "131",
+    "111"
+  ],
+  "key": {
+    "1": {
+      "tag": "forge:nuggets/steel"
+    },
+    "2": {
+      "item": "minecraft:piston"
+    },
+    "3": {
+      "item": "csaugmentations:crude_oil"
+    }
+  },
+  "result": {
+    "item": "csaugmentations:hydraulic",
+    "count": 1
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "csaugmentations:polished_salt"
+  },
+  "result": "csaugmentations:polished_salt_stairs",
+  "count": 1
+}

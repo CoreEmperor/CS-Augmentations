@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "north": "csaugmentations:block/cultivator_front",
+    "east": "csaugmentations:block/cultivator_right",
+    "south": "csaugmentations:block/cultivator_back",
+    "west": "csaugmentations:block/cultivator_left",
+    "up": "csaugmentations:block/cultivator_top",
+    "down": "csaugmentations:block/steel_casing",
+    "particle": "csaugmentations:block/steel_casing"
+  }
+}
