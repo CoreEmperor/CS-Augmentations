@@ -47,6 +47,7 @@ public class CSCreativeTab {
 
                         pOutput.accept(CSItems.PROSTHETIC_LEG.get());
                         pOutput.accept(CSItems.PROSTHETIC_ARM.get());
+                        pOutput.accept(CSItems.PROSTHETIC_EYES.get());
                         pOutput.accept(CSItems.PROSTHETIC_HEART.get());
                         pOutput.accept(CSItems.PROSTHETIC_KIDNEY.get());
                         pOutput.accept(CSItems.PROSTHETIC_LIVER.get());
@@ -89,6 +90,7 @@ public class CSCreativeTab {
                         pOutput.accept(CSItems.BALL_SOCKET_JOINT.get());
                         pOutput.accept(CSItems.CRUDE_BLOOD_PUMP.get());
                         pOutput.accept(CSItems.CRUDE_BLOOD_FILTER.get());
+                        pOutput.accept(CSItems.CRUDE_OPTICAL_SENSOR.get());
                         pOutput.accept(CSItems.ARTIFICIAL_MUSCLE.get());
                         pOutput.accept(CSItems.ARTIFICIAL_TISSUE.get());
                         pOutput.accept(CSItems.ARTIFICIAL_NERVES.get());

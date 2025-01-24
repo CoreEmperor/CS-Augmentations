@@ -32,6 +32,7 @@ public class CSItemModelProvider extends ItemModelProvider {
         simpleItem((RegistryObject<Item>) CSItems.NATURAL_LUNGS);
         simpleItem((RegistryObject<Item>) CSItems.NATURAL_STOMACH);
 
+        simpleItem((RegistryObject<Item>) CSItems.PROSTHETIC_EYES);
         simpleItem((RegistryObject<Item>) CSItems.PROSTHETIC_HEART);
         simpleItem((RegistryObject<Item>) CSItems.PROSTHETIC_KIDNEY);
         simpleItem((RegistryObject<Item>) CSItems.PROSTHETIC_LIVER);
@@ -73,6 +74,7 @@ public class CSItemModelProvider extends ItemModelProvider {
         simpleItem((RegistryObject<Item>) CSItems.BALL_SOCKET_JOINT);
         simpleItem((RegistryObject<Item>) CSItems.CRUDE_BLOOD_PUMP);
         simpleItem((RegistryObject<Item>) CSItems.CRUDE_BLOOD_FILTER);
+        simpleItem((RegistryObject<Item>) CSItems.CRUDE_OPTICAL_SENSOR);
         simpleItem((RegistryObject<Item>) CSItems.ARTIFICIAL_MUSCLE);
         simpleItem((RegistryObject<Item>) CSItems.ARTIFICIAL_TISSUE);
         simpleItem((RegistryObject<Item>) CSItems.ARTIFICIAL_NERVES);

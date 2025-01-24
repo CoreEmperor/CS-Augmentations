@@ -18,6 +18,10 @@ public abstract class SimpleHeart extends SimpleOrgan {
     @Override
     public void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
         pTooltipComponents.add(Component.translatable("")
+                .append("" + getOrganValue())
+                .append(Component.translatable("tooltip.csaugmentations.cost"))
+                .withStyle(ChatFormatting.RED));
+        pTooltipComponents.add(Component.translatable("")
                 .append("" + getTier().getHealth())
                 .append(Component.translatable("tooltip.csaugmentations.health"))
                 .withStyle(ChatFormatting.BLUE));

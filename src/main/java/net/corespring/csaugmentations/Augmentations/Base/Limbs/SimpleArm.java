@@ -30,6 +30,10 @@ public abstract class SimpleArm extends SimpleOrgan implements ILimbType {
     @Override
     public void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
         double generalArmor = getTier().getGeneralArmor() / 2;
+        pTooltipComponents.add(Component.translatable("")
+                .append("" + getOrganValue())
+                .append(Component.translatable("tooltip.csaugmentations.cost"))
+                .withStyle(ChatFormatting.RED));
         pTooltipComponents.add(Component.translatable("tooltip.csaugmentations.plus")
                 .append("" + generalArmor)
                 .append(Component.translatable("tooltip.csaugmentations.armor"))

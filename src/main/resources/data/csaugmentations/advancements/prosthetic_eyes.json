@@ -1,0 +1,35 @@
+{
+  "display": {
+    "icon": {
+      "item": "csaugmentations:prosthetic_eyes"
+    },
+    "title": {
+      "translate": "advancements.csaugmentations.prosthetic_eyes.title"
+    },
+    "description": {
+      "translate": "advancements.csaugmentations.prosthetic_eyes.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "parent": "csaugmentations:augmentation_base",
+  "criteria": {
+    "root": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "csaugmentations:prosthetic_eyes"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "rewards": {
+    "experience": 10
+  }
+}

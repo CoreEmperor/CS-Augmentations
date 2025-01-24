@@ -1,0 +1,35 @@
+{
+  "display": {
+    "icon": {
+      "item": "csaugmentations:refined_oil"
+    },
+    "title": {
+      "translate": "advancements.csaugmentations.refined_oil.title"
+    },
+    "description": {
+      "translate": "advancements.csaugmentations.refined_oil.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "parent": "csaugmentations:chemistry",
+  "criteria": {
+    "root": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "csaugmentations:refined_oil"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "rewards": {
+    "experience": 10
+  }
+}

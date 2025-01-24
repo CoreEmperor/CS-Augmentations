@@ -16,7 +16,7 @@
   },
   "parent": "csaugmentations:root",
   "criteria": {
-    "has_scalpel": {
+    "had_scalpel": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
@@ -28,7 +28,7 @@
         ]
       }
     },
-    "has_hemostat": {
+    "had_hemostat": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
@@ -40,7 +40,7 @@
         ]
       }
     },
-    "has_retractors": {
+    "had_retractors": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
@@ -52,7 +52,7 @@
         ]
       }
     },
-    "has_suture": {
+    "had_suture": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
@@ -67,19 +67,19 @@
   },
   "requirements": [
     [
-      "has_scalpel"
+      "had_scalpel"
     ],
     [
-      "has_hemostat"
+      "had_hemostat"
     ],
     [
-      "has_retractors"
+      "had_retractors"
     ],
     [
-      "has_suture"
+      "had_suture"
     ]
   ],
   "rewards": {
-    "experience": 10
+    "experience": 20
   }
 }

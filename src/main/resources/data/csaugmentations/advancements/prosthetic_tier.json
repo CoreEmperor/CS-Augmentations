@@ -1,0 +1,142 @@
+{
+  "display": {
+    "icon": {
+      "item": "csaugmentations:prosthetic_arm"
+    },
+    "title": {
+      "translate": "advancements.csaugmentations.prosthetic_tier.title"
+    },
+    "description": {
+      "translate": "advancements.csaugmentations.prosthetic_tier.description"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "parent": "csaugmentations:root",
+  "criteria": {
+    "had_prosthetic_leg": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "csaugmentations:prosthetic_leg"
+            ]
+          }
+        ]
+      }
+    },
+    "had_prosthetic_arm": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "csaugmentations:prosthetic_arm"
+            ]
+          }
+        ]
+      }
+    },
+    "had_prosthetic_eyes": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "csaugmentations:prosthetic_eyes"
+            ]
+          }
+        ]
+      }
+    },
+    "had_prosthetic_heart": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "csaugmentations:prosthetic_heart"
+            ]
+          }
+        ]
+      }
+    },
+    "had_prosthetic_kidney": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "csaugmentations:prosthetic_kidney"
+            ]
+          }
+        ]
+      }
+    },
+    "had_prosthetic_liver": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "csaugmentations:prosthetic_liver"
+            ]
+          }
+        ]
+      }
+    },
+    "had_prosthetic_lungs": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "csaugmentations:prosthetic_lungs"
+            ]
+          }
+        ]
+      }
+    },
+    "had_prosthetic_ribs": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "csaugmentations:prosthetic_ribs"
+            ]
+          }
+        ]
+      }
+    },
+    "had_prosthetic_stomach": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "csaugmentations:prosthetic_stomach"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    ["had_prosthetic_leg"],
+    ["had_prosthetic_arm"],
+    ["had_prosthetic_eyes"],
+    ["had_prosthetic_heart"],
+    ["had_prosthetic_kidney"],
+    ["had_prosthetic_liver"],
+    ["had_prosthetic_lungs"],
+    ["had_prosthetic_ribs"],
+    ["had_prosthetic_stomach"]
+  ],
+  "rewards": {
+    "experience": 110
+  }
+}

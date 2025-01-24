@@ -1,0 +1,36 @@
+{
+  "display": {
+    "icon": {
+      "item": "csaugmentations:crude_augmented_tissue"
+    },
+    "title": {
+      "translate": "advancements.csaugmentations.augmentation_base.title"
+    },
+    "description": {
+      "translate": "advancements.csaugmentations.augmentation_base.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "parent": "csaugmentations:dmem",
+  "criteria": {
+    "root": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "csaugmentations:crude_augmented_tissue",
+              "csaugmentations:crude_augmented_muscle"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "rewards": {
+    "experience": 1
+  }
+}

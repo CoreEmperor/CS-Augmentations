@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "525",
+    "343",
+    "131"
+  ],
+  "key": {
+    "1": {
+      "item": "csaugmentations:crude_augmented_muscle"
+    },
+    "2": {
+      "item": "cslibrary:makeshift_circuit_board"
+    },
+    "3": {
+      "tag": "forge:nuggets/brass"
+    },
+    "4": {
+      "tag": "forge:glass_panes/colorless"
+    },
+    "5": {
+      "item": "minecraft:redstone"
+    }
+  },
+  "result": {
+    "item": "csaugmentations:crude_optical_sensor",
+    "count": 1
+  }
+}

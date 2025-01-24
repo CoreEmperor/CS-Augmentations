@@ -19,6 +19,10 @@ public abstract class SimpleLungs extends SimpleOrgan implements IAirTime {
     @Override
     public void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
         int lungCapacity = getTier().getAirTime() / 30;
+        pTooltipComponents.add(Component.translatable("")
+                .append("" + getOrganValue())
+                .append(Component.translatable("tooltip.csaugmentations.cost"))
+                .withStyle(ChatFormatting.RED));
         pTooltipComponents.add(Component.translatable("tooltip.csaugmentations.plus")
                 .append("" + lungCapacity)
                 .append(Component.translatable("tooltip.csaugmentations.lung"))

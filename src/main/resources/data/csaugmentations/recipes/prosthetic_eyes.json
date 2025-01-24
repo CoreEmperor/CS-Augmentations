@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "424",
+    "131"
+  ],
+  "key": {
+    "1": {
+      "item": "csaugmentations:crude_optical_sensor"
+    },
+    "2": {
+      "item": "csaugmentations:crude_logic_component"
+    },
+    "3": {
+      "tag": "forge:nuggets/brass"
+    },
+    "4": {
+      "item": "csaugmentations:crude_augmented_tissue"
+    }
+  },
+  "result": {
+    "item": "csaugmentations:prosthetic_eyes",
+    "count": 1
+  }
+}

@@ -13,6 +13,7 @@
 
   "item.csaugmentations.prosthetic_leg": "Prosthetic Leg",
   "item.csaugmentations.prosthetic_arm": "Prosthetic Arm",
+  "item.csaugmentations.prosthetic_eyes": "Prosthetic Eyes",
   "item.csaugmentations.prosthetic_heart": "Prosthetic Heart",
   "item.csaugmentations.prosthetic_kidney": "Prosthetic Kidney",
   "item.csaugmentations.prosthetic_liver": "Prosthetic Liver",
@@ -77,6 +78,7 @@
   "item.csaugmentations.ball_socket_joint": "Ball & Socket Joint",
   "item.csaugmentations.crude_blood_pump": "Crude Blood Pump",
   "item.csaugmentations.crude_blood_filter": "Crude Blood Filter",
+  "item.csaugmentations.crude_optical_sensor": "Crude Optical Sensor",
 
   "item.csaugmentations.fossil": "Fossil",
 
@@ -94,6 +96,7 @@
   "item.csaugmentations.somniferum_sap": "Somniferum Sap",
 
   "tooltip.csaugmentations.plus": "+",
+  "tooltip.csaugmentations.cost": " Cyberware Cost",
   "tooltip.csaugmentations.health": " Health",
   "tooltip.csaugmentations.speed": " Movement Speed",
   "tooltip.csaugmentations.falldamage": " Fall Damage Reduction",
@@ -129,8 +132,12 @@
   "advancements.csaugmentations.refinery.description": "Craft a Refinery.",
   "advancements.csaugmentations.crude_oil.title": "Mmm, Fossil Fuels~",
   "advancements.csaugmentations.crude_oil.description": "Refine a Fossil into Crude Oil.",
+  "advancements.csaugmentations.refined_oil.title": "Mmm, Refined Fossil Fuels~",
+  "advancements.csaugmentations.refined_oil.description": "Filter Crude Oil into Refined Oil.",
   "advancements.csaugmentations.crude_plastic.title": "Mmm, Micro-Plastics~",
   "advancements.csaugmentations.crude_plastic.description": "Refine Crude Oil into Crude Plastic.",
+  "advancements.csaugmentations.refined_plastic.title": "Refined Refinded Refindead!",
+  "advancements.csaugmentations.refined_plastic.description": "Refine Refined Oil into Refined Plastic, in a Refinery",
   "advancements.csaugmentations.cultivator.title": "Genetic Specialist",
   "advancements.csaugmentations.cultivator.description": "Craft a Cultivator.",
   "advancements.csaugmentations.crude_petri_dish.title": "Genetic Instability",
@@ -141,6 +148,15 @@
   "advancements.csaugmentations.nutriogloop.description": "Formulate a blob of nutrients..",
   "advancements.csaugmentations.dmem.title": "Cultivating Medium",
   "advancements.csaugmentations.dmem.description": "Make a Beaker of Cell Culture Medium.",
+  "advancements.csaugmentations.augmentation_base.title": "Your Very First.",
+  "advancements.csaugmentations.augmentation_base.description": "Craft a vital component to all Augmentations!",
+  "advancements.csaugmentations.prosthetic_arm.title": "Wake the f*** up, Samurai",
+  "advancements.csaugmentations.prosthetic_arm.description": "Silverhand.",
+  "advancements.csaugmentations.prosthetic_eyes.title": "Reallyy worth it",
+  "advancements.csaugmentations.prosthetic_eyes.description": "Craft Prosthetic Eyes.",
+
+  "advancements.csaugmentations.prosthetic_tier.title": "Weakness of Flesh, Relinquished.",
+  "advancements.csaugmentations.prosthetic_tier.description": "Craft every Prosthetic.",
 
   "commands.resetorgan.failed": "%s's organs were unable to reset",
   "commands.resetorgan.success": "Successfully Reset %s's Organs",

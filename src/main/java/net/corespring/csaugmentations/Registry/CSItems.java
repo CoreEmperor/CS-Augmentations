@@ -1,7 +1,5 @@
 package net.corespring.csaugmentations.Registry;
 
-import net.corespring.csaugmentations.Augmentations.Limbs.Cybernetic.CyberArm;
-import net.corespring.csaugmentations.Augmentations.Limbs.Cybernetic.CyberLeg;
 import net.corespring.csaugmentations.Augmentations.Limbs.Natural.NaturalArm;
 import net.corespring.csaugmentations.Augmentations.Limbs.Natural.NaturalLeg;
 import net.corespring.csaugmentations.Augmentations.Limbs.Prosthetic.ProstheticArm;
@@ -20,7 +18,6 @@ import net.corespring.csaugmentations.Utility.CSOrganTiers;
 import net.corespring.cslibrary.Items.BeakerItems.BasicBeakerItem;
 import net.corespring.cslibrary.Items.CRDItem;
 import net.corespring.cslibrary.Items.CRItem;
-import net.minecraft.world.food.Foods;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemNameBlockItem;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -47,6 +44,7 @@ public class CSItems {
 
     public static final Supplier<Item> PROSTHETIC_LEG = ITEMS.register("prosthetic_leg", () -> new ProstheticLeg(CSOrganTiers.PROSTHETIC, pOrganItem()));
     public static final Supplier<Item> PROSTHETIC_ARM = ITEMS.register("prosthetic_arm", () -> new ProstheticArm(CSOrganTiers.PROSTHETIC, pOrganItem()));
+    public static final Supplier<Item> PROSTHETIC_EYES = ITEMS.register("prosthetic_eyes", () -> new ProstheticEyes(CSOrganTiers.PROSTHETIC, pOrganItem()));
     public static final Supplier<Item> PROSTHETIC_HEART = ITEMS.register("prosthetic_heart", () -> new ProstheticHeart(CSOrganTiers.PROSTHETIC, pOrganItem()));
     public static final Supplier<Item> PROSTHETIC_KIDNEY = ITEMS.register("prosthetic_kidney", () -> new ProstheticKidney(CSOrganTiers.PROSTHETIC, pOrganItem()));
     public static final Supplier<Item> PROSTHETIC_LIVER = ITEMS.register("prosthetic_liver", () -> new ProstheticLiver(CSOrganTiers.PROSTHETIC, pOrganItem()));
@@ -112,6 +110,7 @@ public class CSItems {
     public static final Supplier<Item> BALL_SOCKET_JOINT = ITEMS.register("ball_socket_joint", () -> new Item(new Item.Properties()));
     public static final Supplier<Item> CRUDE_BLOOD_PUMP = ITEMS.register("crude_blood_pump", () -> new Item(new Item.Properties()));
     public static final Supplier<Item> CRUDE_BLOOD_FILTER = ITEMS.register("crude_blood_filter", () -> new Item(new Item.Properties()));
+    public static final Supplier<Item> CRUDE_OPTICAL_SENSOR = ITEMS.register("crude_optical_sensor", () -> new Item(new Item.Properties()));
     public static final Supplier<Item> ARTIFICIAL_MUSCLE = ITEMS.register("artificial_muscle", () -> new Item(new Item.Properties()));
     public static final Supplier<Item> ARTIFICIAL_TISSUE = ITEMS.register("artificial_tissue", () -> new Item(new Item.Properties()));
     public static final Supplier<Item> ARTIFICIAL_NERVES = ITEMS.register("artificial_nerves", () -> new Item(new Item.Properties()));

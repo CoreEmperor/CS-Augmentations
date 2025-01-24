@@ -3,6 +3,7 @@ package net.corespring.csaugmentations;
 import com.mojang.logging.LogUtils;
 import net.corespring.csaugmentations.Client.Overlays.IntoxicatedOverlay;
 import net.corespring.csaugmentations.Client.Overlays.NoEyesOverlay;
+import net.corespring.csaugmentations.Client.Overlays.ProstheticEyesOverlay;
 import net.corespring.csaugmentations.Client.Overlays.SilkBlissOverlay;
 import net.corespring.csaugmentations.Utility.Network.CSNetwork;
 import net.corespring.csaugmentations.Registry.CSRecipeSerializers;
@@ -59,6 +60,7 @@ public class CSAugmentations {
 
     private void clientSetup(final FMLClientSetupEvent event) {
         MinecraftForge.EVENT_BUS.register(NoEyesOverlay.class);
+        MinecraftForge.EVENT_BUS.register(ProstheticEyesOverlay.class);
         MinecraftForge.EVENT_BUS.register(SilkBlissOverlay.class);
         MinecraftForge.EVENT_BUS.register(IntoxicatedOverlay.class);
     }
