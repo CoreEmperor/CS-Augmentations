@@ -20,6 +20,7 @@ import net.corespring.csaugmentations.Utility.CSOrganTiers;
 import net.corespring.cslibrary.Items.BeakerItems.BasicBeakerItem;
 import net.corespring.cslibrary.Items.CRDItem;
 import net.corespring.cslibrary.Items.CRItem;
+import net.minecraft.world.food.Foods;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemNameBlockItem;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -128,7 +129,7 @@ public class CSItems {
     public static final Supplier<Item> DUST_SALT = ITEMS.register("dust_salt", () -> new Item(new Item.Properties()));
 
     //Alcohol Crafting Components//
-    public static final Supplier<Item> MEAD = ITEMS.register("mead", () -> new MeadItem(0, new Item.Properties().stacksTo(24)));
+    public static final Supplier<Item> MEAD = ITEMS.register("mead", () -> new MeadItem(1, new Item.Properties().food(CSEdibleFoods.MEAD).stacksTo(16)));
 
     //Pharmaceutical Crafting Components//
     public static final Supplier<Item> SOMNIFERUM_SEEDPOD = ITEMS.register("somniferum_seedpod", () -> new ItemNameBlockItem(CSBlocks.SOMNIFERUM_CLUSTER.get(), new Item.Properties()));

@@ -12,8 +12,8 @@ import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
 
-public abstract class DrinkablePharmaItem extends Item{
-    public DrinkablePharmaItem(Properties pProperties) {
+public abstract class DrinkableItem extends Item{
+    public DrinkableItem(Properties pProperties) {
         super(pProperties);
     }
 
@@ -35,7 +35,12 @@ public abstract class DrinkablePharmaItem extends Item{
 
     @NotNull
     public SoundEvent getEatingSound() {
-        return SoundEvents.GENERIC_DRINK;
+        return SoundEvents.HONEY_DRINK;
+    }
+
+    @Override
+    public SoundEvent getDrinkingSound() {
+        return SoundEvents.HONEY_DRINK;
     }
 
     public int getUseDuration(ItemStack pStack) {

@@ -13,15 +13,13 @@ public class Intoxicated extends MobEffect {
 
     @Override
     public void applyEffectTick(LivingEntity pLivingEntity, int pAmplifier) {
-        super.applyEffectTick(pLivingEntity, pAmplifier);
-
         if (!pLivingEntity.level().isClientSide) {
             double motionFactor = 0.04 + (0.01 * pAmplifier);
             double randomMotionX = (pLivingEntity.level().random.nextDouble() - 0.5) * motionFactor;
             double randomMotionZ = (pLivingEntity.level().random.nextDouble() - 0.5) * motionFactor;
                 pLivingEntity.push(randomMotionX, 0, randomMotionZ);
 
-                if(pLivingEntity instanceof Player player) {
+                if(pLivingEntity instanceof Player player && !player.isSpectator()) {
                     player.hurtMarked = true;
                 }
 

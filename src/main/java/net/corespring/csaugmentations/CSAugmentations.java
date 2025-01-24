@@ -1,6 +1,7 @@
 package net.corespring.csaugmentations;
 
 import com.mojang.logging.LogUtils;
+import net.corespring.csaugmentations.Client.Overlays.IntoxicatedOverlay;
 import net.corespring.csaugmentations.Client.Overlays.NoEyesOverlay;
 import net.corespring.csaugmentations.Client.Overlays.SilkBlissOverlay;
 import net.corespring.csaugmentations.Utility.Network.CSNetwork;
@@ -59,6 +60,7 @@ public class CSAugmentations {
     private void clientSetup(final FMLClientSetupEvent event) {
         MinecraftForge.EVENT_BUS.register(NoEyesOverlay.class);
         MinecraftForge.EVENT_BUS.register(SilkBlissOverlay.class);
+        MinecraftForge.EVENT_BUS.register(IntoxicatedOverlay.class);
     }
 
     @SubscribeEvent
@@ -77,12 +79,6 @@ public class CSAugmentations {
     public static class ClientModEvents {
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event) {
-        }
-
-        @SubscribeEvent
-        public static void registerOverlays(RegisterGuiOverlaysEvent event) {
-            event.registerBelowAll("no_eyes_overlay", new NoEyesOverlay());
-            event.registerBelowAll("silk_bliss_overlay", new SilkBlissOverlay());
         }
     }
 }
