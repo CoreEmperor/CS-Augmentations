@@ -98,7 +98,7 @@ repositories {
 }
 
 dependencies {
-    implementation fg.deobf("curse.maven:cslibrary-920019:6109072")
+    implementation fg.deobf("curse.maven:cslibrary-920019:6124855")
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
 
     compileOnly(fg.deobf("mezz.jei:jei-${minecraft_version}-common-api:${jei_version}"))

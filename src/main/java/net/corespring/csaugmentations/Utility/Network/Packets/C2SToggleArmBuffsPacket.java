@@ -34,7 +34,7 @@ public class C2SToggleArmBuffsPacket {
 
     private void handleToggleArmBuffsPacket(boolean armsEnabled, ServerPlayer player) {
         player.getCapability(OrganCap.ORGAN_DATA).ifPresent(data -> {
-            data.applyArmBuffs(armsEnabled);
+            data.applyEffects(armsEnabled);
         });
     }
 }

@@ -15,27 +15,32 @@ public enum CSOrganTiers {
         STOMACH_HUNGER, STOMACH_SAT;
     }
 
-    private final Map<Attribute, Object> attributes = new EnumMap<>(Attribute.class);
+    private final Map<Attribute, Double> doubleAttributes = new EnumMap<>(Attribute.class);
+    private final Map<Attribute, Integer> intAttributes = new EnumMap<>(Attribute.class);
 
     CSOrganTiers(double health, double speed, double pFallDamageReduction, double attackDamage,
                  double attackSpeed, int pAirTime, double pKidneyEfficiency, double pLiverEfficiency,
                  double pRibsArmor, double pGeneralArmor, int pStomachHunger, double pStomachSat) {
-        attributes.put(Attribute.HEALTH, health);
-        attributes.put(Attribute.SPEED, speed);
-        attributes.put(Attribute.FALL_DAMAGE_REDUCTION, pFallDamageReduction);
-        attributes.put(Attribute.ATTACK_DAMAGE, attackDamage);
-        attributes.put(Attribute.ATTACK_SPEED, attackSpeed);
-        attributes.put(Attribute.AIR_TIME, pAirTime);
-        attributes.put(Attribute.KIDNEY_EFFICIENCY, pKidneyEfficiency);
-        attributes.put(Attribute.LIVER_EFFICIENCY, pLiverEfficiency);
-        attributes.put(Attribute.RIBS_ARMOR, pRibsArmor);
-        attributes.put(Attribute.GENERAL_ARMOR, pGeneralArmor);
-        attributes.put(Attribute.STOMACH_HUNGER, pStomachHunger);
-        attributes.put(Attribute.STOMACH_SAT, pStomachSat);
+        doubleAttributes.put(Attribute.HEALTH, health);
+        doubleAttributes.put(Attribute.SPEED, speed);
+        doubleAttributes.put(Attribute.FALL_DAMAGE_REDUCTION, pFallDamageReduction);
+        doubleAttributes.put(Attribute.ATTACK_DAMAGE, attackDamage);
+        doubleAttributes.put(Attribute.ATTACK_SPEED, attackSpeed);
+        doubleAttributes.put(Attribute.KIDNEY_EFFICIENCY, pKidneyEfficiency);
+        doubleAttributes.put(Attribute.LIVER_EFFICIENCY, pLiverEfficiency);
+        doubleAttributes.put(Attribute.RIBS_ARMOR, pRibsArmor);
+        doubleAttributes.put(Attribute.GENERAL_ARMOR, pGeneralArmor);
+        doubleAttributes.put(Attribute.STOMACH_SAT, pStomachSat);
+        intAttributes.put(Attribute.AIR_TIME, pAirTime);
+        intAttributes.put(Attribute.STOMACH_HUNGER, pStomachHunger);
     }
 
-    public Object getAttribute(Attribute attribute) {
-        return attributes.get(attribute);
+    public Double getDoubleAttributes(Attribute attribute) {
+        return doubleAttributes.get(attribute);
+    }
+
+    public Integer getIntAttributes(Attribute attribute) {
+        return intAttributes.get(attribute);
     }
 
     public boolean isAboveOrEqual(CSOrganTiers altTier) {
@@ -43,50 +48,50 @@ public enum CSOrganTiers {
     }
 
     public double getHealth() {
-        return (double) attributes.get(Attribute.HEALTH);
+        return  doubleAttributes.get(Attribute.HEALTH);
     }
 
     public double getSpeed() {
-        return (double) attributes.get(Attribute.SPEED);
+        return  doubleAttributes.get(Attribute.SPEED);
     }
 
     public double getFallDamageReduction() {
-        return (double) attributes.get(Attribute.FALL_DAMAGE_REDUCTION);
+        return  doubleAttributes.get(Attribute.FALL_DAMAGE_REDUCTION);
     }
 
     public double getAttackDamage() {
-        return (double) attributes.get(Attribute.ATTACK_DAMAGE);
+        return  doubleAttributes.get(Attribute.ATTACK_DAMAGE);
     }
 
     public double getAttackSpeed() {
-        return (double) attributes.get(Attribute.ATTACK_SPEED);
+        return  doubleAttributes.get(Attribute.ATTACK_SPEED);
     }
 
     public int getAirTime() {
-        return (int) attributes.get(Attribute.AIR_TIME);
+        return intAttributes.get(Attribute.AIR_TIME);
     }
 
     public double getKidneyEfficiency() {
-        return (double) attributes.get(Attribute.KIDNEY_EFFICIENCY);
+        return  doubleAttributes.get(Attribute.KIDNEY_EFFICIENCY);
     }
 
     public double getLiverEfficiency() {
-        return (double) attributes.get(Attribute.LIVER_EFFICIENCY);
+        return  doubleAttributes.get(Attribute.LIVER_EFFICIENCY);
     }
 
     public double getRibsArmor() {
-        return (double) attributes.get(Attribute.RIBS_ARMOR);
+        return  doubleAttributes.get(Attribute.RIBS_ARMOR);
     }
 
     public double getGeneralArmor() {
-        return (double) attributes.get(Attribute.GENERAL_ARMOR);
+        return  doubleAttributes.get(Attribute.GENERAL_ARMOR);
     }
 
     public int getStomachHunger() {
-        return (int) attributes.get(Attribute.STOMACH_HUNGER);
+        return intAttributes.get(Attribute.STOMACH_HUNGER);
     }
 
     public double getStomachSat() {
-        return (double) attributes.get(Attribute.STOMACH_SAT);
+        return  doubleAttributes.get(Attribute.STOMACH_SAT);
     }
 }

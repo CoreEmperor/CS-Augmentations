@@ -22,9 +22,9 @@ public class SilkItem extends DrinkableItem {
         if (!pLevel.isClientSide) {
             pLivingEntity.addEffect(new MobEffectInstance(CSEffects.SILK.get(), 1000, 0, false, false, true));
 
-            if (pLivingEntity instanceof Player player) {
-                ItemStack beaker = new ItemStack(CSItems.BEAKER.get());
 
+            if (pLivingEntity instanceof Player player && !player.getAbilities().instabuild) {
+                ItemStack beaker = new ItemStack(CSItems.BEAKER.get());
                 if (!player.getInventory().add(beaker)) {
                     player.drop(beaker, false);
                 }
@@ -34,3 +34,4 @@ public class SilkItem extends DrinkableItem {
         return pStack;
     }
 }
+

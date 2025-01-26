@@ -13,10 +13,8 @@ import net.corespring.csaugmentations.Utility.CSOrganClasses;
 import net.corespring.csaugmentations.Utility.CSOrganTiers;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -174,7 +172,6 @@ public class OrganCap {
 
         public void updateOrganData() {
             synchronizeInventory();
-            applyCyberArmorAttributes();
 
             if (player instanceof ServerPlayer sPlayer && !sPlayer.level().isClientSide) {
                 CSNetwork.NETWORK_CHANNEL.send(PacketDistributor.PLAYER.with(() -> sPlayer),
@@ -199,11 +196,12 @@ public class OrganCap {
         }
 
         public void applyOrganRejection() {
-            if (player != null && !player.hasEffect(CSEffects.SILK.get())) {
+            if (player != null && !player.hasEffect(CSEffects.Immunosuppressant.get())) {
                 switch (this.currentCyberwareValue) {
                     case 10:
                     case 25:
                     case 50:
+                    case 70:
                     default:
                         break;
                 }
@@ -212,17 +210,6 @@ public class OrganCap {
 
         public boolean isCyberpsycho() {
             return this.currentCyberwareValue > this.humanityLimit;
-        }
-
-        private int calculateTotalCyberwareValue() {
-            int totalValue = 0;
-            for (int i = 0; i < getSlots(); i++) {
-                ItemStack stack = getStackInSlot(i);
-                if (stack.getItem() instanceof SimpleOrgan) {
-                    totalValue += ((SimpleOrgan) stack.getItem()).getOrganValue();
-                }
-            }
-            return totalValue;
         }
 
         public void setHumanityLimit(int humanityLimit) {
@@ -239,19 +226,16 @@ public class OrganCap {
 
             handleLungs(isUnderWater, wasUnderWater);
             wasUnderwaterMap.put(player, isUnderWater);
-
-            applyKidneyBuffs();
-            applyLiverBuffs();
+            applyEffects(true);
             applyOrganRejection();
 
             if (!disableLimbCriteria()) {
-                applyLegBuffs(CSAugUtil.legsEnabled);
-                applyArmBuffs(CSAugUtil.armsEnabled);
+                applyEffects(CSAugUtil.legsEnabled && CSAugUtil.armsEnabled);
             } else {
                 disabledLimbs();
             }
 
-            //Placeholder
+            // Placeholder
             if(getStackInSlot(CSAugUtil.OrganSlots.HEART).isEmpty()) {
                 player.getAttribute(Attributes.MAX_HEALTH).setBaseValue(0);
             }
@@ -268,10 +252,10 @@ public class OrganCap {
         }
 
         private boolean disableLimbCriteria() {
-            return isPlayerMissingBS();
+            return isPlayerMissingNervousSystem();
         }
 
-        private boolean isPlayerMissingBS() {
+        private boolean isPlayerMissingNervousSystem() {
             return !isPresent(CSAugUtil.OrganSlots.BRAIN) || !isPresent(CSAugUtil.OrganSlots.SPINE);
         }
 
@@ -290,6 +274,115 @@ public class OrganCap {
             if (pAttackSpeed != null) {
                 player.getAttribute(Attributes.ATTACK_SPEED).setBaseValue(0);
                 pAttackSpeed.removeModifier(CyberAttackSpeed);
+            }
+        }
+
+        public void applyEffects(boolean enable) {
+            if (player != null) {
+                resetAttributes();
+
+                double totalSpeedBonus = calculateLegBuffs(enable);
+                double[] armBonuses = calculateArmBuffs(enable);
+                double combinedKidneyEfficiency = calculateKidneyBuffs();
+                double combinedLiverEfficiency = calculateLiverBuffs();
+                double totalArmor = calculateArmorBuffs();
+
+                applyLegBuffs(totalSpeedBonus);
+                applyArmBuffs(armBonuses);
+                applyKidneyEffects(combinedKidneyEfficiency);
+                applyLiverEffects(combinedLiverEfficiency);
+                applyArmorBuffs(totalArmor);
+            }
+        }
+
+        private void resetAttributes() {
+            player.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(0);
+            player.getAttribute(Attributes.ATTACK_DAMAGE).setBaseValue(0);
+            player.getAttribute(Attributes.ATTACK_SPEED).setBaseValue(0);
+            player.getAttribute(Attributes.MOVEMENT_SPEED).removeModifier(CyberSpeed);
+            player.getAttribute(Attributes.ATTACK_DAMAGE).removeModifier(CyberAttackDamage);
+            player.getAttribute(Attributes.ATTACK_SPEED).removeModifier(CyberAttackSpeed);
+            player.getAttribute(Attributes.ARMOR).removeModifier(CyberArmor);
+        }
+
+        private void applyLegBuffs(double legBuffs) {
+            if (legBuffs > 0.0) {
+                player.getAttribute(Attributes.MOVEMENT_SPEED).addTransientModifier(new AttributeModifier(CyberSpeed, "CyberSpeed", legBuffs, AttributeModifier.Operation.ADDITION));
+            }
+        }
+
+        private void applyArmBuffs(double[] armBuffs) {
+            if (armBuffs[0] > 0.0) {
+                player.getAttribute(Attributes.ATTACK_DAMAGE).addTransientModifier(new AttributeModifier(CyberAttackDamage, "CyberAttackDamage", armBuffs[0], AttributeModifier.Operation.ADDITION));
+            }
+
+            if (armBuffs[1] > 0.0) {
+                player.getAttribute(Attributes.ATTACK_SPEED).addTransientModifier(new AttributeModifier(CyberAttackSpeed, "CyberAttackSpeed", armBuffs[1], AttributeModifier.Operation.ADDITION));
+            }
+        }
+
+        private void applyKidneyEffects(double combinedEfficiency) {
+            List<MobEffectInstance> kidneyEffectsToAdd = new ArrayList<>();
+            for (MobEffectInstance effectInstance : new ArrayList<>(player.getActiveEffects())) {
+                IMixinMobEffectInstance mixinEffectInstance = (IMixinMobEffectInstance) effectInstance;
+
+                if (isHarmfulEffect(effectInstance) && !mixinEffectInstance.isEfficiencyApplied()) {
+                    adjustEffectDuration(effectInstance, combinedEfficiency);
+                    mixinEffectInstance.setEfficiencyApplied(true);
+                }
+
+                if (!player.hasEffect(effectInstance.getEffect())) {
+                    mixinEffectInstance.setEfficiencyApplied(false);
+                }
+
+                if (combinedEfficiency == 0.0) {
+                    kidneyEffectsToAdd.add(new MobEffectInstance(CSEffects.KidneyFailure.get(), 40, 0, false, false, true));
+                }
+            }
+            addRemoveEffects(kidneyEffectsToAdd, new ArrayList<>());
+        }
+
+        private void applyLiverEffects(double pEfficiency) {
+            List<MobEffectInstance> liverEffectsToAdd = new ArrayList<>();
+            for (MobEffectInstance effectInstance : new ArrayList<>(player.getActiveEffects())) {
+                IMixinMobEffectInstance mixinEffectInstance = (IMixinMobEffectInstance) effectInstance;
+
+                if (!isHarmfulEffect(effectInstance) && !mixinEffectInstance.isEfficiencyApplied()) {
+                    adjustEffectDurationAndTier(effectInstance, pEfficiency);
+                    mixinEffectInstance.setEfficiencyApplied(true);
+                }
+
+                if (!player.hasEffect(effectInstance.getEffect())) {
+                    mixinEffectInstance.setEfficiencyApplied(false);
+                }
+
+                if (pEfficiency == 0.0) {
+                    liverEffectsToAdd.add(new MobEffectInstance(CSEffects.LiverFailure.get(), 40, 0, false, false, true));
+                }
+            }
+            addRemoveEffects(liverEffectsToAdd, new ArrayList<>());
+        }
+
+        public void applyStomachBuffs() {
+            ItemStack stack = getStackInSlot(CSAugUtil.OrganSlots.STOMACH);
+            int pHunger = 0;
+            double pSat = 0.0;
+
+            if (stack.getItem() instanceof SimpleOrgan organ) {
+                pHunger += organ.getIntAttribute(CSOrganTiers.Attribute.STOMACH_HUNGER);
+                pSat += organ.getDoubleAttribute(CSOrganTiers.Attribute.STOMACH_SAT);
+            } else if (stack.isEmpty()) {
+                pHunger += CSOrganTiers.REMOVED.getIntAttributes(CSOrganTiers.Attribute.STOMACH_HUNGER);
+                pSat += CSOrganTiers.REMOVED.getDoubleAttributes(CSOrganTiers.Attribute.STOMACH_SAT);
+            }
+
+            modifyPlayerFoodStats(pHunger, pSat);
+        }
+
+        private void applyArmorBuffs(double totalArmor) {
+            if (totalArmor > 0.0) {
+                player.getAttribute(Attributes.ARMOR).addTransientModifier(
+                        new AttributeModifier(CyberArmor, "CyberArmor", totalArmor, AttributeModifier.Operation.ADDITION));
             }
         }
 
@@ -320,145 +413,101 @@ public class OrganCap {
             return false;
         }
 
-        public void applyLegBuffs(boolean enable) {
-            if (player != null) {
-                player.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(0);
-                player.getAttribute(Attributes.MOVEMENT_SPEED).removeModifier(CyberSpeed);
+        private double calculateLegBuffs(boolean enable) {
+            double totalSpeedBonus = 0.0;
+            int[] legSlots = new int[]{CSAugUtil.OrganSlots.RIGHT_LEG, CSAugUtil.OrganSlots.LEFT_LEG};
 
-                double totalSpeedBonus = 0.0;
-
-                int[] legSlots = new int[]{
-                        CSAugUtil.OrganSlots.RIGHT_LEG,
-                        CSAugUtil.OrganSlots.LEFT_LEG
-                };
-
-                for (int slot : legSlots) {
-                    ItemStack stack = getStackInSlot(slot);
-                    if (stack.isEmpty()) {
-                        continue;
+            for (int slot : legSlots) {
+                ItemStack stack = getStackInSlot(slot);
+                if (!stack.isEmpty() && stack.getItem() instanceof SimpleOrgan organ && organ.hasAttribute(CSOrganTiers.Attribute.SPEED)) {
+                    if (isTierAboveProsthetic() && hasCyberBrain()) {
+                        totalSpeedBonus += enable
+                                ? organ.getDoubleAttribute(CSOrganTiers.Attribute.SPEED)
+                                : CSOrganTiers.NATURAL.getDoubleAttributes(CSOrganTiers.Attribute.SPEED);
+                    } else {
+                        totalSpeedBonus += organ.getDoubleAttribute(CSOrganTiers.Attribute.SPEED);
                     }
-                    if (stack.getItem() instanceof SimpleOrgan organ) {
+                }
+            }
 
-                        if (isTierAboveProsthetic() && hasCyberBrain()) {
-                            if (enable) {
-                                totalSpeedBonus += organ.getAttribute(CSOrganTiers.Attribute.SPEED);
-                            } else {
-                                totalSpeedBonus += (double) CSOrganTiers.NATURAL.getAttribute(CSOrganTiers.Attribute.SPEED);
-                            }
-                        } else {
-                            totalSpeedBonus += organ.getAttribute(CSOrganTiers.Attribute.SPEED);
+            return totalSpeedBonus;
+        }
+
+        private double[] calculateArmBuffs(boolean enable) {
+            double totalAttackBonus = 0.0;
+            double totalAttackSpeedBonus = 0.0;
+            int[] armSlots = new int[]{CSAugUtil.OrganSlots.RIGHT_ARM, CSAugUtil.OrganSlots.LEFT_ARM};
+
+            for (int slot : armSlots) {
+                ItemStack stack = getStackInSlot(slot);
+                if (!stack.isEmpty() && stack.getItem() instanceof SimpleOrgan organ) {
+                    if (isTierAboveProsthetic() && hasCyberBrain()) {
+                        if (organ.hasAttribute(CSOrganTiers.Attribute.ATTACK_DAMAGE)) {
+                            totalAttackBonus += enable
+                                    ? organ.getDoubleAttribute(CSOrganTiers.Attribute.ATTACK_DAMAGE)
+                                    : CSOrganTiers.NATURAL.getDoubleAttributes(CSOrganTiers.Attribute.ATTACK_DAMAGE);
+                        }
+                        if (organ.hasAttribute(CSOrganTiers.Attribute.ATTACK_SPEED)) {
+                            totalAttackSpeedBonus += enable
+                                    ? organ.getDoubleAttribute(CSOrganTiers.Attribute.ATTACK_SPEED)
+                                    : CSOrganTiers.NATURAL.getDoubleAttributes(CSOrganTiers.Attribute.ATTACK_SPEED);
+                        }
+                    } else {
+                        if (organ.hasAttribute(CSOrganTiers.Attribute.ATTACK_DAMAGE)) {
+                            totalAttackBonus += organ.getDoubleAttribute(CSOrganTiers.Attribute.ATTACK_DAMAGE);
+                        }
+                        if (organ.hasAttribute(CSOrganTiers.Attribute.ATTACK_SPEED)) {
+                            totalAttackSpeedBonus += organ.getDoubleAttribute(CSOrganTiers.Attribute.ATTACK_SPEED);
                         }
                     }
                 }
-
-                if (totalSpeedBonus > 0.0) {
-                    player.getAttribute(Attributes.MOVEMENT_SPEED).addTransientModifier(new AttributeModifier(CyberSpeed, "CyberSpeed", totalSpeedBonus, AttributeModifier.Operation.ADDITION));
-                }
             }
+
+            return new double[]{totalAttackBonus, totalAttackSpeedBonus};
         }
 
-        public void applyArmBuffs(boolean enable) {
-            if (player != null) {
-                player.getAttribute(Attributes.ATTACK_DAMAGE).setBaseValue(0);
-                player.getAttribute(Attributes.ATTACK_SPEED).setBaseValue(0);
-                player.getAttribute(Attributes.ATTACK_DAMAGE).removeModifier(CyberAttackDamage);
-                player.getAttribute(Attributes.ATTACK_SPEED).removeModifier(CyberAttackSpeed);
+        private double calculateKidneyBuffs() {
+            return calculateCombinedEfficiency(
+                    new int[]{CSAugUtil.OrganSlots.LEFT_KIDNEY, CSAugUtil.OrganSlots.RIGHT_KIDNEY},
+                    CSOrganTiers.Attribute.KIDNEY_EFFICIENCY);
+        }
 
-                double totalAttackBonus = 0.0f;
-                double totalAttackSpeedBonus = 0.0f;
+        private double calculateLiverBuffs() {
+            return calculateCombinedEfficiency(
+                    new int[]{CSAugUtil.OrganSlots.LIVER},
+                    CSOrganTiers.Attribute.LIVER_EFFICIENCY);
+        }
 
-                int[] armSlots = new int[]{
-                        CSAugUtil.OrganSlots.RIGHT_ARM,
-                        CSAugUtil.OrganSlots.LEFT_ARM
-                };
+        private double calculateArmorBuffs() {
+            double totalArmor = 0.0;
+            int[] armorSlots = new int[]{CSAugUtil.OrganSlots.RIBS, CSAugUtil.OrganSlots.SKIN, CSAugUtil.OrganSlots.RIGHT_LEG,
+                    CSAugUtil.OrganSlots.LEFT_LEG, CSAugUtil.OrganSlots.RIGHT_ARM, CSAugUtil.OrganSlots.LEFT_ARM};
 
-                for (int slot : armSlots) {
-                    ItemStack stack = getStackInSlot(slot);
-                    if (stack.isEmpty()) {
-                        continue;
+            for (int slot : armorSlots) {
+                ItemStack stack = getStackInSlot(slot);
+                if (!stack.isEmpty() && stack.getItem() instanceof SimpleOrgan organ) {
+                    double attributeValue = 0.0;
+                    if (slot == CSAugUtil.OrganSlots.RIBS && organ.hasAttribute(CSOrganTiers.Attribute.RIBS_ARMOR)) {
+                        attributeValue = organ.getDoubleAttribute(CSOrganTiers.Attribute.RIBS_ARMOR);
+                    } else if (organ.hasAttribute(CSOrganTiers.Attribute.GENERAL_ARMOR)) {
+                        attributeValue = organ.getDoubleAttribute(CSOrganTiers.Attribute.GENERAL_ARMOR);
                     }
-                    if (stack.getItem() instanceof SimpleOrgan organ) {
-
-                        if (isTierAboveProsthetic() && hasCyberBrain()) {
-                            if (enable) {
-                                totalAttackBonus += organ.getAttribute(CSOrganTiers.Attribute.ATTACK_DAMAGE);
-                                totalAttackSpeedBonus += organ.getAttribute(CSOrganTiers.Attribute.ATTACK_SPEED);
-                            } else {
-                                totalAttackBonus += (double) CSOrganTiers.NATURAL.getAttribute(CSOrganTiers.Attribute.ATTACK_DAMAGE);
-                                totalAttackSpeedBonus += (double) CSOrganTiers.NATURAL.getAttribute(CSOrganTiers.Attribute.ATTACK_SPEED);
-                            }
-                        }
-                        totalAttackBonus += organ.getAttribute(CSOrganTiers.Attribute.ATTACK_DAMAGE);
-                        totalAttackSpeedBonus += organ.getAttribute(CSOrganTiers.Attribute.ATTACK_SPEED);
-                    }
-                }
-
-                if (totalAttackBonus > 0.0) {
-                    player.getAttribute(Attributes.ATTACK_DAMAGE).addTransientModifier(new AttributeModifier(CyberAttackDamage, "CyberAttackDamage", totalAttackBonus, AttributeModifier.Operation.ADDITION));
-                }
-
-                if (totalAttackSpeedBonus > 0.0) {
-                    player.getAttribute(Attributes.ATTACK_SPEED).addTransientModifier(new AttributeModifier(CyberAttackSpeed, "CyberAttackSpeed", totalAttackSpeedBonus, AttributeModifier.Operation.ADDITION));
+                    totalArmor += attributeValue;
                 }
             }
+
+            return totalArmor;
         }
 
-        private void applyKidneyBuffs() {
-            double combinedEfficiency = calculateCombinedEfficiency(
-                    new int[]{CSAugUtil.OrganSlots.LEFT_KIDNEY, CSAugUtil.OrganSlots.RIGHT_KIDNEY}, CSOrganTiers.Attribute.KIDNEY_EFFICIENCY);
-
-            List<MobEffectInstance> kidneyEffectsToAdd = new ArrayList<>();
-            for (MobEffectInstance effectInstance : new ArrayList<>(player.getActiveEffects())) {
-                IMixinMobEffectInstance mixinEffectInstance = (IMixinMobEffectInstance) effectInstance;
-
-                if (isHarmfulEffect(effectInstance) && !mixinEffectInstance.isEfficiencyApplied()) {
-                    adjustEffectDuration(effectInstance, combinedEfficiency);
-                    mixinEffectInstance.setEfficiencyApplied(true);
-                }
-
-                if (!player.hasEffect(effectInstance.getEffect())) {
-                    mixinEffectInstance.setEfficiencyApplied(false);
-                }
-
-                if (combinedEfficiency == 0.0) {
-                    kidneyEffectsToAdd.add(new MobEffectInstance(CSEffects.KidneyFailure.get(), 40, 0, false, false, true));
+        private int calculateTotalCyberwareValue() {
+            int totalValue = 0;
+            for (int i = 0; i < getSlots(); i++) {
+                ItemStack stack = getStackInSlot(i);
+                if (stack.getItem() instanceof SimpleOrgan) {
+                    totalValue += ((SimpleOrgan) stack.getItem()).getOrganValue();
                 }
             }
-            addRemoveEffects(kidneyEffectsToAdd, new ArrayList<>());
-        }
-
-        private void applyLiverBuffs() {
-            double combinedEfficiency = calculateCombinedEfficiency(
-                    new int[]{CSAugUtil.OrganSlots.LIVER}, CSOrganTiers.Attribute.LIVER_EFFICIENCY);
-
-            List<MobEffectInstance> liverEffectsToAdd = new ArrayList<>();
-            for (MobEffectInstance effectInstance : new ArrayList<>(player.getActiveEffects())) {
-                IMixinMobEffectInstance mixinEffectInstance = (IMixinMobEffectInstance) effectInstance;
-
-                if (!isHarmfulEffect(effectInstance) && !mixinEffectInstance.isEfficiencyApplied()) {
-                    adjustEffectDurationAndTier(effectInstance, combinedEfficiency);
-                    mixinEffectInstance.setEfficiencyApplied(true);
-                }
-
-                if (!player.hasEffect(effectInstance.getEffect())) {
-                    mixinEffectInstance.setEfficiencyApplied(false);
-                }
-
-                if (combinedEfficiency == 0.0) {
-                    liverEffectsToAdd.add(new MobEffectInstance(CSEffects.LiverFailure.get(), 40, 0, false, false, true));
-                }
-            }
-            addRemoveEffects(liverEffectsToAdd, new ArrayList<>());
-        }
-
-        private boolean isHarmfulEffect(MobEffectInstance effectInstance) {
-            MobEffectCategory category = effectInstance.getEffect().isBeneficial() ? MobEffectCategory.BENEFICIAL : MobEffectCategory.HARMFUL;
-            return category == MobEffectCategory.HARMFUL;
-        }
-
-        private void addRemoveEffects(List<MobEffectInstance> effectsToAdd, List<MobEffectInstance> effectsToRemove) {
-            effectsToAdd.forEach(player::addEffect);
-            effectsToRemove.forEach(effect -> player.removeEffect(effect.getEffect()));
+            return totalValue;
         }
 
         private void adjustEffectDuration(MobEffectInstance effectInstance, double combinedEfficiency) {
@@ -482,24 +531,19 @@ public class OrganCap {
             return Arrays.stream(slots)
                     .mapToDouble(slot -> {
                         ItemStack stack = getStackInSlot(slot);
-                        return !stack.isEmpty() && stack.getItem() instanceof SimpleOrgan organ ? organ.getAttribute(attribute) : 0.0;
+                        return !stack.isEmpty() && stack.getItem() instanceof SimpleOrgan organ && organ.hasAttribute(attribute)
+                                ? organ.getDoubleAttribute(attribute) : 0.0;
                     }).sum();
         }
 
-        public void applyStomachBuffs() {
-            ItemStack stack = getStackInSlot(CSAugUtil.OrganSlots.STOMACH);
-            int pHunger = 0;
-            double pSat = 0.0;
+        private boolean isHarmfulEffect(MobEffectInstance effectInstance) {
+            MobEffectCategory category = effectInstance.getEffect().isBeneficial() ? MobEffectCategory.BENEFICIAL : MobEffectCategory.HARMFUL;
+            return category == MobEffectCategory.HARMFUL;
+        }
 
-            if (stack.getItem() instanceof SimpleOrgan organ) {
-                pHunger += (int) organ.getAttribute(CSOrganTiers.Attribute.STOMACH_HUNGER);
-                pSat += organ.getAttribute(CSOrganTiers.Attribute.STOMACH_SAT);
-            } else if (stack.isEmpty()) {
-                pHunger += (int) CSOrganTiers.REMOVED.getAttribute(CSOrganTiers.Attribute.STOMACH_HUNGER);
-                pSat += (double) CSOrganTiers.REMOVED.getAttribute(CSOrganTiers.Attribute.STOMACH_SAT);
-            }
-
-            modifyPlayerFoodStats(pHunger, pSat);
+        private void addRemoveEffects(List<MobEffectInstance> effectsToAdd, List<MobEffectInstance> effectsToRemove) {
+            effectsToAdd.forEach(player::addEffect);
+            effectsToRemove.forEach(effect -> player.removeEffect(effect.getEffect()));
         }
 
         private void modifyPlayerFoodStats(int hunger, double saturation) {
@@ -509,38 +553,6 @@ public class OrganCap {
 
             foodStats.setFoodLevel(newHunger);
             foodStats.setSaturation(newSaturation);
-        }
-
-        private void applyCyberArmorAttributes() {
-            if (player != null) {
-                player.getAttribute(Attributes.ARMOR).removeModifier(CyberArmor);
-
-                double totalArmor = 0.0;
-
-                int[] armorSlots = new int[]{
-                        CSAugUtil.OrganSlots.RIBS,
-                        CSAugUtil.OrganSlots.SKIN,
-                        CSAugUtil.OrganSlots.RIGHT_LEG,
-                        CSAugUtil.OrganSlots.LEFT_LEG,
-                        CSAugUtil.OrganSlots.RIGHT_ARM,
-                        CSAugUtil.OrganSlots.LEFT_ARM
-                };
-
-                for (int slot : armorSlots) {
-                    ItemStack stack = getStackInSlot(slot);
-                    if (!stack.isEmpty() && stack.getItem() instanceof SimpleOrgan organ) {
-                        double attributeValue = (slot == CSAugUtil.OrganSlots.RIBS)
-                                ? organ.getAttribute(CSOrganTiers.Attribute.RIBS_ARMOR)
-                                : organ.getAttribute(CSOrganTiers.Attribute.GENERAL_ARMOR);
-                        totalArmor += attributeValue;
-                    }
-                }
-
-                if (totalArmor > 0.0) {
-                    player.getAttribute(Attributes.ARMOR).addTransientModifier(
-                            new AttributeModifier(CyberArmor, "CyberArmor", totalArmor, AttributeModifier.Operation.ADDITION));
-                }
-            }
         }
     }
 

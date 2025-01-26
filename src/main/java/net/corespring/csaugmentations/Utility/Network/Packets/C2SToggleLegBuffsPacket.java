@@ -34,7 +34,7 @@ public class C2SToggleLegBuffsPacket {
 
     private void handleToggleLegBuffsPacket(boolean legsEnabled, ServerPlayer player) {
         player.getCapability(OrganCap.ORGAN_DATA).ifPresent(data -> {
-            data.applyLegBuffs(legsEnabled);
+            data.applyEffects(legsEnabled);
         });
     }
 }

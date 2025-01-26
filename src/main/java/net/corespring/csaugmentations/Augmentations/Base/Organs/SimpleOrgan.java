@@ -8,12 +8,25 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public abstract class SimpleOrgan extends Item implements IOrganTickable {
     private final CSOrganTiers pTier;
+    private final Map<Attribute, Double> doubleAttributes = new HashMap<>();
+    private final Map<Attribute, Integer> intAttributes = new HashMap<>();
 
     public SimpleOrgan(CSOrganTiers pTier, Properties pProperties) {
         super(pProperties);
         this.pTier = pTier;
+        for (Attribute attribute : Attribute.values()) {
+            if (pTier.getDoubleAttributes(attribute) != null) {
+                doubleAttributes.put(attribute, pTier.getDoubleAttributes(attribute));
+            }
+            if (pTier.getIntAttributes(attribute) != null) {
+                intAttributes.put(attribute, pTier.getIntAttributes(attribute));
+            }
+        }
     }
 
     public CSOrganTiers getTier() {
@@ -31,12 +44,15 @@ public abstract class SimpleOrgan extends Item implements IOrganTickable {
     public void organTick(ItemStack pStack, Level pLevel, Player pPlayer, int pSlotId) {
     }
 
-    public double getAttribute(CSOrganTiers.Attribute attribute) {
-        Object attrValue = pTier.getAttribute(attribute);
-        if (attrValue instanceof Number) {
-            return ((Number) attrValue).doubleValue();
-        } else {
-            throw new IllegalArgumentException("Attribute value is not a number: " + attribute);
-        }
+    public double getDoubleAttribute(Attribute attribute) {
+        return doubleAttributes.getOrDefault(attribute, 0.0);
+    }
+
+    public int getIntAttribute(Attribute attribute) {
+        return intAttributes.getOrDefault(attribute, 0);
+    }
+
+    public boolean hasAttribute(Attribute attribute) {
+        return doubleAttributes.containsKey(attribute) || intAttributes.containsKey(attribute);
     }
 }

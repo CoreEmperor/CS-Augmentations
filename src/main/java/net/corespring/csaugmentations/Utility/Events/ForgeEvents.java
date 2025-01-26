@@ -99,6 +99,7 @@ public class ForgeEvents {
             }
         }
 
+
         @SubscribeEvent
         public static void onPlayerLoggedIn(PlayerEvent.PlayerLoggedInEvent event) {
             ServerPlayer player = (ServerPlayer) event.getEntity();

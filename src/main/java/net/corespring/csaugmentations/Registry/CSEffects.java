@@ -34,6 +34,13 @@ public class CSEffects {
             Mob_EFFECTS.register("liverfailure",
                     () -> new LiverFailure(MobEffectCategory.NEUTRAL, 0x561314));
 
+    public static Supplier<MobEffect> OrganRejection =
+            Mob_EFFECTS.register("organrejection",
+                    () -> new OrganRejection(MobEffectCategory.HARMFUL, 0x561314));
+    public static Supplier<MobEffect> Immunosuppressant =
+            Mob_EFFECTS.register("immunosuppressant",
+                    () -> new ImmunoSuppressant(MobEffectCategory.NEUTRAL, 0x561314));
+
 
     public static void register(IEventBus eventBus) {
         Mob_EFFECTS.register(eventBus);
