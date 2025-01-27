@@ -21,7 +21,7 @@ public class OrganRejectionOverlay implements IGuiOverlay {
         this.screenHeight = pGuiGraphics.guiHeight();
         Player player = Minecraft.getInstance().player;
 
-        if(player != null && player.hasEffect(CSEffects.ORGAN_REJECTION.get())) {
+        if(player != null && player.hasEffect(CSEffects.ORGAN_REJECTION.get()) && player.getEffect(CSEffects.ORGAN_REJECTION.get()).getAmplifier() >= 3) {
             renderTextureOverlay(pGuiGraphics, ORGAN_REJECTION, 1.0F);
         }
 
