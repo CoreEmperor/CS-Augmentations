@@ -50,6 +50,8 @@ public class CSBlockLootTables extends BlockLootSubProvider {
         this.add(CSBlocks.POLISHED_SALT_SLAB.get(),
                 block -> createSlabItemTable(CSBlocks.POLISHED_SALT_SLAB.get()));
 
+        this.dropSelf(CSBlocks.CYCLOFUNGI.get());
+
         this.dropSelf(CSBlocks.WILD_SOMNIFERUM.get());
         this.dropSelf(CSBlocks.BLOCK_SOMNIFERUM_SAP.get());
         this.add(CSBlocks.SOMNIFERUM_CLUSTER.get(),

@@ -25,6 +25,7 @@ import java.util.List;
 public class CSConfiguredFeatures {
     public static final ResourceKey<ConfiguredFeature<?, ?>> FOSSIL_ORE_KEY = registerKey("fossil_ore");
     public static final ResourceKey<ConfiguredFeature<?, ?>> SALT_KEY = registerKey("salt_ore");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> CYCLOFUNGI_KEY = registerKey("cyclofungi");
     public static final ResourceKey<ConfiguredFeature<?, ?>> SOMNIFERUM_KEY = registerKey("somniferum");
 
     public static void bootstrap(BootstapContext<ConfiguredFeature<?, ?>> context) {
@@ -45,6 +46,10 @@ public class CSConfiguredFeatures {
                 OreConfiguration.target(sandReplaceable, CSBlocks.SALT.get().defaultBlockState()),
                 OreConfiguration.target(gravelReplaceable, CSBlocks.SALT.get().defaultBlockState()));
         register(context, SALT_KEY, Feature.ORE, new OreConfiguration(SALT, 20));
+
+        register(context, CYCLOFUNGI_KEY, Feature.FLOWER,
+                new RandomPatchConfiguration(10, 3, 3, PlacementUtils.onlyWhenEmpty(Feature.SIMPLE_BLOCK,
+                        new SimpleBlockConfiguration(BlockStateProvider.simple(CSBlocks.CYCLOFUNGI.get().defaultBlockState())))));
 
         register(context, SOMNIFERUM_KEY, Feature.FLOWER,
                 new RandomPatchConfiguration(19, 4, 3, PlacementUtils.onlyWhenEmpty(Feature.SIMPLE_BLOCK,

@@ -9,6 +9,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraftforge.client.model.generators.BlockModelBuilder;
 import net.minecraftforge.client.model.generators.BlockStateProvider;
 import net.minecraftforge.client.model.generators.ConfiguredModel;
 import net.minecraftforge.client.model.generators.ModelFile;
@@ -40,6 +41,9 @@ public class CSBlockStateProvider extends BlockStateProvider {
         stairsBlock(((StairBlock) CSBlocks.POLISHED_SALT_STAIRS.get()), blockTexture(CSBlocks.POLISHED_SALT.get()));
         slabBlock(((SlabBlock) CSBlocks.POLISHED_SALT_SLAB.get()), blockTexture(CSBlocks.POLISHED_SALT.get()), blockTexture(CSBlocks.POLISHED_SALT.get()));
 
+        this.simpleBlockWithItem(CSBlocks.CYCLOFUNGI.get(),
+                this.models().cross(this.blockTexture(CSBlocks.CYCLOFUNGI.get()).getPath(), this.blockTexture(CSBlocks.CYCLOFUNGI.get())).renderType("cutout"));
+        
         blockWithItem(CSBlocks.BLOCK_SOMNIFERUM_SAP);
         simpleBlockWithItem(CSBlocks.WILD_SOMNIFERUM.get(), models().cross(blockTexture(CSBlocks.WILD_SOMNIFERUM.get()).getPath(),
                 blockTexture(CSBlocks.WILD_SOMNIFERUM.get())).renderType("cutout"));

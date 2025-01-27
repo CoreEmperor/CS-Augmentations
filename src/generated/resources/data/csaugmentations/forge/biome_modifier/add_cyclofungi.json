@@ -1,0 +1,6 @@
+{
+  "type": "forge:add_features",
+  "biomes": "#minecraft:has_structure/woodland_mansion",
+  "features": "csaugmentations:cyclofungi_placed",
+  "step": "vegetal_decoration"
+}

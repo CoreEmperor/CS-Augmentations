@@ -7,6 +7,7 @@ import net.corespring.csaugmentations.Augmentations.Limbs.Prosthetic.ProstheticL
 import net.corespring.csaugmentations.Augmentations.Organs.Natural.*;
 import net.corespring.csaugmentations.Augmentations.Organs.Prosthetic.*;
 import net.corespring.csaugmentations.CSAugmentations;
+import net.corespring.csaugmentations.Item.Immunosuppressant;
 import net.corespring.csaugmentations.Item.PetriDish;
 import net.corespring.csaugmentations.Item.Pharma.MeadItem;
 import net.corespring.csaugmentations.Item.Pharma.SilkItem;
@@ -77,12 +78,9 @@ public class CSItems {
     public static final Supplier<Item> SUTURE = ITEMS.register("suture",
             () -> new Suture(new Item.Properties().stacksTo(16)));
 
-    public static final Supplier<Item> LOADED_CRUDE_PETRI_DISH = ITEMS.register("loaded_crude_petri_dish",
-            () -> new PetriDish(new Item.Properties()));
-    public static final Supplier<Item> LOADED_REFINED_PETRI_DISH = ITEMS.register("loaded_refined_petri_dish",
-            () -> new PetriDish(new Item.Properties()));
-
     //Crafting Components//==================================================================//
+    public static final Supplier<Item> LOADED_CRUDE_PETRI_DISH = ITEMS.register("loaded_crude_petri_dish", () -> new PetriDish(new Item.Properties()));
+    public static final Supplier<Item> LOADED_REFINED_PETRI_DISH = ITEMS.register("loaded_refined_petri_dish", () -> new PetriDish(new Item.Properties()));
 
     public static final Supplier<Item> CRUSHED_ACID_MUSHROOM = ITEMS.register("crushed_acid_mushroom", () -> new Item(new Item.Properties()));
 
@@ -131,6 +129,10 @@ public class CSItems {
     public static final Supplier<Item> MEAD = ITEMS.register("mead", () -> new MeadItem(1, new Item.Properties().food(CSEdibleFoods.MEAD).stacksTo(16)));
 
     //Pharmaceutical Crafting Components//
+    public static final Supplier<Item> BEAKER_CYCLOSPORINE = ITEMS.register("beaker_cyclosporine", () -> new Item(new Item.Properties().stacksTo(24)));
+    public static final Supplier<Item> IMMUNOSUPPRESSANT = ITEMS.register("immunosuppressant", () -> new Immunosuppressant(new Item.Properties().stacksTo(16)));
+
+
     public static final Supplier<Item> SOMNIFERUM_SEEDPOD = ITEMS.register("somniferum_seedpod", () -> new ItemNameBlockItem(CSBlocks.SOMNIFERUM_CLUSTER.get(), new Item.Properties()));
     public static final Supplier<Item> SOMNIFERUM_SAP = ITEMS.register("somniferum_sap", () -> new Item(new Item.Properties()));
     public static final Supplier<Item> BEAKER_SILK = ITEMS.register("beaker_silk", () -> new SilkItem(new Item.Properties().stacksTo(24)));

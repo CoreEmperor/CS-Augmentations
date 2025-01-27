@@ -1,0 +1,35 @@
+{
+  "display": {
+    "icon": {
+      "item": "csaugmentations:immunosuppressant"
+    },
+    "title": {
+      "translate": "advancements.csaugmentations.immunosuppressant.title"
+    },
+    "description": {
+      "translate": "advancements.csaugmentations.immunosuppressant.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "parent": "csaugmentations:chemistry",
+  "criteria": {
+    "root": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "csaugmentations:immunosuppressant"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "rewards": {
+    "experience": 10
+  }
+}

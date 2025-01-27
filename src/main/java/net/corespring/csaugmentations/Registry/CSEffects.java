@@ -27,19 +27,19 @@ public class CSEffects {
     public static Supplier<MobEffect> HEMOSTAT =
             Mob_EFFECTS.register("hemostat",
                     () -> new Hemostat(MobEffectCategory.NEUTRAL, 0x561314));
-    public static Supplier<MobEffect> KidneyFailure =
+    public static Supplier<MobEffect> KIDNEY_FAILURE =
             Mob_EFFECTS.register("kidneyfailure",
                     () -> new KidneyFailure(MobEffectCategory.NEUTRAL, 0x561314));
-    public static Supplier<MobEffect> LiverFailure =
+    public static Supplier<MobEffect> LIVER_FAILURE =
             Mob_EFFECTS.register("liverfailure",
                     () -> new LiverFailure(MobEffectCategory.NEUTRAL, 0x561314));
 
-    public static Supplier<MobEffect> OrganRejection =
-            Mob_EFFECTS.register("organrejection",
+    public static Supplier<MobEffect> ORGAN_REJECTION =
+            Mob_EFFECTS.register("organ_rejection",
                     () -> new OrganRejection(MobEffectCategory.HARMFUL, 0x561314));
     public static Supplier<MobEffect> Immunosuppressant =
             Mob_EFFECTS.register("immunosuppressant",
-                    () -> new ImmunoSuppressant(MobEffectCategory.NEUTRAL, 0x561314));
+                    () -> new Immunosuppressant(MobEffectCategory.NEUTRAL, 0x561314));
 
 
     public static void register(IEventBus eventBus) {

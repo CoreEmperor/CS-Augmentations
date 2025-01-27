@@ -16,6 +16,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 public class CSBiomeModifiers {
     public static final ResourceKey<BiomeModifier> ADD_FOSSIL_ORE = registerKey("add_fossil_ore");
     public static final ResourceKey<BiomeModifier> ADD_SALT = registerKey("add_salt");
+    public static final ResourceKey<BiomeModifier> ADD_CYCLOFUNGI = registerKey("add_cyclofungi");
     public static final ResourceKey<BiomeModifier> ADD_SOMNIFERUM = registerKey("add_somniferum");
 
     public static void bootstrap(BootstapContext<BiomeModifier> context) {
@@ -31,6 +32,11 @@ public class CSBiomeModifiers {
                 biomes.getOrThrow(Tags.Biomes.IS_WATER),
                 HolderSet.direct(placedFeatures.getOrThrow(CSPlacedFeatures.SALT_PLACED_KEY)),
                 GenerationStep.Decoration.RAW_GENERATION));
+
+        context.register(ADD_CYCLOFUNGI, new ForgeBiomeModifiers.AddFeaturesBiomeModifier(
+                biomes.getOrThrow(BiomeTags.HAS_WOODLAND_MANSION),
+                HolderSet.direct(placedFeatures.getOrThrow(CSPlacedFeatures.CYCLOFUNGI_PLACED_KEY)),
+                GenerationStep.Decoration.VEGETAL_DECORATION));
 
         context.register(ADD_SOMNIFERUM, new ForgeBiomeModifiers.AddFeaturesBiomeModifier(
                 biomes.getOrThrow(BiomeTags.IS_RIVER),

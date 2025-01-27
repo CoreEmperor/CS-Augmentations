@@ -2,10 +2,7 @@ package net.corespring.csaugmentations.Utility.Events;
 
 import net.corespring.csaugmentations.CSAugmentations;
 import net.corespring.csaugmentations.Capability.OrganCap;
-import net.corespring.csaugmentations.Client.Overlays.IntoxicatedOverlay;
-import net.corespring.csaugmentations.Client.Overlays.NoEyesOverlay;
-import net.corespring.csaugmentations.Client.Overlays.ProstheticEyesOverlay;
-import net.corespring.csaugmentations.Client.Overlays.SilkBlissOverlay;
+import net.corespring.csaugmentations.Client.Overlays.*;
 import net.corespring.csaugmentations.Utility.Network.CSNetwork;
 import net.corespring.csaugmentations.Utility.Network.Packets.C2SToggleArmBuffsPacket;
 import net.corespring.csaugmentations.Utility.Network.Packets.C2SToggleLegBuffsPacket;
@@ -30,6 +27,8 @@ public class ClientEvents {
         public static void onKeyInput(InputEvent.Key event) {
             if (KeyBinding.ZOOM_KEY.consumeClick()) {
             }
+            if (KeyBinding.NVG_KEY.consumeClick()) {
+            }
             if (KeyBinding.ARMS_KEY.consumeClick()) {
                 CSAugUtil.armsEnabled = !CSAugUtil.armsEnabled;
                 CSNetwork.NETWORK_CHANNEL.sendToServer(new C2SToggleArmBuffsPacket(CSAugUtil.armsEnabled));
@@ -47,6 +46,7 @@ public class ClientEvents {
         @SubscribeEvent
         public static void onKeyRegister(RegisterKeyMappingsEvent event) {
             event.register(KeyBinding.ZOOM_KEY);
+            event.register(KeyBinding.NVG_KEY);
             event.register(KeyBinding.ARMS_KEY);
             event.register(KeyBinding.LEGS_KEY);
         }
@@ -69,6 +69,9 @@ public class ClientEvents {
             event.registerBelowAll("prosthetic_eyes_overlay", new ProstheticEyesOverlay());
             event.registerBelowAll("silk_bliss_overlay", new SilkBlissOverlay());
             event.registerBelowAll("intoxicated_overlay", new IntoxicatedOverlay());
+            event.registerBelowAll("liver_failure_overlay", new LiverFailureOverlay());
+            event.registerBelowAll("organ_rejection_overlay", new OrganRejectionOverlay());
+            event.registerBelowAll("immunosuppressant_overlay", new ImmunosuppressantOverlay());
         }
     }
 }

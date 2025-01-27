@@ -2,6 +2,7 @@ package net.corespring.csaugmentations.Registry;
 
 import net.corespring.csaugmentations.Block.*;
 import net.corespring.csaugmentations.CSAugmentations;
+import net.corespring.cslibrary.Blocks.Plants.CSOceanShroom;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
@@ -57,6 +58,9 @@ public class CSBlocks {
     public static final Supplier<Block> POLISHED_SALT_STAIRS = registerBlock("polished_salt_stairs",
             () -> new StairBlock(POLISHED_SALT.get().defaultBlockState(), BlockBehaviour.Properties.of()
                     .strength(2F, 6f).requiresCorrectToolForDrops().sound(SoundType.CALCITE)));
+
+    public static final Supplier<Block> CYCLOFUNGI = registerBlock("cyclofungi",
+            () -> new CSMushroomBlock(BlockBehaviour.Properties.copy(Blocks.RED_MUSHROOM).noOcclusion().noCollission().lightLevel((state) -> 1)));
 
     public static final Supplier<Block> WILD_SOMNIFERUM = registerBlock("wild_somniferum",
             () -> new FlowerBlock(MobEffects.CONFUSION,5, BlockBehaviour.Properties.copy(Blocks.POPPY).noOcclusion().noCollission()));

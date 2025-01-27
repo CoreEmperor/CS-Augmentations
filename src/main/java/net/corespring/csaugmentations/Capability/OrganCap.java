@@ -197,16 +197,23 @@ public class OrganCap {
 
         public void applyOrganRejection() {
             if (player != null && !player.hasEffect(CSEffects.Immunosuppressant.get())) {
-                switch (this.currentCyberwareValue) {
-                    case 10:
-                    case 25:
-                    case 50:
-                    case 70:
-                    default:
-                        break;
+
+                if (this.currentCyberwareValue >= 10 && this.currentCyberwareValue < 25) {
+                    player.addEffect(new MobEffectInstance(CSEffects.ORGAN_REJECTION.get(), 40, 0, false, false, true));
+                } else if (this.currentCyberwareValue >= 25 && this.currentCyberwareValue < 50) {
+                    player.addEffect(new MobEffectInstance(CSEffects.ORGAN_REJECTION.get(), 40, 1, false, false, true));
+                } else if (this.currentCyberwareValue >= 50 && this.currentCyberwareValue < 70) {
+                    player.addEffect(new MobEffectInstance(CSEffects.ORGAN_REJECTION.get(), 40, 2, false, false, true));
+                } else if (this.currentCyberwareValue >= 70 && this.currentCyberwareValue < 100) {
+                    player.addEffect(new MobEffectInstance(CSEffects.ORGAN_REJECTION.get(), 40, 3, false, false, true));
+                } else if (this.currentCyberwareValue >= 100 && this.currentCyberwareValue < 125) {
+                    player.addEffect(new MobEffectInstance(CSEffects.ORGAN_REJECTION.get(), 40, 4, false, false, true));
+                } else if (this.currentCyberwareValue >= 125) {
+                    player.addEffect(new MobEffectInstance(CSEffects.ORGAN_REJECTION.get(), 40, 5, false, false, true));
                 }
             }
         }
+
 
         public boolean isCyberpsycho() {
             return this.currentCyberwareValue > this.humanityLimit;
@@ -241,16 +248,6 @@ public class OrganCap {
             }
         }
 
-        private void handleLungs(boolean isUnderWater, boolean wasUnderWater) {
-            ItemStack lungs = getStackInSlot(CSAugUtil.OrganSlots.LUNGS);
-            if (lungs.getItem() instanceof SimpleLungs) {
-                int additionalAirTime = ((SimpleLungs) lungs.getItem()).getAdditionalAirTime();
-                if (isUnderWater && !wasUnderWater) {
-                    player.setAirSupply(player.getAirSupply() + additionalAirTime);
-                }
-            }
-        }
-
         private boolean disableLimbCriteria() {
             return isPlayerMissingNervousSystem();
         }
@@ -281,13 +278,13 @@ public class OrganCap {
             if (player != null) {
                 resetAttributes();
 
-                double totalSpeedBonus = calculateLegBuffs(enable);
+                double legBonuses = calculateLegBuffs(enable);
                 double[] armBonuses = calculateArmBuffs(enable);
                 double combinedKidneyEfficiency = calculateKidneyBuffs();
                 double combinedLiverEfficiency = calculateLiverBuffs();
                 double totalArmor = calculateArmorBuffs();
 
-                applyLegBuffs(totalSpeedBonus);
+                applyLegBuffs(legBonuses);
                 applyArmBuffs(armBonuses);
                 applyKidneyEffects(combinedKidneyEfficiency);
                 applyLiverEffects(combinedLiverEfficiency);
@@ -336,7 +333,7 @@ public class OrganCap {
                 }
 
                 if (combinedEfficiency == 0.0) {
-                    kidneyEffectsToAdd.add(new MobEffectInstance(CSEffects.KidneyFailure.get(), 40, 0, false, false, true));
+                    kidneyEffectsToAdd.add(new MobEffectInstance(CSEffects.KIDNEY_FAILURE.get(), 40, 0, false, false, true));
                 }
             }
             addRemoveEffects(kidneyEffectsToAdd, new ArrayList<>());
@@ -357,7 +354,7 @@ public class OrganCap {
                 }
 
                 if (pEfficiency == 0.0) {
-                    liverEffectsToAdd.add(new MobEffectInstance(CSEffects.LiverFailure.get(), 40, 0, false, false, true));
+                    liverEffectsToAdd.add(new MobEffectInstance(CSEffects.LIVER_FAILURE.get(), 40, 0, false, false, true));
                 }
             }
             addRemoveEffects(liverEffectsToAdd, new ArrayList<>());
@@ -464,6 +461,17 @@ public class OrganCap {
             }
 
             return new double[]{totalAttackBonus, totalAttackSpeedBonus};
+        }
+
+        //outdated
+        private void handleLungs(boolean isUnderWater, boolean wasUnderWater) {
+            ItemStack lungs = getStackInSlot(CSAugUtil.OrganSlots.LUNGS);
+            if (lungs.getItem() instanceof SimpleLungs) {
+                int additionalAirTime = ((SimpleLungs) lungs.getItem()).getAdditionalAirTime();
+                if (isUnderWater && !wasUnderWater) {
+                    player.setAirSupply(player.getAirSupply() + additionalAirTime);
+                }
+            }
         }
 
         private double calculateKidneyBuffs() {

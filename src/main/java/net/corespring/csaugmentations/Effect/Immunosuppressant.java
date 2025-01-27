@@ -8,8 +8,8 @@ import net.minecraft.world.item.ItemStack;
 import java.util.Collections;
 import java.util.List;
 
-public class ImmunoSuppressant extends MobEffect {
-    public ImmunoSuppressant(MobEffectCategory pCategory, int pColor) {
+public class Immunosuppressant extends MobEffect {
+    public Immunosuppressant(MobEffectCategory pCategory, int pColor) {
         super(pCategory, pColor);
     }
 

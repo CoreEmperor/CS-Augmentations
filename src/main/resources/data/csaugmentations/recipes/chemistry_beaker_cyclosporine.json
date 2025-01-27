@@ -1,0 +1,19 @@
+{
+  "type": "csaugmentations:chemistry",
+  "ingredients": [
+    {
+      "item": "csaugmentations:cyclofungi"
+    },
+    {
+      "item": "cslibrary:fermenting_agent"
+    },
+    {
+      "item": "cslibrary:beaker"
+    }
+  ],
+  "result": {
+    "item": "cslibrary:beaker_cyclosporine",
+    "count": 1
+  },
+  "craftingTime": 2400
+}

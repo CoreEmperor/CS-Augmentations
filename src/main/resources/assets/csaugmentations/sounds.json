@@ -1,0 +1,8 @@
+{
+  "immunosuppressant_use": {
+    "subtitles": "sounds.csaugmentations.immunosuppressant_use",
+    "sounds": [
+      "csaugmentations:immunosuppressant_use"
+    ]
+  }
+}

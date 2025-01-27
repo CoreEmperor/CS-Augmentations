@@ -109,6 +109,10 @@ public class CSCreativeTab {
 
                         pOutput.accept(CSItems.MEAD.get());
 
+                        pOutput.accept(CSBlocks.CYCLOFUNGI.get());
+                        pOutput.accept(CSItems.BEAKER_CYCLOSPORINE.get());
+                        pOutput.accept(CSItems.IMMUNOSUPPRESSANT.get());
+
                         pOutput.accept(CSBlocks.BLOCK_SOMNIFERUM_SAP.get());
                         pOutput.accept(CSBlocks.WILD_SOMNIFERUM.get());
                         pOutput.accept(CSItems.SOMNIFERUM_SEEDPOD.get());

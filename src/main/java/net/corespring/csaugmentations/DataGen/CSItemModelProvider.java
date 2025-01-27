@@ -93,6 +93,12 @@ public class CSItemModelProvider extends ItemModelProvider {
 
         simpleItem((RegistryObject<Item>) CSItems.MEAD);
 
+        simpleBlockItemBlockTexture((RegistryObject<Block>) CSBlocks.CYCLOFUNGI);
+        simpleItem((RegistryObject<Item>) CSItems.BEAKER_CYCLOSPORINE);
+        simpleItem((RegistryObject<Item>) CSItems.IMMUNOSUPPRESSANT);
+
+
+        simpleBlockItemBlockTexture((RegistryObject<Block>) CSBlocks.WILD_SOMNIFERUM);
         simpleItem((RegistryObject<Item>) CSItems.BEAKER_SILK);
         simpleItem((RegistryObject<Item>) CSItems.SOMNIFERUM_SAP);
         simpleItem((RegistryObject<Item>) CSItems.SOMNIFERUM_SEEDPOD);
@@ -101,8 +107,6 @@ public class CSItemModelProvider extends ItemModelProvider {
         evenSimplerBlockItem(CSBlocks.SALT_STAIRS);
         evenSimplerBlockItem(CSBlocks.POLISHED_SALT_SLAB);
         evenSimplerBlockItem(CSBlocks.POLISHED_SALT_STAIRS);
-
-        simpleBlockItemBlockTexture((RegistryObject<Block>) CSBlocks.WILD_SOMNIFERUM);
 
     }
 

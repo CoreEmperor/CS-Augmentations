@@ -17,6 +17,7 @@ import java.util.List;
 public class CSPlacedFeatures {
     public static final ResourceKey<PlacedFeature> FOSSIL_ORE_PLACED_KEY = registerKey("fossil_ore_placed");
     public static final ResourceKey<PlacedFeature> SALT_PLACED_KEY = registerKey("salt_placed");
+    public static final ResourceKey<PlacedFeature> CYCLOFUNGI_PLACED_KEY = registerKey("cyclofungi_placed");
     public static final ResourceKey<PlacedFeature> SOMNIFERUM_PLACED_KEY = registerKey("somniferum_placed");
 
     public static void bootstrap(BootstapContext<PlacedFeature> context) {
@@ -29,6 +30,9 @@ public class CSPlacedFeatures {
         register(context, SALT_PLACED_KEY, configuredFeatures.getOrThrow(CSConfiguredFeatures.SALT_KEY),
                 CSOrePlacement.commonOrePlacement(2,
                         HeightRangePlacement.triangle(VerticalAnchor.absolute(45), VerticalAnchor.absolute(65))));
+
+        register(context, CYCLOFUNGI_PLACED_KEY, configuredFeatures.getOrThrow(CSConfiguredFeatures.CYCLOFUNGI_KEY),
+                List.of(RarityFilter.onAverageOnceEvery(4), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, BiomeFilter.biome()));
 
         register(context, SOMNIFERUM_PLACED_KEY, configuredFeatures.getOrThrow(CSConfiguredFeatures.SOMNIFERUM_KEY),
                 List.of(RarityFilter.onAverageOnceEvery(6), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, BiomeFilter.biome()));

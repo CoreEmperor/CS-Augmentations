@@ -1,10 +1,7 @@
 package net.corespring.csaugmentations;
 
 import com.mojang.logging.LogUtils;
-import net.corespring.csaugmentations.Client.Overlays.IntoxicatedOverlay;
-import net.corespring.csaugmentations.Client.Overlays.NoEyesOverlay;
-import net.corespring.csaugmentations.Client.Overlays.ProstheticEyesOverlay;
-import net.corespring.csaugmentations.Client.Overlays.SilkBlissOverlay;
+import net.corespring.csaugmentations.Client.Overlays.*;
 import net.corespring.csaugmentations.Utility.Network.CSNetwork;
 import net.corespring.csaugmentations.Registry.CSRecipeSerializers;
 import net.corespring.csaugmentations.Registry.CSRecipeTypes;
@@ -37,12 +34,15 @@ public class CSAugmentations {
 
         CSItems.register(modEventBus);
         CSBlocks.register(modEventBus);
+        CSCreativeTab.register(modEventBus);
+
         CSBlockEntities.register(modEventBus);
         CSEffects.register(modEventBus);
         CSMenu.register(modEventBus);
         CSRecipeSerializers.register(modEventBus);
         CSRecipeTypes.register(modEventBus);
-        CSCreativeTab.register(modEventBus);
+
+        CSSoundEvents.register(modEventBus);
 
         MinecraftForge.EVENT_BUS.register(this);
         modEventBus.addListener(this::addCreative);
@@ -63,6 +63,9 @@ public class CSAugmentations {
         MinecraftForge.EVENT_BUS.register(ProstheticEyesOverlay.class);
         MinecraftForge.EVENT_BUS.register(SilkBlissOverlay.class);
         MinecraftForge.EVENT_BUS.register(IntoxicatedOverlay.class);
+        MinecraftForge.EVENT_BUS.register(LiverFailureOverlay.class);
+        MinecraftForge.EVENT_BUS.register(OrganRejectionOverlay.class);
+        MinecraftForge.EVENT_BUS.register(ImmunosuppressantOverlay.class);
     }
 
     @SubscribeEvent
