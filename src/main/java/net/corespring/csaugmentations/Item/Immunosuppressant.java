@@ -42,9 +42,8 @@ public class Immunosuppressant extends Item {
             pStack.shrink(1);
 
             ImmunosuppressantOverlay.remainingDisplayTicks = 100;
-
-            pLevel.playSound(null, pLivingEntity.getBlockX(), pLivingEntity.getBlockY(), pLivingEntity.getBlockZ(), CSSoundEvents.IMMUNOSUPPRESSANT_USE.get(), SoundSource.PLAYERS, 0.5F, 1.0F);
         }
+        pLevel.playSound(null, pLivingEntity.getBlockX(), pLivingEntity.getBlockY(), pLivingEntity.getBlockZ(), CSSoundEvents.IMMUNOSUPPRESSANT_USE.get(), SoundSource.PLAYERS, 0.5F, 1.0F);
         return super.finishUsingItem(pStack, pLevel, pLivingEntity);
     }
 
@@ -54,8 +53,8 @@ public class Immunosuppressant extends Item {
         if(!pAttacker.level().isClientSide && pTarget instanceof Player) {
             pTarget.addEffect(new MobEffectInstance(CSEffects.Immunosuppressant.get(), 12000, 0, false, false, true));
             pStack.shrink(1);
-            pTarget.level().playSound(null, pTarget.getBlockX(), pTarget.getBlockY(), pTarget.getBlockZ(), CSSoundEvents.IMMUNOSUPPRESSANT_USE.get(), SoundSource.PLAYERS, 0.5F, 1.0F);
         }
+        pTarget.level().playSound(null, pTarget.getBlockX(), pTarget.getBlockY(), pTarget.getBlockZ(), CSSoundEvents.IMMUNOSUPPRESSANT_USE.get(), SoundSource.PLAYERS, 0.5F, 1.0F);
         return super.hurtEnemy(pStack, pTarget, pAttacker);
     }
 

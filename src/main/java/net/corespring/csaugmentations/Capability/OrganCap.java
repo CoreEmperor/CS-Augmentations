@@ -294,7 +294,6 @@ public class OrganCap {
 
         private void resetAttributes() {
             player.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(0);
-            player.getAttribute(Attributes.ATTACK_DAMAGE).setBaseValue(0);
             player.getAttribute(Attributes.ATTACK_SPEED).setBaseValue(0);
             player.getAttribute(Attributes.MOVEMENT_SPEED).removeModifier(CyberSpeed);
             player.getAttribute(Attributes.ATTACK_DAMAGE).removeModifier(CyberAttackDamage);
