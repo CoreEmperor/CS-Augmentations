@@ -40,10 +40,11 @@ public class Immunosuppressant extends Item {
         if (!pLevel.isClientSide) {
             pLivingEntity.addEffect(new MobEffectInstance(CSEffects.Immunosuppressant.get(), 12000, 0, false, false, true));
             pStack.shrink(1);
-
+        }
+        if (pLevel.isClientSide) {
             ImmunosuppressantOverlay.remainingDisplayTicks = 100;
         }
-        pLevel.playSound(null, pLivingEntity.getBlockX(), pLivingEntity.getBlockY(), pLivingEntity.getBlockZ(), CSSoundEvents.IMMUNOSUPPRESSANT_USE.get(), SoundSource.PLAYERS, 0.5F, 1.0F);
+        pLevel.playSound((Player) pLivingEntity, pLivingEntity.getBlockX(), pLivingEntity.getBlockY(), pLivingEntity.getBlockZ(), CSSoundEvents.IMMUNOSUPPRESSANT_USE.get(), SoundSource.PLAYERS, 0.5F, 1.0F);
         return super.finishUsingItem(pStack, pLevel, pLivingEntity);
     }
 
