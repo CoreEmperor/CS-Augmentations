@@ -73,6 +73,6 @@ public class Immunosuppressant extends Item {
     }
 
     public int getUseDuration(ItemStack pStack) {
-        return 40;
+        return 10;
     }
 }
