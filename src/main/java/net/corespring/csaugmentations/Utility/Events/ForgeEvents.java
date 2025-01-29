@@ -213,7 +213,7 @@ public class ForgeEvents {
                 for (MobEffectInstance effectInstance : new ArrayList<>(player.getActiveEffects())) {
                     IMixinMobEffectInstance mixinEffectInstance = (IMixinMobEffectInstance) effectInstance;
 
-                    if (!isBeneficialEffect(effectInstance) && !mixinEffectInstance.isEfficiencyApplied()) {
+                    if (isBeneficialEffect(effectInstance) && !mixinEffectInstance.isEfficiencyApplied()) {
                         adjustEffectDurationAndTier(effectInstance, pEfficiency);
                         mixinEffectInstance.setEfficiencyApplied(true);
                     }
