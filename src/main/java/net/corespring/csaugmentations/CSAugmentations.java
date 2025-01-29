@@ -59,13 +59,6 @@ public class CSAugmentations {
     }
 
     private void clientSetup(final FMLClientSetupEvent event) {
-        MinecraftForge.EVENT_BUS.register(NoEyesOverlay.class);
-        MinecraftForge.EVENT_BUS.register(ProstheticEyesOverlay.class);
-        MinecraftForge.EVENT_BUS.register(SilkBlissOverlay.class);
-        MinecraftForge.EVENT_BUS.register(IntoxicatedOverlay.class);
-        MinecraftForge.EVENT_BUS.register(LiverFailureOverlay.class);
-        MinecraftForge.EVENT_BUS.register(OrganRejectionOverlay.class);
-        MinecraftForge.EVENT_BUS.register(ImmunosuppressantOverlay.class);
     }
 
     @SubscribeEvent

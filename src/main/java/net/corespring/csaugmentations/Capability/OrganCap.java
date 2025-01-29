@@ -280,14 +280,10 @@ public class OrganCap {
 
                 double legBonuses = calculateLegBuffs(enable);
                 double[] armBonuses = calculateArmBuffs(enable);
-                double combinedKidneyEfficiency = calculateKidneyBuffs();
-                double combinedLiverEfficiency = calculateLiverBuffs();
                 double totalArmor = calculateArmorBuffs();
 
                 applyLegBuffs(legBonuses);
                 applyArmBuffs(armBonuses);
-                applyKidneyEffects(combinedKidneyEfficiency);
-                applyLiverEffects(combinedLiverEfficiency);
                 applyArmorBuffs(totalArmor);
             }
         }
@@ -315,48 +311,6 @@ public class OrganCap {
             if (armBuffs[1] > 0.0) {
                 player.getAttribute(Attributes.ATTACK_SPEED).addTransientModifier(new AttributeModifier(CyberAttackSpeed, "CyberAttackSpeed", armBuffs[1], AttributeModifier.Operation.ADDITION));
             }
-        }
-
-        private void applyKidneyEffects(double combinedEfficiency) {
-            List<MobEffectInstance> kidneyEffectsToAdd = new ArrayList<>();
-            for (MobEffectInstance effectInstance : new ArrayList<>(player.getActiveEffects())) {
-                IMixinMobEffectInstance mixinEffectInstance = (IMixinMobEffectInstance) effectInstance;
-
-                if (isHarmfulEffect(effectInstance) && !mixinEffectInstance.isEfficiencyApplied()) {
-                    adjustEffectDuration(effectInstance, combinedEfficiency);
-                    mixinEffectInstance.setEfficiencyApplied(true);
-                }
-
-                if (!player.hasEffect(effectInstance.getEffect())) {
-                    mixinEffectInstance.setEfficiencyApplied(false);
-                }
-
-                if (combinedEfficiency == 0.0) {
-                    kidneyEffectsToAdd.add(new MobEffectInstance(CSEffects.KIDNEY_FAILURE.get(), 40, 0, false, false, true));
-                }
-            }
-            addRemoveEffects(kidneyEffectsToAdd, new ArrayList<>());
-        }
-
-        private void applyLiverEffects(double pEfficiency) {
-            List<MobEffectInstance> liverEffectsToAdd = new ArrayList<>();
-            for (MobEffectInstance effectInstance : new ArrayList<>(player.getActiveEffects())) {
-                IMixinMobEffectInstance mixinEffectInstance = (IMixinMobEffectInstance) effectInstance;
-
-                if (!isHarmfulEffect(effectInstance) && !mixinEffectInstance.isEfficiencyApplied()) {
-                    adjustEffectDurationAndTier(effectInstance, pEfficiency);
-                    mixinEffectInstance.setEfficiencyApplied(true);
-                }
-
-                if (!player.hasEffect(effectInstance.getEffect())) {
-                    mixinEffectInstance.setEfficiencyApplied(false);
-                }
-
-                if (pEfficiency == 0.0) {
-                    liverEffectsToAdd.add(new MobEffectInstance(CSEffects.LIVER_FAILURE.get(), 40, 0, false, false, true));
-                }
-            }
-            addRemoveEffects(liverEffectsToAdd, new ArrayList<>());
         }
 
         public void applyStomachBuffs() {
@@ -473,18 +427,6 @@ public class OrganCap {
             }
         }
 
-        private double calculateKidneyBuffs() {
-            return calculateCombinedEfficiency(
-                    new int[]{CSAugUtil.OrganSlots.LEFT_KIDNEY, CSAugUtil.OrganSlots.RIGHT_KIDNEY},
-                    CSOrganTiers.Attribute.KIDNEY_EFFICIENCY);
-        }
-
-        private double calculateLiverBuffs() {
-            return calculateCombinedEfficiency(
-                    new int[]{CSAugUtil.OrganSlots.LIVER},
-                    CSOrganTiers.Attribute.LIVER_EFFICIENCY);
-        }
-
         private double calculateArmorBuffs() {
             double totalArmor = 0.0;
             int[] armorSlots = new int[]{CSAugUtil.OrganSlots.RIBS, CSAugUtil.OrganSlots.SKIN, CSAugUtil.OrganSlots.RIGHT_LEG,
@@ -515,42 +457,6 @@ public class OrganCap {
                 }
             }
             return totalValue;
-        }
-
-        private void adjustEffectDuration(MobEffectInstance effectInstance, double combinedEfficiency) {
-            IMixinMobEffectInstance mixinEffectInstance = (IMixinMobEffectInstance) effectInstance;
-            int duration = mixinEffectInstance.getDuration();
-            float multiplier = combinedEfficiency > 1.0 ? 1.0f / (float) combinedEfficiency : 1.0f + (1.0f - (float) combinedEfficiency);
-            mixinEffectInstance.setDuration((int) (duration * multiplier));
-        }
-
-        private void adjustEffectDurationAndTier(MobEffectInstance effectInstance, double combinedEfficiency) {
-            IMixinMobEffectInstance mixinEffectInstance = (IMixinMobEffectInstance) effectInstance;
-            int duration = mixinEffectInstance.getDuration();
-            float multiplier = combinedEfficiency > 1.0 ? 1.0f + (float) (combinedEfficiency - 1.0) : 1.0f - (1.0f - (float) combinedEfficiency);
-            mixinEffectInstance.setDuration((int) (duration * multiplier));
-
-            int additionalTiers = (int) ((combinedEfficiency - 1.0) / 0.5);
-            mixinEffectInstance.setAmplifier(mixinEffectInstance.getAmplifier() + additionalTiers);
-        }
-
-        private double calculateCombinedEfficiency(int[] slots, CSOrganTiers.Attribute attribute) {
-            return Arrays.stream(slots)
-                    .mapToDouble(slot -> {
-                        ItemStack stack = getStackInSlot(slot);
-                        return !stack.isEmpty() && stack.getItem() instanceof SimpleOrgan organ && organ.hasAttribute(attribute)
-                                ? organ.getDoubleAttribute(attribute) : 0.0;
-                    }).sum();
-        }
-
-        private boolean isHarmfulEffect(MobEffectInstance effectInstance) {
-            MobEffectCategory category = effectInstance.getEffect().isBeneficial() ? MobEffectCategory.BENEFICIAL : MobEffectCategory.HARMFUL;
-            return category == MobEffectCategory.HARMFUL;
-        }
-
-        private void addRemoveEffects(List<MobEffectInstance> effectsToAdd, List<MobEffectInstance> effectsToRemove) {
-            effectsToAdd.forEach(player::addEffect);
-            effectsToRemove.forEach(effect -> player.removeEffect(effect.getEffect()));
         }
 
         private void modifyPlayerFoodStats(int hunger, double saturation) {

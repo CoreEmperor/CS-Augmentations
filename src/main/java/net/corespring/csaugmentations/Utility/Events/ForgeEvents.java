@@ -1,7 +1,9 @@
 package net.corespring.csaugmentations.Utility.Events;
 
+import com.google.common.util.concurrent.AtomicDouble;
 import net.corespring.csaugmentations.Augmentations.Base.IMixinMobEffectInstance;
 import net.corespring.csaugmentations.Augmentations.Base.IOrganTickable;
+import net.corespring.csaugmentations.Augmentations.Base.Organs.SimpleOrgan;
 import net.corespring.csaugmentations.CSAugmentations;
 import net.corespring.csaugmentations.CSCommonConfigs;
 import net.corespring.csaugmentations.Capability.OrganCap;
@@ -14,6 +16,8 @@ import net.corespring.csaugmentations.Utility.CSAugUtil;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.damagesource.DamageTypes;
+import net.minecraft.world.effect.MobEffectCategory;
+import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -28,6 +32,10 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.items.IItemHandlerModifiable;
 import net.minecraftforge.network.PacketDistributor;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class ForgeEvents {
     @Mod.EventBusSubscriber(modid = CSAugmentations.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
@@ -161,6 +169,120 @@ public class ForgeEvents {
                         }
                     }
                 });
+            }
+        }
+
+        @Mod.EventBusSubscriber(modid = CSAugmentations.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
+        public static class EffectHandler {
+
+            @SubscribeEvent
+            public static void onPlayerTick(TickEvent.PlayerTickEvent event) {
+                if (event.phase == TickEvent.Phase.START) {
+                    applyKidneyEffects(event.player);
+                    applyLiverEffects(event.player);
+                }
+            }
+
+            private static void applyKidneyEffects(Player player) {
+                double combinedEfficiency = calculateKidneyBuffs(player);
+                List<MobEffectInstance> kidneyEffectsToAdd = new ArrayList<>();
+
+                for (MobEffectInstance effectInstance : new ArrayList<>(player.getActiveEffects())) {
+                    IMixinMobEffectInstance mixinEffectInstance = (IMixinMobEffectInstance) effectInstance;
+
+                    if (isHarmfulEffect(effectInstance) && !mixinEffectInstance.isEfficiencyApplied()) {
+                        adjustEffectDuration(effectInstance, combinedEfficiency);
+                        mixinEffectInstance.setEfficiencyApplied(true);
+                    }
+
+                    if (!player.hasEffect(effectInstance.getEffect())) {
+                        mixinEffectInstance.setEfficiencyApplied(false);
+                    }
+
+                    if (combinedEfficiency == 0.0) {
+                        kidneyEffectsToAdd.add(new MobEffectInstance(CSEffects.KIDNEY_FAILURE.get(), 40, 0, false, false, true));
+                    }
+                }
+                addRemoveEffects(player, kidneyEffectsToAdd, new ArrayList<>());
+            }
+
+            private static void applyLiverEffects(Player player) {
+                double pEfficiency = calculateLiverBuffs(player);
+                List<MobEffectInstance> liverEffectsToAdd = new ArrayList<>();
+
+                for (MobEffectInstance effectInstance : new ArrayList<>(player.getActiveEffects())) {
+                    IMixinMobEffectInstance mixinEffectInstance = (IMixinMobEffectInstance) effectInstance;
+
+                    if (!isBeneficialEffect(effectInstance) && !mixinEffectInstance.isEfficiencyApplied()) {
+                        adjustEffectDurationAndTier(effectInstance, pEfficiency);
+                        mixinEffectInstance.setEfficiencyApplied(true);
+                    }
+
+                    if (!player.hasEffect(effectInstance.getEffect())) {
+                        mixinEffectInstance.setEfficiencyApplied(false);
+                    }
+
+                    if (pEfficiency == 0.0) {
+                        liverEffectsToAdd.add(new MobEffectInstance(CSEffects.LIVER_FAILURE.get(), 40, 0, false, false, true));
+                    }
+                }
+                addRemoveEffects(player, liverEffectsToAdd, new ArrayList<>());
+            }
+
+            private static double calculateKidneyBuffs(Player player) {
+                return calculateCombinedEfficiency(player, new int[]{CSAugUtil.OrganSlots.LEFT_KIDNEY, CSAugUtil.OrganSlots.RIGHT_KIDNEY}, CSOrganTiers.Attribute.KIDNEY_EFFICIENCY);
+            }
+
+            private static double calculateLiverBuffs(Player player) {
+                return calculateCombinedEfficiency(player, new int[]{CSAugUtil.OrganSlots.LIVER}, CSOrganTiers.Attribute.LIVER_EFFICIENCY);
+            }
+
+            private static void adjustEffectDuration(MobEffectInstance effectInstance, double combinedEfficiency) {
+                IMixinMobEffectInstance mixinEffectInstance = (IMixinMobEffectInstance) effectInstance;
+                int duration = mixinEffectInstance.getDuration();
+                float multiplier = combinedEfficiency > 1.0 ? 1.0f / (float) combinedEfficiency : 1.0f + (1.0f - (float) combinedEfficiency);
+                mixinEffectInstance.setDuration((int) (duration * multiplier));
+            }
+
+            private static void adjustEffectDurationAndTier(MobEffectInstance effectInstance, double combinedEfficiency) {
+                IMixinMobEffectInstance mixinEffectInstance = (IMixinMobEffectInstance) effectInstance;
+                int duration = mixinEffectInstance.getDuration();
+                float multiplier = combinedEfficiency > 1.0 ? 1.0f + (float) (combinedEfficiency - 1.0) : 1.0f - (1.0f - (float) combinedEfficiency);
+                mixinEffectInstance.setDuration((int) (duration * multiplier));
+
+                int additionalTiers = (int) ((combinedEfficiency - 1.0) / 0.5);
+                mixinEffectInstance.setAmplifier(mixinEffectInstance.getAmplifier() + additionalTiers);
+            }
+
+            private static double calculateCombinedEfficiency(Player player, int[] slots, CSOrganTiers.Attribute attribute) {
+                AtomicDouble totalEfficiency = new AtomicDouble(0.0);
+
+                Arrays.stream(slots).forEach(slot -> {
+                    player.getCapability(OrganCap.ORGAN_DATA).ifPresent(organData -> {
+                        ItemStack stack = organData.getStackInSlot(slot);
+
+                        double efficiency = !stack.isEmpty() && stack.getItem() instanceof SimpleOrgan organ && organ.hasAttribute(attribute)
+                                ? organ.getDoubleAttribute(attribute) : 0.0;
+
+                        totalEfficiency.addAndGet(efficiency);
+                    });
+                });
+                return totalEfficiency.get();
+            }
+
+            private static boolean isHarmfulEffect(MobEffectInstance effectInstance) {
+                MobEffectCategory category = effectInstance.getEffect().getCategory();
+                return category == MobEffectCategory.HARMFUL;
+            }
+
+            private static boolean isBeneficialEffect(MobEffectInstance effectInstance) {
+                MobEffectCategory category = effectInstance.getEffect().getCategory();
+                return category == MobEffectCategory.BENEFICIAL;
+            }
+
+            private static void addRemoveEffects(Player player, List<MobEffectInstance> effectsToAdd, List<MobEffectInstance> effectsToRemove) {
+                effectsToAdd.forEach(player::addEffect);
+                effectsToRemove.forEach(effect -> player.removeEffect(effect.getEffect()));
             }
         }
 
