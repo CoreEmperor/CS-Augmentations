@@ -6,6 +6,7 @@ import net.corespring.csaugmentations.Augmentations.Base.IOrganTickable;
 import net.corespring.csaugmentations.Augmentations.Base.Organs.SimpleOrgan;
 import net.corespring.csaugmentations.CSAugmentations;
 import net.corespring.csaugmentations.CSCommonConfigs;
+import net.corespring.csaugmentations.Capability.Cyberpsychosis;
 import net.corespring.csaugmentations.Capability.OrganCap;
 import net.corespring.csaugmentations.Capability.OrganCapProvider;
 import net.corespring.csaugmentations.Utility.CSOrganTiers;
@@ -160,13 +161,17 @@ public class ForgeEvents {
         public static void onPlayerTick(TickEvent.PlayerTickEvent event) {
             if (event.phase == TickEvent.Phase.END) {
                 Player player = event.player;
-                player.getCapability(OrganCap.ORGAN_DATA).ifPresent(organData -> {
-                    IItemHandlerModifiable itemHandler = new OrganCap.OrganData(16);
-                    for (int i = 0; i < itemHandler.getSlots(); i++) {
-                        ItemStack stack = itemHandler.getStackInSlot(i);
+                player.getCapability(OrganCap.ORGAN_DATA).ifPresent(cap -> {
+                    for (int i = 0; i < cap.getSlots(); i++) {
+                        ItemStack stack = cap.getStackInSlot(i);
                         if (stack.getItem() instanceof IOrganTickable organ) {
                             organ.organTick(stack, player.level(), player, i);
                         }
+                    }
+
+                    if (cap.isCyberpsycho() && player instanceof ServerPlayer serverPlayer) {
+                        Cyberpsychosis cyberpsychosis = cap.getCyberpsychosis();
+                        cyberpsychosis.handleCyberpsychosis(serverPlayer);
                     }
                 });
             }

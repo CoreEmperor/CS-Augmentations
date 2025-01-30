@@ -46,6 +46,7 @@ public class OrganCap {
         private Player player;
         public boolean initialized = false;
         private int humanityLimit;
+        private Cyberpsychosis cyberpsychosis;
         private int currentCyberwareValue = 0;
         private int previousCyberwareValue;
 
@@ -217,6 +218,13 @@ public class OrganCap {
 
         public boolean isCyberpsycho() {
             return this.currentCyberwareValue > this.humanityLimit;
+        }
+
+        public Cyberpsychosis getCyberpsychosis() {
+            if(cyberpsychosis == null) {
+                cyberpsychosis = new Cyberpsychosis();
+            }
+            return cyberpsychosis;
         }
 
         public void setHumanityLimit(int humanityLimit) {
