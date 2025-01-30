@@ -1,4 +1,4 @@
-package net.corespring.csaugmentations.Utility;
+package net.corespring.csaugmentations.Registry.Utility;
 
 import java.util.EnumMap;
 import java.util.Map;

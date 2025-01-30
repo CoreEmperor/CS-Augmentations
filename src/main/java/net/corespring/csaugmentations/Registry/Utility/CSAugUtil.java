@@ -1,4 +1,4 @@
-package net.corespring.csaugmentations.Utility;
+package net.corespring.csaugmentations.Registry.Utility;
 
 import net.corespring.csaugmentations.Augmentations.Base.Organs.SimpleOrgan;
 import net.corespring.csaugmentations.CSCommonConfigs;

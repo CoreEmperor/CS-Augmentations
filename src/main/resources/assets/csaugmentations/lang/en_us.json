@@ -185,7 +185,7 @@
   "cyberpsychosis.csaugmentations.fake_player_7": "where are you?",
   "cyberpsychosis.csaugmentations.fake_player_8": "lets go mining",
   "cyberpsychosis.csaugmentations.fake_pet_death": "%s died.",
-  "cyberpsychosis.csaugmentations.fake_pet_death_by_mob": "%s was Killed by %s",
+  "cyberpsychosis.csaugmentations.fake_pet_death_by_mob": "%s was Slain by %s",
 
   "commands.resetorgan.failed": "%s's organs were unable to reset",
   "commands.resetorgan.success": "Successfully Reset %s's Organs",

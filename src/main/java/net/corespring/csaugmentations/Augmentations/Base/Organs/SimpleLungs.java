@@ -1,7 +1,7 @@
 package net.corespring.csaugmentations.Augmentations.Base.Organs;
 
 import net.corespring.csaugmentations.Augmentations.Base.IAirTime;
-import net.corespring.csaugmentations.Utility.CSOrganTiers;
+import net.corespring.csaugmentations.Registry.Utility.CSOrganTiers;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ItemStack;

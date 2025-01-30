@@ -15,7 +15,7 @@ import net.corespring.csaugmentations.Item.SurgicalEquipment.Hemostat;
 import net.corespring.csaugmentations.Item.SurgicalEquipment.Scalpel;
 import net.corespring.csaugmentations.Item.SurgicalEquipment.SurgicalEquipmentItem;
 import net.corespring.csaugmentations.Item.SurgicalEquipment.Suture;
-import net.corespring.csaugmentations.Utility.CSOrganTiers;
+import net.corespring.csaugmentations.Registry.Utility.CSOrganTiers;
 import net.corespring.cslibrary.Items.BeakerItems.BasicBeakerItem;
 import net.corespring.cslibrary.Items.CRDItem;
 import net.corespring.cslibrary.Items.CRItem;

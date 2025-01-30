@@ -1,14 +1,12 @@
 package net.corespring.csaugmentations;
 
 import com.mojang.logging.LogUtils;
-import net.corespring.csaugmentations.Client.Overlays.*;
-import net.corespring.csaugmentations.Utility.Network.CSNetwork;
+import net.corespring.csaugmentations.Registry.Network.CSNetwork;
 import net.corespring.csaugmentations.Registry.CSRecipeSerializers;
 import net.corespring.csaugmentations.Registry.CSRecipeTypes;
 import net.corespring.csaugmentations.Registry.*;
-import net.corespring.csaugmentations.Utility.Events.ForgeEvents;
+import net.corespring.csaugmentations.Registry.Events.ForgeEvents;
 import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.client.event.RegisterGuiOverlaysEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
 import net.minecraftforge.event.server.ServerStartingEvent;

@@ -1,4 +1,4 @@
-package net.corespring.csaugmentations.Utility.Command;
+package net.corespring.csaugmentations.Registry.Utility.Command;
 
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.context.CommandContext;

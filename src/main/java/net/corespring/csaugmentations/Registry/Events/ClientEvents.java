@@ -1,23 +1,25 @@
-package net.corespring.csaugmentations.Utility.Events;
+package net.corespring.csaugmentations.Registry.Events;
 
+import com.mojang.blaze3d.shaders.AbstractUniform;
 import net.corespring.csaugmentations.CSAugmentations;
 import net.corespring.csaugmentations.Capability.OrganCap;
 import net.corespring.csaugmentations.Client.Overlays.*;
-import net.corespring.csaugmentations.Utility.Network.CSNetwork;
-import net.corespring.csaugmentations.Utility.Network.Packets.C2SToggleArmBuffsPacket;
-import net.corespring.csaugmentations.Utility.Network.Packets.C2SToggleLegBuffsPacket;
-import net.corespring.csaugmentations.Utility.Network.Packets.S2CSyncDataPacket;
-import net.corespring.csaugmentations.Utility.CSAugUtil;
-import net.corespring.csaugmentations.Utility.KeyBinding;
+import net.corespring.csaugmentations.Registry.Network.CSNetwork;
+import net.corespring.csaugmentations.Registry.Network.Packets.C2SToggleArmBuffsPacket;
+import net.corespring.csaugmentations.Registry.Network.Packets.C2SToggleLegBuffsPacket;
+import net.corespring.csaugmentations.Registry.Network.Packets.S2CSyncDataPacket;
+import net.corespring.csaugmentations.Registry.Utility.CSAugUtil;
+import net.corespring.csaugmentations.Registry.Utility.KeyBinding;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
+import net.minecraft.client.renderer.ShaderInstance;
+import net.minecraft.server.packs.resources.ResourceProvider;
 import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.client.event.InputEvent;
-import net.minecraftforge.client.event.RegisterGuiOverlaysEvent;
-import net.minecraftforge.client.event.RegisterKeyMappingsEvent;
+import net.minecraftforge.client.event.*;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
+import java.io.IOException;
 
 public class ClientEvents {
     @Mod.EventBusSubscriber(modid = CSAugmentations.MOD_ID, value = Dist.CLIENT)
@@ -26,8 +28,10 @@ public class ClientEvents {
         @SubscribeEvent
         public static void onKeyInput(InputEvent.Key event) {
             if (KeyBinding.ZOOM_KEY.consumeClick()) {
+                // Handle zoom key
             }
             if (KeyBinding.NVG_KEY.consumeClick()) {
+                // Handle NVG key
             }
             if (KeyBinding.ARMS_KEY.consumeClick()) {
                 CSAugUtil.armsEnabled = !CSAugUtil.armsEnabled;
@@ -72,6 +76,7 @@ public class ClientEvents {
             event.registerBelowAll("liver_failure_overlay", new LiverFailureOverlay());
             event.registerBelowAll("organ_rejection_overlay", new OrganRejectionOverlay());
             event.registerBelowAll("immunosuppressant_overlay", new ImmunosuppressantOverlay());
+            event.registerBelowAll("test_overlay", new TestOverlay());
         }
     }
 }

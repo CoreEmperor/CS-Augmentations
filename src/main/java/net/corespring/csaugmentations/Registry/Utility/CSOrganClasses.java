@@ -1,4 +1,4 @@
-package net.corespring.csaugmentations.Utility;
+package net.corespring.csaugmentations.Registry.Utility;
 
 import net.corespring.csaugmentations.Augmentations.Base.Limbs.SimpleArm;
 import net.corespring.csaugmentations.Augmentations.Base.Limbs.SimpleLeg;

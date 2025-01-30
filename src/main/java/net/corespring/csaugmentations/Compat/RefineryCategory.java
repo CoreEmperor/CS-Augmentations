@@ -1,4 +1,4 @@
-package net.corespring.csaugmentations.Utility.Compat;
+package net.corespring.csaugmentations.Compat;
 
 import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;

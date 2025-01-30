@@ -1,4 +1,4 @@
-package net.corespring.csaugmentations.Utility.Network.Packets;
+package net.corespring.csaugmentations.Registry.Network.Packets;
 
 import net.corespring.csaugmentations.Capability.OrganCap;
 import net.minecraft.network.FriendlyByteBuf;
@@ -7,34 +7,34 @@ import net.minecraftforge.network.NetworkEvent;
 
 import java.util.function.Supplier;
 
-public class C2SToggleLegBuffsPacket {
-    private final boolean legsEnabled;
+public class C2SToggleArmBuffsPacket {
+    private final boolean armsEnabled;
 
-    public C2SToggleLegBuffsPacket(boolean legsEnabled) {
-        this.legsEnabled = legsEnabled;
+    public C2SToggleArmBuffsPacket(boolean armsEnabled) {
+        this.armsEnabled = armsEnabled;
     }
 
-    public C2SToggleLegBuffsPacket(FriendlyByteBuf buf) {
-        this.legsEnabled = buf.readBoolean();
+    public C2SToggleArmBuffsPacket(FriendlyByteBuf buf) {
+        this.armsEnabled = buf.readBoolean();
     }
 
     public void toBytes(FriendlyByteBuf buf) {
-        buf.writeBoolean(this.legsEnabled);
+        buf.writeBoolean(this.armsEnabled);
     }
 
     public void handle(Supplier<NetworkEvent.Context> ctx) {
         ctx.get().enqueueWork(() -> {
             ServerPlayer player = ctx.get().getSender();
             if (player != null) {
-                handleToggleLegBuffsPacket(this.legsEnabled, player);
+                handleToggleArmBuffsPacket(this.armsEnabled, player);
             }
         });
         ctx.get().setPacketHandled(true);
     }
 
-    private void handleToggleLegBuffsPacket(boolean legsEnabled, ServerPlayer player) {
+    private void handleToggleArmBuffsPacket(boolean armsEnabled, ServerPlayer player) {
         player.getCapability(OrganCap.ORGAN_DATA).ifPresent(data -> {
-            data.applyEffects(legsEnabled);
+            data.applyEffects(armsEnabled);
         });
     }
 }

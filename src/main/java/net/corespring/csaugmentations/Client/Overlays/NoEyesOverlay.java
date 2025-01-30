@@ -3,7 +3,7 @@ package net.corespring.csaugmentations.Client.Overlays;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.corespring.csaugmentations.CSAugmentations;
 import net.corespring.csaugmentations.Capability.OrganCap;
-import net.corespring.csaugmentations.Utility.CSAugUtil;
+import net.corespring.csaugmentations.Registry.Utility.CSAugUtil;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.resources.ResourceLocation;

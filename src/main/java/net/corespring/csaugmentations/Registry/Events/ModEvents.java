@@ -1,10 +1,10 @@
-package net.corespring.csaugmentations.Utility.Events;
+package net.corespring.csaugmentations.Registry.Events;
 
 import com.mojang.brigadier.CommandDispatcher;
 import net.corespring.csaugmentations.CSAugmentations;
-import net.corespring.csaugmentations.Utility.Command.GetHumanityCommand;
-import net.corespring.csaugmentations.Utility.Command.ResetOrgansCommand;
-import net.corespring.csaugmentations.Utility.Command.SetHumanityCommand;
+import net.corespring.csaugmentations.Registry.Utility.Command.GetHumanityCommand;
+import net.corespring.csaugmentations.Registry.Utility.Command.ResetOrgansCommand;
+import net.corespring.csaugmentations.Registry.Utility.Command.SetHumanityCommand;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;

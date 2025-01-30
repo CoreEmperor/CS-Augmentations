@@ -1,8 +1,8 @@
 package net.corespring.csaugmentations.Augmentations.Base.Organs;
 
 import net.corespring.csaugmentations.Augmentations.Base.IOrganTickable;
-import net.corespring.csaugmentations.Utility.CSOrganTiers;
-import net.corespring.csaugmentations.Utility.CSOrganTiers.Attribute;
+import net.corespring.csaugmentations.Registry.Utility.CSOrganTiers;
+import net.corespring.csaugmentations.Registry.Utility.CSOrganTiers.Attribute;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;

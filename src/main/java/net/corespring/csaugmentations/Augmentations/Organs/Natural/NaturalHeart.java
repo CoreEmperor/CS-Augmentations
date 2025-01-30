@@ -1,7 +1,7 @@
 package net.corespring.csaugmentations.Augmentations.Organs.Natural;
 
 import net.corespring.csaugmentations.Augmentations.Base.Organs.SimpleHeart;
-import net.corespring.csaugmentations.Utility.CSOrganTiers;
+import net.corespring.csaugmentations.Registry.Utility.CSOrganTiers;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 

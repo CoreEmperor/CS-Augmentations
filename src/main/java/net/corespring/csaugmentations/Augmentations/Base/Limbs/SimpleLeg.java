@@ -2,7 +2,7 @@ package net.corespring.csaugmentations.Augmentations.Base.Limbs;
 
 import net.corespring.csaugmentations.Augmentations.Base.ILimbType;
 import net.corespring.csaugmentations.Augmentations.Base.Organs.SimpleOrgan;
-import net.corespring.csaugmentations.Utility.CSOrganTiers;
+import net.corespring.csaugmentations.Registry.Utility.CSOrganTiers;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Player;

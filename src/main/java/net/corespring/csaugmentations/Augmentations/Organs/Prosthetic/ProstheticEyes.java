@@ -1,8 +1,7 @@
 package net.corespring.csaugmentations.Augmentations.Organs.Prosthetic;
 
 import net.corespring.csaugmentations.Augmentations.Base.Organs.SimpleEyes;
-import net.corespring.csaugmentations.Registry.CSEffects;
-import net.corespring.csaugmentations.Utility.CSOrganTiers;
+import net.corespring.csaugmentations.Registry.Utility.CSOrganTiers;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.player.Player;

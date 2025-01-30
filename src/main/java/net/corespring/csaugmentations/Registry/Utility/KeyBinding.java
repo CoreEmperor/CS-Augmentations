@@ -1,4 +1,4 @@
-package net.corespring.csaugmentations.Utility;
+package net.corespring.csaugmentations.Registry.Utility;
 
 import com.mojang.blaze3d.platform.InputConstants;
 import net.minecraft.client.KeyMapping;

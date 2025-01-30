@@ -1,5 +1,6 @@
 package net.corespring.csaugmentations.Capability;
 
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
@@ -25,6 +26,11 @@ public class Cyberpsychosis {
             SoundEvents.VILLAGER_WORK_LIBRARIAN,
             SoundEvents.CHEST_OPEN,
             SoundEvents.WOODEN_DOOR_OPEN,
+            SoundEvents.GRAVEL_BREAK,
+            SoundEvents.GRAVEL_PLACE,
+            SoundEvents.STONE_BREAK,
+            SoundEvents.STONE_PLACE,
+            SoundEvents.GENERIC_EXTINGUISH_FIRE,
             SoundEvents.ZOMBIE_ATTACK_WOODEN_DOOR,
             SoundEvents.ZOMBIE_VILLAGER_AMBIENT,
             SoundEvents.ZOMBIE_AMBIENT,
@@ -57,36 +63,65 @@ public class Cyberpsychosis {
             Component.translatable("cyberpsychosis.csaugmentations.fake_player_8")
     );
 
-    private static final long MIN_INTERVAL = 5 * 20;
-    private static final long MAX_INTERVAL = 20 * 60 * 20;
-
+    private static final long MIN_INTERVAL = 1200;
+    private static final long MAX_INTERVAL = 48000;
+    private static final int MAX_SEVERITY = 100;
     private long nextSoundTime = -1;
     private long nextActionbarTime = -1;
     private long nextFakeChatTime = -1;
     private long nextPetMessageTime = -1;
+    private long nextSeverityIncreaseTime = -1;
+    private boolean hasSlept = false;
+    private int severityLevel = 0;
 
     public void handleCyberpsychosis(ServerPlayer player) {
         long gameTime = player.level().getGameTime();
 
+        if (nextSeverityIncreaseTime == -1 || gameTime >= nextSeverityIncreaseTime) {
+            if (severityLevel < MAX_SEVERITY) {
+                severityLevel++;
+                nextSeverityIncreaseTime = gameTime + 1200; //Ticks between Severity increases
+            }
+        }
+
+        if (player.isSleeping()) {
+            hasSlept = true;
+        } else if (hasSlept) {
+            if (player.level().isDay()) {
+                reduceSeverityOnSleep();
+            }
+            hasSlept = false;
+        }
+
+        long soundInterval = calculateInterval(MIN_INTERVAL, MAX_INTERVAL, severityLevel);
+        long actionbarInterval = calculateInterval(MIN_INTERVAL, MAX_INTERVAL, severityLevel);
+        long fakeChatInterval = calculateInterval(MIN_INTERVAL, MAX_INTERVAL, severityLevel);
+        long petMessageInterval = calculateInterval(MIN_INTERVAL, MAX_INTERVAL, severityLevel);
+
         if (nextSoundTime == -1 || gameTime >= nextSoundTime) {
             schizophrenia(player);
-            nextSoundTime = gameTime + RANDOM.nextLong(MIN_INTERVAL, MAX_INTERVAL + 1);
+            nextSoundTime = gameTime + soundInterval;
         }
 
         if (nextActionbarTime == -1 || gameTime >= nextActionbarTime) {
             actionbarMessages(player);
-            nextActionbarTime = gameTime + RANDOM.nextLong(MIN_INTERVAL, MAX_INTERVAL + 1);
+            nextActionbarTime = gameTime + actionbarInterval;
         }
 
         if (nextFakeChatTime == -1 || gameTime >= nextFakeChatTime) {
             fakePlayerMessages(player);
-            nextFakeChatTime = gameTime + RANDOM.nextLong(MIN_INTERVAL, MAX_INTERVAL + 1);
+            nextFakeChatTime = gameTime + fakeChatInterval;
         }
 
         if (nextPetMessageTime == -1 || gameTime >= nextPetMessageTime) {
             fakePetDeathMessages(player);
-            nextPetMessageTime = gameTime + RANDOM.nextLong(MIN_INTERVAL, MAX_INTERVAL + 1);
+            nextPetMessageTime = gameTime + petMessageInterval;
         }
+    }
+
+    private long calculateInterval(long minInterval, long maxInterval, int severity) {
+        double factor = (double) severity / MAX_SEVERITY;
+        return minInterval + (long) ((maxInterval - minInterval) * (1 - factor));
     }
 
     private void schizophrenia(ServerPlayer player) {
@@ -147,5 +182,37 @@ public class Cyberpsychosis {
         return entity instanceof Monster ||
                 (entity instanceof Wolf wolf && wolf.isAngry()) ||
                 (entity instanceof EnderMan enderman && enderman.isCreepy());
+    }
+
+    public CompoundTag serializeNBT() {
+        CompoundTag tag = new CompoundTag();
+        tag.putLong("nextSoundTime", nextSoundTime);
+        tag.putLong("nextActionbarTime", nextActionbarTime);
+        tag.putLong("nextFakeChatTime", nextFakeChatTime);
+        tag.putLong("nextPetMessageTime", nextPetMessageTime);
+        tag.putInt("severityLevel", severityLevel);
+        return tag;
+    }
+
+    public void deserializeNBT(CompoundTag nbt) {
+        nextSoundTime = nbt.getLong("nextSoundTime");
+        nextActionbarTime = nbt.getLong("nextActionbarTime");
+        nextFakeChatTime = nbt.getLong("nextFakeChatTime");
+        nextPetMessageTime = nbt.getLong("nextPetMessageTime");
+        severityLevel = nbt.getInt("severityLevel");
+    }
+
+    private void reduceSeverityOnSleep() {
+        int reductionAmount = 10;
+        reduceSeverity(reductionAmount);
+    }
+
+
+    public void reduceSeverity(int amount) {
+        severityLevel = Math.max(0, severityLevel - amount);
+    }
+
+    public int getSeverityLevel() {
+        return severityLevel;
     }
 }

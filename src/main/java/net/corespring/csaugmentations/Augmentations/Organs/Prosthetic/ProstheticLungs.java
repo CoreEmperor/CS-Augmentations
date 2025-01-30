@@ -1,7 +1,7 @@
 package net.corespring.csaugmentations.Augmentations.Organs.Prosthetic;
 
 import net.corespring.csaugmentations.Augmentations.Base.Organs.SimpleLungs;
-import net.corespring.csaugmentations.Utility.CSOrganTiers;
+import net.corespring.csaugmentations.Registry.Utility.CSOrganTiers;
 import net.minecraft.world.entity.player.Player;
 
 public class ProstheticLungs extends SimpleLungs {

@@ -1,19 +1,17 @@
 package net.corespring.csaugmentations.Capability;
 
 import com.mojang.logging.LogUtils;
-import net.corespring.csaugmentations.Augmentations.Base.IMixinMobEffectInstance;
 import net.corespring.csaugmentations.Augmentations.Base.Organs.*;
 import net.corespring.csaugmentations.CSAugmentations;
-import net.corespring.csaugmentations.Utility.Network.CSNetwork;
-import net.corespring.csaugmentations.Utility.Network.Packets.S2CSyncDataPacket;
+import net.corespring.csaugmentations.Registry.Network.CSNetwork;
+import net.corespring.csaugmentations.Registry.Network.Packets.S2CSyncDataPacket;
 import net.corespring.csaugmentations.Registry.CSEffects;
 import net.corespring.csaugmentations.Registry.CSItems;
-import net.corespring.csaugmentations.Utility.CSAugUtil;
-import net.corespring.csaugmentations.Utility.CSOrganClasses;
-import net.corespring.csaugmentations.Utility.CSOrganTiers;
+import net.corespring.csaugmentations.Registry.Utility.CSAugUtil;
+import net.corespring.csaugmentations.Registry.Utility.CSOrganClasses;
+import net.corespring.csaugmentations.Registry.Utility.CSOrganTiers;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
@@ -73,6 +71,7 @@ public class OrganCap {
         public OrganData(int size) {
             super(size);
             this.humanityLimit = new Random().nextInt(91) + 10;
+            this.cyberpsychosis = new Cyberpsychosis();
         }
 
         public void setPlayer(Player player) {
@@ -85,6 +84,7 @@ public class OrganCap {
             }
             this.initialized = data.initialized;
             this.humanityLimit = data.humanityLimit;
+            this.cyberpsychosis = data.cyberpsychosis;
             this.currentCyberwareValue = data.currentCyberwareValue;
             this.previousCyberwareValue = data.previousCyberwareValue;
             this.updateOrganData();
@@ -94,6 +94,7 @@ public class OrganCap {
             if (player != null) {
                 CompoundTag csAugmentationsData = player.getPersistentData().getCompound(CSAugmentations.MOD_ID);
                 csAugmentationsData.put("organ_data", this.serializeNBT());
+                csAugmentationsData.put("cyberpsychosis", this.cyberpsychosis.serializeNBT());
                 csAugmentationsData.putBoolean("initialized", this.initialized);
                 csAugmentationsData.putInt("humanityLimit", this.humanityLimit);
                 csAugmentationsData.putInt("currentCyberwareValue", this.currentCyberwareValue);
@@ -116,6 +117,7 @@ public class OrganCap {
             CompoundTag tag = super.serializeNBT();
             tag.putBoolean("initialized", this.initialized);
             tag.putInt("humanityLimit", this.humanityLimit);
+            tag.put("cyberpsychosis", this.cyberpsychosis.serializeNBT());
             tag.putInt("currentCyberwareValue", this.currentCyberwareValue);
             return tag;
         }
@@ -125,7 +127,9 @@ public class OrganCap {
             super.deserializeNBT(nbt);
             this.initialized = nbt.getBoolean("initialized");
             this.humanityLimit = nbt.getInt("humanityLimit");
+            this.cyberpsychosis.deserializeNBT(nbt.getCompound("cyberpsychosis"));
             this.currentCyberwareValue = nbt.getInt("currentCyberwareValue");
+
         }
 
         public CSOrganTiers getOrganTier(ItemStack stack) {

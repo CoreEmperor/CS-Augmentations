@@ -1,4 +1,4 @@
-package net.corespring.csaugmentations.Utility.Events;
+package net.corespring.csaugmentations.Registry.Events;
 
 import com.google.common.util.concurrent.AtomicDouble;
 import net.corespring.csaugmentations.Augmentations.Base.IMixinMobEffectInstance;
@@ -9,11 +9,11 @@ import net.corespring.csaugmentations.CSCommonConfigs;
 import net.corespring.csaugmentations.Capability.Cyberpsychosis;
 import net.corespring.csaugmentations.Capability.OrganCap;
 import net.corespring.csaugmentations.Capability.OrganCapProvider;
-import net.corespring.csaugmentations.Utility.CSOrganTiers;
-import net.corespring.csaugmentations.Utility.Network.CSNetwork;
-import net.corespring.csaugmentations.Utility.Network.Packets.S2CSyncDataPacket;
+import net.corespring.csaugmentations.Registry.Utility.CSOrganTiers;
+import net.corespring.csaugmentations.Registry.Network.CSNetwork;
+import net.corespring.csaugmentations.Registry.Network.Packets.S2CSyncDataPacket;
 import net.corespring.csaugmentations.Registry.CSEffects;
-import net.corespring.csaugmentations.Utility.CSAugUtil;
+import net.corespring.csaugmentations.Registry.Utility.CSAugUtil;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.damagesource.DamageTypes;
@@ -31,7 +31,6 @@ import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.items.IItemHandlerModifiable;
 import net.minecraftforge.network.PacketDistributor;
 
 import java.util.ArrayList;
@@ -172,6 +171,7 @@ public class ForgeEvents {
                     if (cap.isCyberpsycho() && player instanceof ServerPlayer serverPlayer) {
                         Cyberpsychosis cyberpsychosis = cap.getCyberpsychosis();
                         cyberpsychosis.handleCyberpsychosis(serverPlayer);
+                        cap.updatePersistentData();
                     }
                 });
             }
