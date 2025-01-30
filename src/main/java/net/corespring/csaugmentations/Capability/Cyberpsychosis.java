@@ -58,7 +58,7 @@ public class Cyberpsychosis {
     );
 
     private static final long MIN_INTERVAL = 5 * 20;
-    private static final long MAX_INTERVAL = 20 * 20;
+    private static final long MAX_INTERVAL = 20 * 60 * 20;
 
     private long nextSoundTime = -1;
     private long nextActionbarTime = -1;
