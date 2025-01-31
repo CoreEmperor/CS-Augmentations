@@ -1,5 +1,6 @@
 package net.corespring.csaugmentations.Capability;
 
+import net.corespring.csaugmentations.CSCommonConfigs;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
@@ -63,16 +64,45 @@ public class Cyberpsychosis {
             Component.translatable("cyberpsychosis.csaugmentations.fake_player_8")
     );
 
+    private static final int SEVERITY_THRESHOLD = CSCommonConfigs.CYBERPSYCHOSIS_TRADING_THRESHOLD.get();
     private static final long MIN_INTERVAL = 1200;
-    private static final long MAX_INTERVAL = 48000;
+    private static final long MAX_INTERVAL = 168000;
     private static final int MAX_SEVERITY = 100;
+    private static final long COOLDOWN_DURATION = 100;
     private long nextSoundTime = -1;
     private long nextActionbarTime = -1;
     private long nextFakeChatTime = -1;
     private long nextPetMessageTime = -1;
     private long nextSeverityIncreaseTime = -1;
+    private long lastRefusalTime = -1;
     private boolean hasSlept = false;
     private int severityLevel = 0;
+
+    public boolean isOnCooldown() {
+        return lastRefusalTime != -1 && System.currentTimeMillis() - lastRefusalTime < COOLDOWN_DURATION * 50;
+    }
+
+    public void startCooldown() {
+        lastRefusalTime = System.currentTimeMillis();
+    }
+
+    public boolean shouldRefuseTrade() {
+        int severityLevel = getSeverityLevel();
+        if (severityLevel < SEVERITY_THRESHOLD) {
+            return false;
+        }
+
+        if (isOnCooldown()) {
+            return true;
+        }
+
+        double refusalChance = (double) (severityLevel - SEVERITY_THRESHOLD) / (MAX_SEVERITY - SEVERITY_THRESHOLD);
+        if (RANDOM.nextDouble() < refusalChance) {
+            startCooldown();
+            return true;
+        }
+        return false;
+    }
 
     public void handleCyberpsychosis(ServerPlayer player) {
         long gameTime = player.level().getGameTime();
@@ -191,6 +221,7 @@ public class Cyberpsychosis {
         tag.putLong("nextFakeChatTime", nextFakeChatTime);
         tag.putLong("nextPetMessageTime", nextPetMessageTime);
         tag.putInt("severityLevel", severityLevel);
+        tag.putLong("lastRefusalTime", lastRefusalTime);
         return tag;
     }
 
@@ -200,6 +231,7 @@ public class Cyberpsychosis {
         nextFakeChatTime = nbt.getLong("nextFakeChatTime");
         nextPetMessageTime = nbt.getLong("nextPetMessageTime");
         severityLevel = nbt.getInt("severityLevel");
+        lastRefusalTime = nbt.getLong("lastRefusalTime");
     }
 
     private void reduceSeverityOnSleep() {

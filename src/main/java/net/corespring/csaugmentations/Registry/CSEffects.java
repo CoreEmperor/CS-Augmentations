@@ -1,7 +1,7 @@
 package net.corespring.csaugmentations.Registry;
 
 import net.corespring.csaugmentations.CSAugmentations;
-import net.corespring.csaugmentations.Effect.*;
+import net.corespring.csaugmentations.Registry.Effect.*;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraftforge.eventbus.api.IEventBus;

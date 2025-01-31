@@ -1,4 +1,4 @@
-package net.corespring.csaugmentations.Effect;
+package net.corespring.csaugmentations.Registry.Effect;
 
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
@@ -8,8 +8,8 @@ import net.minecraft.world.item.ItemStack;
 import java.util.Collections;
 import java.util.List;
 
-public class LiverFailure extends MobEffect {
-    public LiverFailure(MobEffectCategory pCategory, int pColor) {
+public class KidneyFailure extends MobEffect {
+    public KidneyFailure(MobEffectCategory pCategory, int pColor) {
         super(pCategory, pColor);
     }
 
@@ -36,7 +36,6 @@ public class LiverFailure extends MobEffect {
             return true;
         }
     }
-
     @Override
     public List<ItemStack> getCurativeItems() {
         return Collections.emptyList();

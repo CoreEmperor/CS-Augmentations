@@ -1,4 +1,4 @@
-package net.corespring.csaugmentations.Effect;
+package net.corespring.csaugmentations.Registry.Effect;
 
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
@@ -41,22 +41,21 @@ public class OrganRejection extends MobEffect {
                     break;
                 case 3:
                     pLivingEntity.addEffect(new MobEffectInstance(MobEffects.WEAKNESS, 80, 1, false, false, true));
-                    pLivingEntity.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 80, 0, false, false, true));
-                    pLivingEntity.hurt(pLivingEntity.damageSources().wither(), 1.0f);
+                    pLivingEntity.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 80, 1, false, false, true));
                     applyNauseaEffect(pLivingEntity, pAmplifier);
                     break;
                 case 4:
                     pLivingEntity.addEffect(new MobEffectInstance(MobEffects.WEAKNESS, 80, 1, false, false, true));
                     pLivingEntity.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 80, 1, false, false, true));
                     pLivingEntity.addEffect(new MobEffectInstance(MobEffects.DIG_SLOWDOWN, 80, 0, false, false, true));
-                    pLivingEntity.hurt(pLivingEntity.damageSources().wither(), 2.0f);
+                    pLivingEntity.hurt(pLivingEntity.damageSources().wither(), 0.5f);
                     applyNauseaEffect(pLivingEntity, pAmplifier);
                     break;
                 case 5:
                     pLivingEntity.addEffect(new MobEffectInstance(MobEffects.WEAKNESS, 80, 2, false, false, true));
                     pLivingEntity.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 80, 2, false, false, true));
                     pLivingEntity.addEffect(new MobEffectInstance(MobEffects.DIG_SLOWDOWN, 80, 2, false, false, true));
-                    pLivingEntity.hurt(pLivingEntity.damageSources().wither(), 2.0f);
+                    pLivingEntity.hurt(pLivingEntity.damageSources().wither(), 1.0f);
                     applyNauseaEffect(pLivingEntity, pAmplifier);
                     break;
                 default:

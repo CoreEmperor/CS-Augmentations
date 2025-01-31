@@ -1,4 +1,4 @@
-package net.corespring.csaugmentations.Effect;
+package net.corespring.csaugmentations.Registry.Effect;
 
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;

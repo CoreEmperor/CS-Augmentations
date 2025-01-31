@@ -219,7 +219,6 @@ public class OrganCap {
             }
         }
 
-
         public boolean isCyberpsycho() {
             return this.currentCyberwareValue > this.humanityLimit;
         }
@@ -237,6 +236,13 @@ public class OrganCap {
 
         public int getHumanityLimit() {
             return humanityLimit;
+        }
+
+        public boolean shouldRefuseTrade() {
+            if (isCyberpsycho()) {
+                return cyberpsychosis.shouldRefuseTrade();
+            }
+            return false;
         }
 
         public void organTick() {

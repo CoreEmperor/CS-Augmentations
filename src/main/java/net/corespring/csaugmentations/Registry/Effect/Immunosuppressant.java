@@ -1,4 +1,4 @@
-package net.corespring.csaugmentations.Effect;
+package net.corespring.csaugmentations.Registry.Effect;
 
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
@@ -8,16 +8,13 @@ import net.minecraft.world.item.ItemStack;
 import java.util.Collections;
 import java.util.List;
 
-public class Hemostat extends MobEffect {
-    public Hemostat(MobEffectCategory pCategory, int pColor) {
+public class Immunosuppressant extends MobEffect {
+    public Immunosuppressant(MobEffectCategory pCategory, int pColor) {
         super(pCategory, pColor);
     }
 
     @Override
     public void applyEffectTick(LivingEntity pLivingEntity, int pAmplifier) {
-        if (!pLivingEntity.level().isClientSide) {
-            pLivingEntity.heal(0.5f);
-        }
         super.applyEffectTick(pLivingEntity, pAmplifier);
     }
 
@@ -36,6 +33,7 @@ public class Hemostat extends MobEffect {
             return true;
         }
     }
+
     @Override
     public List<ItemStack> getCurativeItems() {
         return Collections.emptyList();
