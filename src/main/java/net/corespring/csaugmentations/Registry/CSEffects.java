@@ -39,7 +39,7 @@ public class CSEffects {
                     () -> new OrganRejection(MobEffectCategory.HARMFUL, 0x561314));
     public static Supplier<MobEffect> Immunosuppressant =
             Mob_EFFECTS.register("immunosuppressant",
-                    () -> new Immunosuppressant(MobEffectCategory.NEUTRAL, 0x561314));
+                    () -> new Immunosuppressant(MobEffectCategory.BENEFICIAL, 0x561314));
 
 
     public static void register(IEventBus eventBus) {

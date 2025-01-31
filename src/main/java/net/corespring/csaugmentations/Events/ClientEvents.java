@@ -11,13 +11,6 @@ import net.corespring.csaugmentations.Registry.Utility.CSAugUtil;
 import net.corespring.csaugmentations.Registry.Utility.KeyBinding;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.animal.Chicken;
-import net.minecraft.world.entity.animal.Cow;
-import net.minecraft.world.entity.animal.Pig;
-import net.minecraft.world.entity.animal.Sheep;
-import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.*;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -66,7 +59,6 @@ public class ClientEvents {
             event.registerBelowAll("liver_failure_overlay", new LiverFailureOverlay());
             event.registerBelowAll("organ_rejection_overlay", new OrganRejectionOverlay());
             event.registerBelowAll("immunosuppressant_overlay", new ImmunosuppressantOverlay());
-            event.registerBelowAll("test_overlay", new TestOverlay());
         }
 
         public static void updateClientCapability(S2CSyncDataPacket packet) {
