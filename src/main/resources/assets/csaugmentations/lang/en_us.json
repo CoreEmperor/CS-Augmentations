@@ -120,7 +120,6 @@
   "effect.csaugmentations.liverfailure": "Jaundice",
   "effect.csaugmentations.intoxicated": "Intoxicated",
   "effect.csaugmentations.silk": "Silk",
-
   "effect.csaugmentations.immunosuppressant": "Immunosuppressant",
   "effect.csaugmentations.organ_rejection": "Organ Rejection",
 
@@ -164,7 +163,6 @@
   "advancements.csaugmentations.prosthetic_arm.description": "Silverhand.",
   "advancements.csaugmentations.prosthetic_eyes.title": "Reallyy worth it",
   "advancements.csaugmentations.prosthetic_eyes.description": "Craft Prosthetic Eyes.",
-
   "advancements.csaugmentations.prosthetic_tier.title": "Weakness of Flesh, Relinquished.",
   "advancements.csaugmentations.prosthetic_tier.description": "Craft every Prosthetic.",
 
@@ -188,12 +186,16 @@
   "cyberpsychosis.csaugmentations.fake_pet_death": "%s died.",
   "cyberpsychosis.csaugmentations.fake_pet_death_by_mob": "%s was Slain by %s",
 
-  "commands.resetorgan.failed": "%s's organs were unable to reset",
-  "commands.resetorgan.success": "Successfully Reset %s's Organs",
-  "commands.sethumanity.failed": "Failed to reset %s's Humanity",
-  "commands.sethumanity.success": "Successfully set %s's Humanity to %d",
-  "commands.gethumanity.failed": "Failed to get %s's Humanity",
-  "commands.gethumanity.success": "Successfully obtained %s's Humanity: %d",
+  "commands.resetorgan.failed": "%s's organs were unable to reset!",
+  "commands.resetorgan.success": "Successfully reset %s's Organs",
+  "commands.sethumanity.failed": "Failed to set humanity severity!",
+  "commands.sethumanity.success": "Set %s's humanity severity to %d",
+  "commands.gethumanity.failed": "Failed to get %s's humanity!",
+  "commands.gethumanity.success": "%s's humanity: %d",
+  "commands.setseverity.failed": "Failed to set cyberpsychosis severity!",
+  "commands.setseverity.success": "Set %s's cyberpsychosis severity to %d",
+  "commands.getseverity.failed": "Failed to get %s's cyberpsychosis severity!",
+  "commands.getseverity.success": "%s's cyberpsychosis severity: %d",
 
   "sounds.csaugmentations.immunosuppressant_use": "Immunosuppressant Used",
 

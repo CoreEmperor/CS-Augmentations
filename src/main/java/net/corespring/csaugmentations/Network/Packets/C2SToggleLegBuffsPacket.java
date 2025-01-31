@@ -1,4 +1,4 @@
-package net.corespring.csaugmentations.Registry.Network.Packets;
+package net.corespring.csaugmentations.Network.Packets;
 
 import net.corespring.csaugmentations.Capability.OrganCap;
 import net.minecraft.network.FriendlyByteBuf;

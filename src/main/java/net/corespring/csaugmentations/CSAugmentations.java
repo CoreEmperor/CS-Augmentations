@@ -1,11 +1,11 @@
 package net.corespring.csaugmentations;
 
 import com.mojang.logging.LogUtils;
-import net.corespring.csaugmentations.Registry.Network.CSNetwork;
+import net.corespring.csaugmentations.Network.CSNetwork;
 import net.corespring.csaugmentations.Registry.CSRecipeSerializers;
 import net.corespring.csaugmentations.Registry.CSRecipeTypes;
 import net.corespring.csaugmentations.Registry.*;
-import net.corespring.csaugmentations.Registry.Events.ForgeEvents;
+import net.corespring.csaugmentations.Events.ForgeEvents;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;

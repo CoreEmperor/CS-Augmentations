@@ -1,10 +1,7 @@
-package net.corespring.csaugmentations.Registry.Network;
+package net.corespring.csaugmentations.Network;
 
 import net.corespring.csaugmentations.CSAugmentations;
-import net.corespring.csaugmentations.Registry.Network.Packets.C2SOrganSlotPacket;
-import net.corespring.csaugmentations.Registry.Network.Packets.C2SToggleArmBuffsPacket;
-import net.corespring.csaugmentations.Registry.Network.Packets.C2SToggleLegBuffsPacket;
-import net.corespring.csaugmentations.Registry.Network.Packets.S2CSyncDataPacket;
+import net.corespring.csaugmentations.Network.Packets.*;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.network.NetworkDirection;
