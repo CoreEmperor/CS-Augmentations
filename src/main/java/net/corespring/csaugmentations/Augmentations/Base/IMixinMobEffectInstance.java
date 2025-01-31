@@ -1,15 +1,15 @@
 package net.corespring.csaugmentations.Augmentations.Base;
 
 public interface IMixinMobEffectInstance {
-    boolean isEfficiencyApplied();
+    boolean cS_Augmentations$isEfficiencyApplied();
 
-    void setEfficiencyApplied(boolean applied);
+    void cS_Augmentations$setEfficiencyApplied(boolean applied);
 
-    int getDuration();
+    int cS_Augmentations$getDuration();
 
-    int getAmplifier();
+    int cS_Augmentations$getAmplifier();
 
-    void setDuration(int duration);
+    void cS_Augmentations$setDuration(int duration);
 
-    void setAmplifier(int amplifier);
+    void cS_Augmentations$setAmplifier(int amplifier);
 }

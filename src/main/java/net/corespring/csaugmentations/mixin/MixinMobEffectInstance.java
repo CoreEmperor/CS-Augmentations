@@ -4,10 +4,12 @@ import net.corespring.csaugmentations.Augmentations.Base.IMixinMobEffectInstance
 import net.minecraft.world.effect.MobEffectInstance;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.Unique;
 
 @Mixin(MobEffectInstance.class)
 public abstract class MixinMobEffectInstance implements IMixinMobEffectInstance {
-    private boolean efficiencyApplied = false;
+    @Unique
+    private boolean cS_Augmentations$efficiencyApplied = false;
 
     @Shadow
     private int duration;
@@ -16,32 +18,32 @@ public abstract class MixinMobEffectInstance implements IMixinMobEffectInstance 
     private int amplifier;
 
     @Override
-    public boolean isEfficiencyApplied() {
-        return efficiencyApplied;
+    public boolean cS_Augmentations$isEfficiencyApplied() {
+        return cS_Augmentations$efficiencyApplied;
     }
 
     @Override
-    public void setEfficiencyApplied(boolean applied) {
-        this.efficiencyApplied = applied;
+    public void cS_Augmentations$setEfficiencyApplied(boolean applied) {
+        this.cS_Augmentations$efficiencyApplied = applied;
     }
 
     @Override
-    public int getDuration() {
+    public int cS_Augmentations$getDuration() {
         return duration;
     }
 
     @Override
-    public int getAmplifier() {
+    public int cS_Augmentations$getAmplifier() {
         return amplifier;
     }
 
     @Override
-    public void setDuration(int duration) {
+    public void cS_Augmentations$setDuration(int duration) {
         this.duration = duration;
     }
 
     @Override
-    public void setAmplifier(int amplifier) {
+    public void cS_Augmentations$setAmplifier(int amplifier) {
         this.amplifier = amplifier;
     }
 }

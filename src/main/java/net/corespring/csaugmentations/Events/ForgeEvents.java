@@ -53,8 +53,8 @@ public class ForgeEvents {
 
                     player.getActiveEffects().forEach(effectInstance -> {
                         IMixinMobEffectInstance mixinEffectInstance = (IMixinMobEffectInstance) effectInstance;
-                        if (mixinEffectInstance.isEfficiencyApplied()) {
-                            mixinEffectInstance.setDuration(effectInstance.getDuration());
+                        if (mixinEffectInstance.cS_Augmentations$isEfficiencyApplied()) {
+                            mixinEffectInstance.cS_Augmentations$setDuration(effectInstance.getDuration());
                         }
                     });
                 });
@@ -194,13 +194,13 @@ public class ForgeEvents {
                 for (MobEffectInstance effectInstance : new ArrayList<>(player.getActiveEffects())) {
                     IMixinMobEffectInstance mixinEffectInstance = (IMixinMobEffectInstance) effectInstance;
 
-                    if (isHarmfulEffect(effectInstance) && !mixinEffectInstance.isEfficiencyApplied()) {
+                    if (isHarmfulEffect(effectInstance) && !mixinEffectInstance.cS_Augmentations$isEfficiencyApplied()) {
                         adjustEffectDuration(effectInstance, combinedEfficiency);
-                        mixinEffectInstance.setEfficiencyApplied(true);
+                        mixinEffectInstance.cS_Augmentations$setEfficiencyApplied(true);
                     }
 
                     if (!player.hasEffect(effectInstance.getEffect())) {
-                        mixinEffectInstance.setEfficiencyApplied(false);
+                        mixinEffectInstance.cS_Augmentations$setEfficiencyApplied(false);
                     }
 
                     if (combinedEfficiency == 0.0) {
@@ -217,13 +217,13 @@ public class ForgeEvents {
                 for (MobEffectInstance effectInstance : new ArrayList<>(player.getActiveEffects())) {
                     IMixinMobEffectInstance mixinEffectInstance = (IMixinMobEffectInstance) effectInstance;
 
-                    if (isBeneficialEffect(effectInstance) && !mixinEffectInstance.isEfficiencyApplied()) {
+                    if (isBeneficialEffect(effectInstance) && !mixinEffectInstance.cS_Augmentations$isEfficiencyApplied()) {
                         adjustEffectDurationAndTier(effectInstance, pEfficiency);
-                        mixinEffectInstance.setEfficiencyApplied(true);
+                        mixinEffectInstance.cS_Augmentations$setEfficiencyApplied(true);
                     }
 
                     if (!player.hasEffect(effectInstance.getEffect())) {
-                        mixinEffectInstance.setEfficiencyApplied(false);
+                        mixinEffectInstance.cS_Augmentations$setEfficiencyApplied(false);
                     }
 
                     if (pEfficiency == 0.0) {
@@ -243,19 +243,19 @@ public class ForgeEvents {
 
             private static void adjustEffectDuration(MobEffectInstance effectInstance, double combinedEfficiency) {
                 IMixinMobEffectInstance mixinEffectInstance = (IMixinMobEffectInstance) effectInstance;
-                int duration = mixinEffectInstance.getDuration();
+                int duration = mixinEffectInstance.cS_Augmentations$getDuration();
                 float multiplier = combinedEfficiency > 1.0 ? 1.0f / (float) combinedEfficiency : 1.0f + (1.0f - (float) combinedEfficiency);
-                mixinEffectInstance.setDuration((int) (duration * multiplier));
+                mixinEffectInstance.cS_Augmentations$setDuration((int) (duration * multiplier));
             }
 
             private static void adjustEffectDurationAndTier(MobEffectInstance effectInstance, double combinedEfficiency) {
                 IMixinMobEffectInstance mixinEffectInstance = (IMixinMobEffectInstance) effectInstance;
-                int duration = mixinEffectInstance.getDuration();
+                int duration = mixinEffectInstance.cS_Augmentations$getDuration();
                 float multiplier = combinedEfficiency > 1.0 ? 1.0f + (float) (combinedEfficiency - 1.0) : 1.0f - (1.0f - (float) combinedEfficiency);
-                mixinEffectInstance.setDuration((int) (duration * multiplier));
+                mixinEffectInstance.cS_Augmentations$setDuration((int) (duration * multiplier));
 
                 int additionalTiers = (int) ((combinedEfficiency - 1.0) / 0.5);
-                mixinEffectInstance.setAmplifier(mixinEffectInstance.getAmplifier() + additionalTiers);
+                mixinEffectInstance.cS_Augmentations$setAmplifier(mixinEffectInstance.cS_Augmentations$getAmplifier() + additionalTiers);
             }
 
             private static double calculateCombinedEfficiency(Player player, int[] slots, CSOrganTiers.Attribute attribute) {
