@@ -15,7 +15,6 @@ import net.minecraft.world.entity.monster.EnderMan;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.network.PacketDistributor;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -24,6 +23,18 @@ import java.util.Random;
 
 public class Cyberpsychosis {
     private static final Random RANDOM = new Random();
+    private static final int MAX_SEVERITY = 100;
+    private static final long MIN_INTERVAL = CSCommonConfigs.CYBERPSYCHOSIS_MIN_INTERVAL.get();
+    private static final long MAX_INTERVAL = CSCommonConfigs.CYBERPSYCHOSIS_MAX_INTERVAL.get();
+    private static final long SEVERITY_INTERVAL = CSCommonConfigs.CYBERPSYCHOSIS_SEVERITY_INCREASE_INTERVAL.get();
+    private static final long TRADE_REFUSE_COOLDOWN = CSCommonConfigs.CYBERPSYCHOSIS_TRADE_REFUSE_COOLDOWN.get();
+    private static final int SLEEP_REDUCTION = CSCommonConfigs.CYBERPSYCHOSIS_SEVERITY_REDUCTION_ON_SLEEP.get();
+
+    private static final double SOUND_CHANCE = CSCommonConfigs.CYBERPSYCHOSIS_SOUND_CHANCE.get();
+    private static final double ACTIONBAR_CHANCE = CSCommonConfigs.CYBERPSYCHOSIS_ACTIONBAR_CHANCE.get();
+    private static final double FAKE_CHAT_CHANCE = CSCommonConfigs.CYBERPSYCHOSIS_FAKE_CHAT_CHANCE.get();
+    private static final double PET_MESSAGE_CHANCE = CSCommonConfigs.CYBERPSYCHOSIS_PET_DEATH_CHANCE.get();
+
     private static final List<SoundEvent> PHANTOM_SOUNDS = Arrays.asList(
             SoundEvents.VILLAGER_WORK_LIBRARIAN,
             SoundEvents.CHEST_OPEN,
@@ -65,31 +76,18 @@ public class Cyberpsychosis {
             Component.translatable("cyberpsychosis.csaugmentations.fake_player_8")
     );
 
-    private static final int SEVERITY_THRESHOLD = CSCommonConfigs.CYBERPSYCHOSIS_TRADING_THRESHOLD.get();
-    private static final long MIN_INTERVAL = 1200;
-    private static final long MAX_INTERVAL = 168000;
-    private static final int MAX_SEVERITY = 100;
-    private static final long COOLDOWN_DURATION = 100;
+    private boolean hasSlept = false;
     private long nextSoundTime = -1;
     private long nextActionbarTime = -1;
     private long nextFakeChatTime = -1;
     private long nextPetMessageTime = -1;
     private long nextSeverityIncreaseTime = -1;
     private long lastRefusalTime = -1;
-    private boolean hasSlept = false;
     private int severityLevel = 0;
-
-    public boolean isOnCooldown() {
-        return lastRefusalTime != -1 && System.currentTimeMillis() - lastRefusalTime < COOLDOWN_DURATION * 50;
-    }
-
-    public void startCooldown() {
-        lastRefusalTime = System.currentTimeMillis();
-    }
 
     public boolean shouldRefuseTrade() {
         int severityLevel = getSeverityLevel();
-        if (severityLevel < SEVERITY_THRESHOLD) {
+        if (severityLevel < CSCommonConfigs.CYBERPSYCHOSIS_TRADING_THRESHOLD.get()) {
             return false;
         }
 
@@ -97,7 +95,8 @@ public class Cyberpsychosis {
             return true;
         }
 
-        double refusalChance = (double) (severityLevel - SEVERITY_THRESHOLD) / (MAX_SEVERITY - SEVERITY_THRESHOLD);
+        double refusalChance = (double) (severityLevel - CSCommonConfigs.CYBERPSYCHOSIS_TRADING_THRESHOLD.get())
+                / (MAX_SEVERITY - CSCommonConfigs.CYBERPSYCHOSIS_TRADING_THRESHOLD.get());
         if (RANDOM.nextDouble() < refusalChance) {
             startCooldown();
             return true;
@@ -107,14 +106,21 @@ public class Cyberpsychosis {
 
     public void handleCyberpsychosis(ServerPlayer player) {
         long gameTime = player.level().getGameTime();
+        handleSeverityIncrease(gameTime);
+        handleSleepReduction(player);
+        handlePsychoticEvents(player, gameTime);
+    }
 
+    private void handleSeverityIncrease(long gameTime) {
         if (nextSeverityIncreaseTime == -1 || gameTime >= nextSeverityIncreaseTime) {
             if (severityLevel < MAX_SEVERITY) {
                 severityLevel++;
-                nextSeverityIncreaseTime = gameTime + 1200; //Ticks between Severity increases
+                nextSeverityIncreaseTime = gameTime + SEVERITY_INTERVAL;
             }
         }
+    }
 
+    private void handleSleepReduction(ServerPlayer player) {
         if (player.isSleeping()) {
             hasSlept = true;
         } else if (hasSlept) {
@@ -123,44 +129,53 @@ public class Cyberpsychosis {
             }
             hasSlept = false;
         }
+    }
 
-        long soundInterval = calculateInterval(MIN_INTERVAL, MAX_INTERVAL, severityLevel);
-        long actionbarInterval = calculateInterval(MIN_INTERVAL, MAX_INTERVAL, severityLevel);
-        long fakeChatInterval = calculateInterval(MIN_INTERVAL, MAX_INTERVAL, severityLevel);
-        long petMessageInterval = calculateInterval(MIN_INTERVAL, MAX_INTERVAL, severityLevel);
+    private void handlePsychoticEvents(ServerPlayer player, long gameTime) {
+        double severityFactor = (double) severityLevel / MAX_SEVERITY;
 
-        if (nextSoundTime == -1 || gameTime >= nextSoundTime) {
+        if (shouldTriggerEvent(gameTime, nextSoundTime, SOUND_CHANCE, severityFactor)) {
             schizophrenia(player);
-            nextSoundTime = gameTime + soundInterval;
+            nextSoundTime = gameTime + calculateInterval(severityFactor);
         }
 
-        if (nextActionbarTime == -1 || gameTime >= nextActionbarTime) {
+        if (shouldTriggerEvent(gameTime, nextActionbarTime, ACTIONBAR_CHANCE, severityFactor)) {
             actionbarMessages(player);
-            nextActionbarTime = gameTime + actionbarInterval;
+            nextActionbarTime = gameTime + calculateInterval(severityFactor);
         }
 
-        if (nextFakeChatTime == -1 || gameTime >= nextFakeChatTime) {
+        if (shouldTriggerEvent(gameTime, nextFakeChatTime, FAKE_CHAT_CHANCE, severityFactor)) {
             fakePlayerMessages(player);
-            nextFakeChatTime = gameTime + fakeChatInterval;
+            nextFakeChatTime = gameTime + calculateInterval(severityFactor);
         }
 
-        if (nextPetMessageTime == -1 || gameTime >= nextPetMessageTime) {
+        if (shouldTriggerEvent(gameTime, nextPetMessageTime, PET_MESSAGE_CHANCE, severityFactor)) {
             fakePetDeathMessages(player);
-            nextPetMessageTime = gameTime + petMessageInterval;
+            nextPetMessageTime = gameTime + calculateInterval(severityFactor);
         }
     }
 
-    private long calculateInterval(long minInterval, long maxInterval, int severity) {
-        double factor = (double) severity / MAX_SEVERITY;
-        return minInterval + (long) ((maxInterval - minInterval) * (1 - factor));
+    private boolean shouldTriggerEvent(long currentTime, long nextEventTime, double baseChance, double severityFactor) {
+        return (nextEventTime == -1 || currentTime >= nextEventTime) &&
+                RANDOM.nextDouble() < (baseChance + (severityFactor * 0.5));
+    }
+
+    private long calculateInterval(double severityFactor) {
+        return MIN_INTERVAL + (long) ((MAX_INTERVAL - MIN_INTERVAL) * (1 - severityFactor));
     }
 
     private void schizophrenia(ServerPlayer player) {
         SoundEvent sound = PHANTOM_SOUNDS.get(RANDOM.nextInt(PHANTOM_SOUNDS.size()));
-        Vec3 playerPos = player.position();
-        Vec3 soundPos = playerPos.add(new Vec3(RANDOM.nextDouble() * 10 - 5, 0, RANDOM.nextDouble() * 10 - 5));
+        Vec3 pos = randomOffsetPosition(player.position());
+        player.level().playSound(null, pos.x, pos.y, pos.z, sound, SoundSource.AMBIENT, 1.0F, 1.0F);
+    }
 
-        player.level().playSound(null, soundPos.x, soundPos.y, soundPos.z, sound, SoundSource.AMBIENT, 1.0F, 1.0F);
+    private Vec3 randomOffsetPosition(Vec3 original) {
+        return original.add(
+                RANDOM.nextDouble() * 10 - 5,
+                0,
+                RANDOM.nextDouble() * 10 - 5
+        );
     }
 
     private void actionbarMessages(ServerPlayer player) {
@@ -174,8 +189,10 @@ public class Cyberpsychosis {
             ServerPlayer fakeSender = onlinePlayers.get(RANDOM.nextInt(onlinePlayers.size()));
             if (fakeSender != player) {
                 Component fakeMessage = FAKE_PLAYER_MESSAGES.get(RANDOM.nextInt(FAKE_PLAYER_MESSAGES.size()));
-                Component formattedMessage = Component.translatable("chat.type.text", fakeSender.getDisplayName(), fakeMessage);
-
+                Component formattedMessage = Component.translatable("chat.type.text",
+                        fakeSender.getDisplayName(),
+                        fakeMessage
+                );
                 player.sendSystemMessage(formattedMessage);
             }
         }
@@ -185,27 +202,42 @@ public class Cyberpsychosis {
         List<Entity> pets = player.level().getEntitiesOfClass(Entity.class, player.getBoundingBox().inflate(20));
         if (!pets.isEmpty()) {
             Entity pet = pets.get(RANDOM.nextInt(pets.size()));
-            if (pet instanceof TamableAnimal tamablePet && tamablePet.isTame() && tamablePet.getOwner() == player) {
-                List<Entity> nearbyEntities = player.level().getEntitiesOfClass(Entity.class, player.getBoundingBox().inflate(30));
-                List<Entity> potentialCulprits = new ArrayList<>();
-
-                for (Entity entity : nearbyEntities) {
-                    if (entity instanceof LivingEntity livingEntity && entity != player && isHostile(livingEntity)) {
-                        potentialCulprits.add(entity);
-                    }
-                }
-
-                if (!potentialCulprits.isEmpty()) {
-                    Entity culprit = potentialCulprits.get(RANDOM.nextInt(potentialCulprits.size()));
-                    String culpritName = culprit instanceof Player ? culprit.getDisplayName().getString() : culprit.getName().getString();
-
-                    Component message = Component.translatable("cyberpsychosis.csaugmentations.fake_pet_death_by_mob", pet.getName(), culpritName);
-                    player.displayClientMessage(message, false);
-                } else {
-                    Component fallbackMessage = Component.translatable("cyberpsychosis.csaugmentations.fake_pet_death", pet.getName());
-                    player.displayClientMessage(fallbackMessage, false);
-                }
+            if (pet instanceof TamableAnimal tamablePet &&
+                    tamablePet.isTame() &&
+                    tamablePet.getOwner() == player) {
+                handlePetDeathMessage(player, pet);
             }
+        }
+    }
+
+    private void handlePetDeathMessage(ServerPlayer player, Entity pet) {
+        List<Entity> nearbyEntities = player.level().getEntitiesOfClass(Entity.class,
+                player.getBoundingBox().inflate(30));
+        List<Entity> potentialCulprits = new ArrayList<>();
+
+        for (Entity entity : nearbyEntities) {
+            if (entity instanceof LivingEntity livingEntity &&
+                    entity != player &&
+                    isHostile(livingEntity)) {
+                potentialCulprits.add(entity);
+            }
+        }
+
+        if (!potentialCulprits.isEmpty()) {
+            Entity culprit = potentialCulprits.get(RANDOM.nextInt(potentialCulprits.size()));
+            String culpritName = culprit instanceof Player ?
+                    culprit.getDisplayName().getString() :
+                    culprit.getName().getString();
+            Component message = Component.translatable("cyberpsychosis.csaugmentations.fake_pet_death_by_mob",
+                    pet.getName(),
+                    culpritName
+            );
+            player.displayClientMessage(message, false);
+        } else {
+            Component fallbackMessage = Component.translatable("cyberpsychosis.csaugmentations.fake_pet_death",
+                    pet.getName()
+            );
+            player.displayClientMessage(fallbackMessage, false);
         }
     }
 
@@ -235,11 +267,18 @@ public class Cyberpsychosis {
         lastRefusalTime = nbt.getLong("lastRefusalTime");
     }
 
-    private void reduceSeverityOnSleep() {
-        int reductionAmount = 10;
-        reduceSeverity(reductionAmount);
+    public boolean isOnCooldown() {
+        return lastRefusalTime != -1 &&
+                System.currentTimeMillis() - lastRefusalTime < TRADE_REFUSE_COOLDOWN * 50;
     }
 
+    public void startCooldown() {
+        lastRefusalTime = System.currentTimeMillis();
+    }
+
+    private void reduceSeverityOnSleep() {
+        reduceSeverity(SLEEP_REDUCTION);
+    }
 
     public void reduceSeverity(int amount) {
         severityLevel = Math.max(0, severityLevel - amount);

@@ -168,9 +168,11 @@ public class ForgeEvents {
                         }
                     }
 
-                    if (cap.isCyberpsycho() && player instanceof ServerPlayer serverPlayer) {
-                        Cyberpsychosis cyberpsychosis = cap.getCyberpsychosis();
-                        cyberpsychosis.handleCyberpsychosis(serverPlayer);
+                    if (CSCommonConfigs.CYBERPSYCHOSIS_TOGGLE.get()) {
+                        if (cap.isCyberpsycho() && player instanceof ServerPlayer serverPlayer) {
+                            Cyberpsychosis cyberpsychosis = cap.getCyberpsychosis();
+                            cyberpsychosis.handleCyberpsychosis(serverPlayer);
+                        }
                     }
                 });
             }

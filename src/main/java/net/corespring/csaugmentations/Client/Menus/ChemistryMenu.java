@@ -111,4 +111,12 @@ public class ChemistryMenu extends AbstractContainerMenu {
         int fuelIndicatorSize = 24;
         return maxFuel != 0 && fuel != 0 ? fuel * fuelIndicatorSize / maxFuel : 0;
     }
+
+    public int getFuel() {
+        return this.data.get(2);
+    }
+
+    public int getMaxFuel() {
+        return this.data.get(3);
+    }
 }

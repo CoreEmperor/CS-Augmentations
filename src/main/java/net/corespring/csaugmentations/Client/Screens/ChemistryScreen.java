@@ -10,6 +10,8 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
+import java.util.List;
+
 @OnlyIn(Dist.CLIENT)
 public class ChemistryScreen extends AbstractContainerScreen<ChemistryMenu> {
     private static final ResourceLocation BG_LOCATION = new ResourceLocation(CSAugmentations.MOD_ID, "textures/gui/chemistry_gui.png");
@@ -45,6 +47,24 @@ public class ChemistryScreen extends AbstractContainerScreen<ChemistryMenu> {
         this.renderBg(guiGraphics, partialTicks, mouseX, mouseY);
         super.render(guiGraphics, mouseX, mouseY, partialTicks);
         this.renderTooltip(guiGraphics, mouseX, mouseY);
+    }
+
+    @Override
+    protected void renderTooltip(GuiGraphics guiGraphics, int mouseX, int mouseY) {
+        super.renderTooltip(guiGraphics, mouseX, mouseY);
+
+        int fuelBarX = this.leftPos + 152;
+        int fuelBarY = this.topPos + 24;
+        int fuelBarWidth = 14;
+        int fuelBarHeight = 24;
+
+        if (mouseX >= fuelBarX && mouseX < fuelBarX + fuelBarWidth &&
+                mouseY >= fuelBarY && mouseY < fuelBarY + fuelBarHeight) {
+            int currentFuel = this.menu.getFuel();
+            int maxFuel = this.menu.getMaxFuel();
+
+            guiGraphics.renderTooltip(this.font,  Component.literal("Fuel: " + currentFuel + " / " + maxFuel), mouseX, mouseY);
+        }
     }
 
     @Override

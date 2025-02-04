@@ -3,6 +3,7 @@ package net.corespring.csaugmentations.Capability;
 import com.mojang.logging.LogUtils;
 import net.corespring.csaugmentations.Augmentations.Base.Organs.*;
 import net.corespring.csaugmentations.CSAugmentations;
+import net.corespring.csaugmentations.CSCommonConfigs;
 import net.corespring.csaugmentations.Network.CSNetwork;
 import net.corespring.csaugmentations.Network.Packets.S2CSyncDataPacket;
 import net.corespring.csaugmentations.Registry.CSEffects;
@@ -201,7 +202,7 @@ public class OrganCap {
         }
 
         public void applyOrganRejection() {
-            if (player != null && !player.hasEffect(CSEffects.Immunosuppressant.get())) {
+            if (player != null && !player.hasEffect(CSEffects.Immunosuppressant.get()) && CSCommonConfigs.ORGAN_REJECTION_TOGGLE.get()) {
 
                 if (this.currentCyberwareValue >= 10 && this.currentCyberwareValue < 25) {
                     player.addEffect(new MobEffectInstance(CSEffects.ORGAN_REJECTION.get(), 40, 0, false, false, true));
@@ -225,7 +226,9 @@ public class OrganCap {
 
         public Cyberpsychosis getCyberpsychosis() {
             if(cyberpsychosis == null) {
-                cyberpsychosis = new Cyberpsychosis();
+                if (CSCommonConfigs.CYBERPSYCHOSIS_TOGGLE.get()) {
+                    cyberpsychosis = new Cyberpsychosis();
+                }
             }
             return cyberpsychosis;
         }
