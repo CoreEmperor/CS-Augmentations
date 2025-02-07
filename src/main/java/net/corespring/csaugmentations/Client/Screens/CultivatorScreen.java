@@ -2,7 +2,7 @@ package net.corespring.csaugmentations.Client.Screens;
 
 import net.corespring.csaugmentations.CSAugmentations;
 import net.corespring.csaugmentations.Client.Menus.CultivatorMenu;
-import net.corespring.csaugmentations.Registry.Recipes.CultivatorRecipe;
+import net.corespring.csaugmentations.Recipes.CultivatorRecipe;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
@@ -56,14 +56,14 @@ public class CultivatorScreen extends AbstractContainerScreen<CultivatorMenu> {
             int $$3 = this.leftPos + 52;
             int $$4 = this.topPos + 14;
             int $$5 = this.startIndex + 12;
-            List<CultivatorRecipe> $$6 = ((CultivatorMenu) this.menu).getRecipes();
+            List<CultivatorRecipe> $$6 = this.menu.getRecipes();
 
-            for (int $$7 = this.startIndex; $$7 < $$5 && $$7 < ((CultivatorMenu) this.menu).getNumRecipes(); ++$$7) {
+            for (int $$7 = this.startIndex; $$7 < $$5 && $$7 < this.menu.getNumRecipes(); ++$$7) {
                 int $$8 = $$7 - this.startIndex;
                 int $$9 = $$3 + $$8 % 4 * 16;
                 int $$10 = $$4 + $$8 / 4 * 18 + 2;
                 if (pX >= $$9 && pX < $$9 + 16 && pY >= $$10 && pY < $$10 + 18) {
-                    pGuiGraphics.renderTooltip(this.font, ((CultivatorRecipe) $$6.get($$7)).getResultItem(this.minecraft.level.registryAccess()), pX, pY);
+                    pGuiGraphics.renderTooltip(this.font, $$6.get($$7).getResultItem(this.minecraft.level.registryAccess()), pX, pY);
                 }
             }
         }
@@ -71,13 +71,13 @@ public class CultivatorScreen extends AbstractContainerScreen<CultivatorMenu> {
     }
 
     private void renderButtons(GuiGraphics pGuiGraphics, int pMouseX, int pMouseY, int pX, int pY, int pLastVisibleElementIndex) {
-        for (int $$6 = this.startIndex; $$6 < pLastVisibleElementIndex && $$6 < ((CultivatorMenu) this.menu).getNumRecipes(); ++$$6) {
+        for (int $$6 = this.startIndex; $$6 < pLastVisibleElementIndex && $$6 < this.menu.getNumRecipes(); ++$$6) {
             int $$7 = $$6 - this.startIndex;
             int $$8 = pX + $$7 % 4 * 16;
             int $$9 = $$7 / 4;
             int $$10 = pY + $$9 * 18 + 2;
             int $$11 = this.imageHeight;
-            if ($$6 == ((CultivatorMenu) this.menu).getSelectedRecipeIndex()) {
+            if ($$6 == this.menu.getSelectedRecipeIndex()) {
                 $$11 += 18;
             } else if (pMouseX >= $$8 && pMouseY >= $$10 && pMouseX < $$8 + 16 && pMouseY < $$10 + 18) {
                 $$11 += 36;
@@ -89,14 +89,14 @@ public class CultivatorScreen extends AbstractContainerScreen<CultivatorMenu> {
     }
 
     private void renderRecipes(GuiGraphics pGuiGraphics, int pX, int pY, int pStartIndex) {
-        List<CultivatorRecipe> $$4 = ((CultivatorMenu) this.menu).getRecipes();
+        List<CultivatorRecipe> $$4 = this.menu.getRecipes();
 
-        for (int $$5 = this.startIndex; $$5 < pStartIndex && $$5 < ((CultivatorMenu) this.menu).getNumRecipes(); ++$$5) {
+        for (int $$5 = this.startIndex; $$5 < pStartIndex && $$5 < this.menu.getNumRecipes(); ++$$5) {
             int $$6 = $$5 - this.startIndex;
             int $$7 = pX + $$6 % 4 * 16;
             int $$8 = $$6 / 4;
             int $$9 = pY + $$8 * 18 + 2;
-            pGuiGraphics.renderItem(((CultivatorRecipe) $$4.get($$5)).getResultItem(this.minecraft.level.registryAccess()), $$7, $$9);
+            pGuiGraphics.renderItem($$4.get($$5).getResultItem(this.minecraft.level.registryAccess()), $$7, $$9);
         }
 
     }
@@ -112,9 +112,9 @@ public class CultivatorScreen extends AbstractContainerScreen<CultivatorMenu> {
                 int $$7 = $$6 - this.startIndex;
                 double $$8 = pMouseX - (double) ($$3 + $$7 % 4 * 16);
                 double $$9 = pMouseY - (double) ($$4 + $$7 / 4 * 18);
-                if ($$8 >= (double) 0.0F && $$9 >= (double) 0.0F && $$8 < (double) 16.0F && $$9 < (double) 18.0F && ((CultivatorMenu) this.menu).clickMenuButton(this.minecraft.player, $$6)) {
+                if ($$8 >= (double) 0.0F && $$9 >= (double) 0.0F && $$8 < (double) 16.0F && $$9 < (double) 18.0F && this.menu.clickMenuButton(this.minecraft.player, $$6)) {
                     Minecraft.getInstance().getSoundManager().play(SimpleSoundInstance.forUI(SoundEvents.UI_STONECUTTER_SELECT_RECIPE, 1.0F));
-                    this.minecraft.gameMode.handleInventoryButtonClick(((CultivatorMenu) this.menu).containerId, $$6);
+                    this.minecraft.gameMode.handleInventoryButtonClick(this.menu.containerId, $$6);
                     return true;
                 }
             }
@@ -154,15 +154,15 @@ public class CultivatorScreen extends AbstractContainerScreen<CultivatorMenu> {
     }
 
     private boolean isScrollBarActive() {
-        return this.displayRecipes && ((CultivatorMenu) this.menu).getNumRecipes() > 12;
+        return this.displayRecipes && this.menu.getNumRecipes() > 12;
     }
 
     protected int getOffscreenRows() {
-        return (((CultivatorMenu) this.menu).getNumRecipes() + 4 - 1) / 4 - 3;
+        return (this.menu.getNumRecipes() + 4 - 1) / 4 - 3;
     }
 
     private void containerChanged() {
-        this.displayRecipes = ((CultivatorMenu) this.menu).hasInputItem();
+        this.displayRecipes = this.menu.hasInputItem();
         if (!this.displayRecipes) {
             this.scrollOffs = 0.0F;
             this.startIndex = 0;

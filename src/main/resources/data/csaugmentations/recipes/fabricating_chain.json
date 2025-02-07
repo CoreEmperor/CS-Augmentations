@@ -1,0 +1,17 @@
+{
+  "type": "csaugmentations:fabricating",
+  "group": "fabricating",
+  "ingredients": [
+    {
+      "ingredient": {
+        "tag": "forge:nuggets/iron"
+      },
+      "count": 3
+    }
+  ],
+  "result": {
+    "item": "minecraft:chain",
+    "count": 1
+  },
+  "craftingTime": 200
+}

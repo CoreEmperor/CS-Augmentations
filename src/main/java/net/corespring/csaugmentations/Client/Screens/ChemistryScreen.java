@@ -10,8 +10,6 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
-import java.util.List;
-
 @OnlyIn(Dist.CLIENT)
 public class ChemistryScreen extends AbstractContainerScreen<ChemistryMenu> {
     private static final ResourceLocation BG_LOCATION = new ResourceLocation(CSAugmentations.MOD_ID, "textures/gui/chemistry_gui.png");
@@ -31,7 +29,7 @@ public class ChemistryScreen extends AbstractContainerScreen<ChemistryMenu> {
         int fuel = this.menu.getScaledFuelProgress();
         if (fuel > 0) {
             int height = 24;
-            guiGraphics.blit(BG_LOCATION, x + 151, y + 24 + (height - fuel), 176, 0 + (height - fuel), 14, fuel);
+            guiGraphics.blit(BG_LOCATION, x + 151, y + 24 + (height - fuel), 176, (height - fuel), 14, fuel);
         }
 
         if (this.menu.isCrafting()) {
@@ -63,7 +61,7 @@ public class ChemistryScreen extends AbstractContainerScreen<ChemistryMenu> {
             int currentFuel = this.menu.getFuel();
             int maxFuel = this.menu.getMaxFuel();
 
-            guiGraphics.renderTooltip(this.font,  Component.literal("Fuel: " + currentFuel + " / " + maxFuel), mouseX, mouseY);
+            guiGraphics.renderTooltip(this.font, Component.literal("Fuel: " + currentFuel + " / " + maxFuel), mouseX, mouseY);
         }
     }
 

@@ -11,9 +11,9 @@ import net.minecraftforge.client.gui.overlay.ForgeGui;
 import net.minecraftforge.client.gui.overlay.IGuiOverlay;
 
 public class SilkBlissOverlay implements IGuiOverlay {
+    private static final ResourceLocation SILK_BLISS = new ResourceLocation(CSAugmentations.MOD_ID, "textures/gui/silk_bliss_overlay.png");
     protected int screenWidth;
     protected int screenHeight;
-    private static final ResourceLocation SILK_BLISS = new ResourceLocation(CSAugmentations.MOD_ID, "textures/gui/silk_bliss_overlay.png");
 
     @Override
     public void render(ForgeGui forgeGui, GuiGraphics pGuiGraphics, float partialTicks, int screenWidth, int screenHeight) {
@@ -21,7 +21,7 @@ public class SilkBlissOverlay implements IGuiOverlay {
         this.screenHeight = pGuiGraphics.guiHeight();
         Player player = Minecraft.getInstance().player;
 
-        if(player != null && player.hasEffect(CSEffects.SILK.get())) {
+        if (player != null && player.hasEffect(CSEffects.SILK.get())) {
             renderTextureOverlay(pGuiGraphics, SILK_BLISS, 1.5F);
         }
 

@@ -1,0 +1,35 @@
+{
+  "type": "csaugmentations:fabricating",
+  "group": "fabricating",
+  "ingredients": [
+    {
+      "ingredient": {
+        "tag": "minecraft:stone_crafting_materials"
+      },
+      "count": 4
+    },
+    {
+      "ingredient": {
+        "tag": "minecraft:planks"
+      },
+      "count": 3
+    },
+    {
+      "ingredient": {
+        "tag": "forge:ingots/iron"
+      },
+      "count": 1
+    },
+    {
+      "ingredient": {
+        "tag": "forge:dusts/redstone"
+      },
+      "count": 1
+    }
+  ],
+  "result": {
+    "item": "minecraft:piston",
+    "count": 1
+  },
+  "craftingTime": 800
+}

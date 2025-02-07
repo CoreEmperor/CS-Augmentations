@@ -4,7 +4,7 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import net.corespring.csaugmentations.CSAugmentations;
 import net.corespring.csaugmentations.Capability.OrganCap;
 import net.corespring.csaugmentations.Registry.CSItems;
-import net.corespring.csaugmentations.Registry.Utility.CSAugUtil;
+import net.corespring.csaugmentations.Utility.CSAugUtil;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.resources.ResourceLocation;
@@ -13,9 +13,9 @@ import net.minecraftforge.client.gui.overlay.ForgeGui;
 import net.minecraftforge.client.gui.overlay.IGuiOverlay;
 
 public class ProstheticEyesOverlay implements IGuiOverlay {
+    private static final ResourceLocation PROSTHETIC_EYES = new ResourceLocation(CSAugmentations.MOD_ID, "textures/gui/prosthetic_eyes_overlay.png");
     protected int screenWidth;
     protected int screenHeight;
-    private static final ResourceLocation PROSTHETIC_EYES = new ResourceLocation(CSAugmentations.MOD_ID, "textures/gui/prosthetic_eyes_overlay.png");
 
     @Override
     public void render(ForgeGui forgeGui, GuiGraphics pGuiGraphics, float partialTicks, int screenWidth, int screenHeight) {
@@ -32,7 +32,7 @@ public class ProstheticEyesOverlay implements IGuiOverlay {
         player.getCapability(OrganCap.ORGAN_DATA).ifPresent(organData -> {
             if (OrganCap.getOrganData(player).getStackInSlot(CSAugUtil.OrganSlots.EYES).is(CSItems.PROSTHETIC_EYES.get()) && !player.isSpectator()) {
                 this.renderTextureOverlay(pGuiGraphics, PROSTHETIC_EYES, 1F);
-        }
+            }
         });
     }
 

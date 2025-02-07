@@ -1,0 +1,13 @@
+{
+  "values": [
+    "minecraft:beef",
+    "minecraft:porkchop",
+    "minecraft:mutton",
+    "minecraft:chicken",
+    "minecraft:rabbit",
+    "minecraft:cod",
+    "minecraft:tropical_fish",
+    "minecraft:salmon",
+    "cslibrary:flesh"
+  ]
+}

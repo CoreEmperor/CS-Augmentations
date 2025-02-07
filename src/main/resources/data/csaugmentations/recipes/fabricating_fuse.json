@@ -1,0 +1,41 @@
+{
+  "type": "csaugmentations:fabricating",
+  "group": "fabricating",
+  "ingredients": [
+    {
+      "ingredient": {
+        "tag": "forge:wires/gold"
+      },
+      "count": 2
+    },
+    {
+      "ingredient": {
+        "tag": "forge:nuggets/zinc"
+      },
+      "count": 3
+    },
+    {
+      "ingredient": {
+        "item": "minecraft:stone"
+      },
+      "count": 3
+    },
+    {
+      "ingredient": {
+        "item": "minecraft:redstone"
+      },
+      "count": 3
+    },
+    {
+      "ingredient": {
+        "item": "minecraft:stick"
+      },
+      "count": 2
+    }
+  ],
+  "result": {
+    "item": "csaugmentations:fuse",
+    "count": 1
+  },
+  "craftingTime": 200
+}

@@ -21,6 +21,7 @@ public class CSCreativeTab {
                         pOutput.accept(CSBlocks.CULTIVATOR.get());
                         pOutput.accept(CSBlocks.REFINERY.get());
                         pOutput.accept(CSBlocks.CHEMISTRY_TABLE.get());
+                        pOutput.accept(CSBlocks.FABRICATOR.get());
 
                         pOutput.accept(CSBlocks.FOSSIL_ORE.get());
                         pOutput.accept(CSBlocks.DEEPSLATE_FOSSIL_ORE.get());
@@ -55,8 +56,13 @@ public class CSCreativeTab {
                         pOutput.accept(CSItems.PROSTHETIC_RIBS.get());
                         pOutput.accept(CSItems.PROSTHETIC_STOMACH.get());
 
-//                        pOutput.accept(CSItems.CYBER_LEG.get());
-//                        pOutput.accept(CSItems.CYBER_ARM.get());
+                        pOutput.accept(CSItems.CYBER_LEG.get());
+                        pOutput.accept(CSItems.CYBER_ARM.get());
+                        pOutput.accept(CSItems.CYBER_BRAIN.get());
+                        pOutput.accept(CSItems.CYBER_BRAIN_IMPLANT.get());
+                        pOutput.accept(CSItems.CYBER_RIBS.get());
+                        pOutput.accept(CSItems.CYBER_SPINE.get());
+                        pOutput.accept(CSItems.CYBER_WARPER.get());
 
                         pOutput.accept(CSItems.UNFINISHED_MORTAR.get());
                         pOutput.accept(CSItems.UNFINISHED_PESTLE.get());
@@ -65,6 +71,7 @@ public class CSCreativeTab {
                         pOutput.accept(CSItems.CRUDE_PETRI_DISH.get());
                         pOutput.accept(CSItems.REFINED_PETRI_DISH.get());
 
+                        pOutput.accept(CSItems.NEURAL_ANALYZER.get());
                         pOutput.accept(CSItems.SCALPEL.get());
                         pOutput.accept(CSItems.HEMOSTAT.get());
                         pOutput.accept(CSItems.RETRACTORS.get());
@@ -73,14 +80,18 @@ public class CSCreativeTab {
                         pOutput.accept(CSItems.LOADED_CRUDE_PETRI_DISH.get());
                         pOutput.accept(CSItems.LOADED_REFINED_PETRI_DISH.get());
 
+                        pOutput.accept(CSItems.BLUEPRINT.get());
+
                         pOutput.accept(CSItems.CRUSHED_ACID_MUSHROOM.get());
 
+                        pOutput.accept(CSItems.NEURAL_INTERFACE.get());
                         pOutput.accept(CSItems.HYDRAULIC.get());
                         pOutput.accept(CSItems.STEEL_WIRE.get());
                         pOutput.accept(CSItems.FUSE.get());
                         pOutput.accept(CSItems.TRANSFORMER.get());
                         pOutput.accept(CSItems.POWER_CONTROL_MODULE.get());
                         pOutput.accept(CSItems.CRUDE_LOGIC_COMPONENT.get());
+                        pOutput.accept(CSItems.REFINED_LOGIC_COMPONENT.get());
 
                         pOutput.accept(CSItems.DMEM.get());
                         pOutput.accept(CSItems.NUTRIOGLOOP.get());
@@ -97,6 +108,8 @@ public class CSCreativeTab {
                         pOutput.accept(CSItems.BRASS_LIMB_BASE.get());
                         pOutput.accept(CSItems.CRUDE_AUGMENTED_MUSCLE.get());
                         pOutput.accept(CSItems.CRUDE_AUGMENTED_TISSUE.get());
+                        pOutput.accept(CSItems.REFINED_AUGMENTED_MUSCLE.get());
+                        pOutput.accept(CSItems.REFINED_AUGMENTED_TISSUE.get());
 
                         pOutput.accept(CSItems.FOSSIL.get());
 
@@ -111,7 +124,9 @@ public class CSCreativeTab {
 
                         pOutput.accept(CSBlocks.CYCLOFUNGI.get());
                         pOutput.accept(CSItems.BEAKER_CYCLOSPORINE.get());
+                        pOutput.accept(CSItems.BEAKER_SPORINE.get());
                         pOutput.accept(CSItems.IMMUNOSUPPRESSANT.get());
+                        pOutput.accept(CSItems.REFINED_IMMUNOSUPPRESSANT.get());
 
                         pOutput.accept(CSBlocks.BLOCK_SOMNIFERUM_SAP.get());
                         pOutput.accept(CSBlocks.WILD_SOMNIFERUM.get());

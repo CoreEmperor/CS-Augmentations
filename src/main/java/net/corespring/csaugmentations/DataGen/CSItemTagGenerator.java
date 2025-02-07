@@ -8,6 +8,7 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.ItemTagsProvider;
 import net.minecraft.tags.ItemTags;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.data.ExistingFileHelper;
@@ -34,6 +35,17 @@ public class CSItemTagGenerator extends ItemTagsProvider {
 
         this.tag(CSTags.Items.BLOOD_FILTERS)
                 .add(CSItems.CRUDE_BLOOD_FILTER.get());
+
+        this.tag(CSTags.Items.RAW_MEATS)
+                .add(Items.BEEF,
+                        Items.PORKCHOP,
+                        Items.MUTTON,
+                        Items.CHICKEN,
+                        Items.RABBIT,
+                        Items.COD,
+                        Items.TROPICAL_FISH,
+                        Items.SALMON,
+                        net.corespring.cslibrary.Registry.CSItems.FLESH.get());
 
     }
 }

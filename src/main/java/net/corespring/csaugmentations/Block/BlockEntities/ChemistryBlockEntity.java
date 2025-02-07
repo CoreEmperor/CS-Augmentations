@@ -2,7 +2,7 @@ package net.corespring.csaugmentations.Block.BlockEntities;
 
 import net.corespring.csaugmentations.Client.Menus.ChemistryMenu;
 import net.corespring.csaugmentations.Registry.CSRecipeTypes;
-import net.corespring.csaugmentations.Registry.Recipes.ChemistryRecipe;
+import net.corespring.csaugmentations.Recipes.ChemistryRecipe;
 import net.corespring.csaugmentations.Registry.CSBlockEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;

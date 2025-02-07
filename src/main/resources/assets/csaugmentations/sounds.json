@@ -4,5 +4,11 @@
     "sounds": [
       "csaugmentations:immunosuppressant_use"
     ]
+  },
+  "fabricating": {
+    "subtitles": "sounds.csaugmentations.fabricating",
+    "sounds": [
+      "csaugmentations:fabricating"
+    ]
   }
 }

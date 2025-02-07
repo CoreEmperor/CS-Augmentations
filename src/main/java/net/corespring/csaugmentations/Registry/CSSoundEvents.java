@@ -13,6 +13,7 @@ public class CSSoundEvents {
             DeferredRegister.create(ForgeRegistries.SOUND_EVENTS, CSAugmentations.MOD_ID);
 
     public static final RegistryObject<SoundEvent> IMMUNOSUPPRESSANT_USE = registerSoundEvents("immunosuppressant_use");
+    public static final RegistryObject<SoundEvent> FABRICATING = registerSoundEvents("fabricating");
 
     private static RegistryObject<SoundEvent> registerSoundEvents(String name) {
         return SOUND_EVENTS.register(name, () -> SoundEvent.createVariableRangeEvent(new ResourceLocation(CSAugmentations.MOD_ID, name)));

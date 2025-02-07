@@ -10,7 +10,7 @@ import mezz.jei.api.recipe.RecipeIngredientRole;
 import mezz.jei.api.recipe.RecipeType;
 import mezz.jei.api.recipe.category.IRecipeCategory;
 import net.corespring.csaugmentations.CSAugmentations;
-import net.corespring.csaugmentations.Registry.Recipes.RefineryRecipe;
+import net.corespring.csaugmentations.Recipes.RefineryRecipe;
 import net.corespring.csaugmentations.Registry.CSBlocks;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;

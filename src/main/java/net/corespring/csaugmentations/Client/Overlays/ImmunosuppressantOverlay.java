@@ -1,20 +1,20 @@
 package net.corespring.csaugmentations.Client.Overlays;
 
+import com.mojang.blaze3d.systems.RenderSystem;
 import net.corespring.csaugmentations.CSAugmentations;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;
-import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraftforge.client.gui.overlay.ForgeGui;
 import net.minecraftforge.client.gui.overlay.IGuiOverlay;
 
 public class ImmunosuppressantOverlay implements IGuiOverlay {
-    protected int screenWidth;
-    protected int screenHeight;
     private static final ResourceLocation IMMUNOSUPPRESSANT = new ResourceLocation(CSAugmentations.MOD_ID, "textures/gui/immunosuppressant_overlay.png");
     private static final int FADE_DURATION = 20;
     public static int remainingDisplayTicks = 0;
+    protected int screenWidth;
+    protected int screenHeight;
 
     @Override
     public void render(ForgeGui forgeGui, GuiGraphics pGuiGraphics, float partialTicks, int screenWidth, int screenHeight) {

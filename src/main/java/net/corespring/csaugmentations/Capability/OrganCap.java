@@ -1,16 +1,18 @@
 package net.corespring.csaugmentations.Capability;
 
 import com.mojang.logging.LogUtils;
-import net.corespring.csaugmentations.Augmentations.Base.Organs.*;
+import net.corespring.csaugmentations.Augmentations.Base.Organs.SimpleLungs;
+import net.corespring.csaugmentations.Augmentations.Base.SimpleOrgan;
 import net.corespring.csaugmentations.CSAugmentations;
 import net.corespring.csaugmentations.CSCommonConfigs;
 import net.corespring.csaugmentations.Network.CSNetwork;
 import net.corespring.csaugmentations.Network.Packets.S2CSyncDataPacket;
 import net.corespring.csaugmentations.Registry.CSEffects;
 import net.corespring.csaugmentations.Registry.CSItems;
-import net.corespring.csaugmentations.Registry.Utility.CSAugUtil;
-import net.corespring.csaugmentations.Registry.Utility.CSOrganClasses;
-import net.corespring.csaugmentations.Registry.Utility.CSOrganTiers;
+import net.corespring.csaugmentations.Utility.CSAugUtil;
+import net.corespring.csaugmentations.Utility.CSOrganClasses;
+import net.corespring.csaugmentations.Utility.CSOrganTiers;
+import net.corespring.csaugmentations.Utility.IOrganTiers;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -28,12 +30,23 @@ import net.minecraftforge.network.PacketDistributor;
 import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Random;
+import java.util.UUID;
 
 public class OrganCap {
-    private static final Logger LOGGER = LogUtils.getLogger();
     public static final Capability<OrganData> ORGAN_DATA = CapabilityManager.get(new CapabilityToken<>() {
     });
+    private static final Logger LOGGER = LogUtils.getLogger();
+
+    public static OrganData getOrganData(Player player) {
+        return player.getCapability(ORGAN_DATA).orElseGet(() -> {
+            OrganData newData = new OrganData(16);
+            newData.setPlayer(player);
+            return newData;
+        });
+    }
 
     public static class OrganData extends ItemStackHandler {
         private static final Map<Player, Boolean> wasUnderwaterMap = new HashMap<>();
@@ -42,12 +55,18 @@ public class OrganCap {
         private static final UUID CyberSpeed = UUID.fromString("046d8411-8f88-485e-a5a4-a9ce38da9cf3");
         private static final UUID CyberArmor = UUID.fromString("925baaf5-1e0d-4090-93c0-c9213d4d7a0f");
         private final CSOrganClasses organClasses = new CSOrganClasses();
-        private Player player;
         public boolean initialized = false;
+        private Player player;
         private int humanityLimit;
         private Cyberpsychosis cyberpsychosis;
         private int currentCyberwareValue = 0;
         private int previousCyberwareValue;
+
+        public OrganData(int size) {
+            super(size);
+            this.humanityLimit = new Random().nextInt(91) + 10;
+            this.cyberpsychosis = new Cyberpsychosis();
+        }
 
         public void pDefaultOrgans() {
             setStackInSlot(0, new ItemStack(CSItems.NATURAL_BRAIN.get()));
@@ -67,12 +86,6 @@ public class OrganCap {
             setStackInSlot(14, ItemStack.EMPTY);
             setStackInSlot(15, ItemStack.EMPTY);
             updateOrganData();
-        }
-
-        public OrganData(int size) {
-            super(size);
-            this.humanityLimit = new Random().nextInt(91) + 10;
-            this.cyberpsychosis = new Cyberpsychosis();
         }
 
         public void setPlayer(Player player) {
@@ -133,7 +146,7 @@ public class OrganCap {
 
         }
 
-        public CSOrganTiers getOrganTier(ItemStack stack) {
+        public IOrganTiers getOrganTier(ItemStack stack) {
             if (stack.getItem() instanceof SimpleOrgan organ) {
                 return organ.getTier();
             }
@@ -225,7 +238,7 @@ public class OrganCap {
         }
 
         public Cyberpsychosis getCyberpsychosis() {
-            if(cyberpsychosis == null) {
+            if (cyberpsychosis == null) {
                 if (CSCommonConfigs.CYBERPSYCHOSIS_TOGGLE.get()) {
                     cyberpsychosis = new Cyberpsychosis();
                 }
@@ -233,12 +246,12 @@ public class OrganCap {
             return cyberpsychosis;
         }
 
-        public void setHumanityLimit(int humanityLimit) {
-            this.humanityLimit = humanityLimit;
-        }
-
         public int getHumanityLimit() {
             return humanityLimit;
+        }
+
+        public void setHumanityLimit(int humanityLimit) {
+            this.humanityLimit = humanityLimit;
         }
 
         public boolean shouldRefuseTrade() {
@@ -254,17 +267,17 @@ public class OrganCap {
 
             handleLungs(isUnderWater, wasUnderWater);
             wasUnderwaterMap.put(player, isUnderWater);
-            applyEffects(true);
+            applyEffects(CSAugUtil.armsEnabled, CSAugUtil.legsEnabled);
             applyOrganRejection();
 
             if (!disableLimbCriteria()) {
-                applyEffects(CSAugUtil.legsEnabled && CSAugUtil.armsEnabled);
+                applyEffects(CSAugUtil.armsEnabled, CSAugUtil.legsEnabled);
             } else {
                 disabledLimbs();
             }
 
             // Placeholder
-            if(getStackInSlot(CSAugUtil.OrganSlots.HEART).isEmpty()) {
+            if (getStackInSlot(CSAugUtil.OrganSlots.HEART).isEmpty()) {
                 player.getAttribute(Attributes.MAX_HEALTH).setBaseValue(0);
             }
         }
@@ -295,12 +308,12 @@ public class OrganCap {
             }
         }
 
-        public void applyEffects(boolean enable) {
+        public void applyEffects(boolean armsEnabled, boolean legsEnabled) {
             if (player != null) {
                 resetAttributes();
 
-                double legBonuses = calculateLegBuffs(enable);
-                double[] armBonuses = calculateArmBuffs(enable);
+                double legBonuses = calculateLegBuffs(legsEnabled);
+                double[] armBonuses = calculateArmBuffs(armsEnabled);
                 double totalArmor = calculateArmorBuffs();
 
                 applyLegBuffs(legBonuses);
@@ -311,6 +324,7 @@ public class OrganCap {
 
         private void resetAttributes() {
             player.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(0);
+            player.getAttribute(Attributes.ATTACK_DAMAGE).setBaseValue(0);
             player.getAttribute(Attributes.ATTACK_SPEED).setBaseValue(0);
             player.getAttribute(Attributes.MOVEMENT_SPEED).removeModifier(CyberSpeed);
             player.getAttribute(Attributes.ATTACK_DAMAGE).removeModifier(CyberAttackDamage);
@@ -340,11 +354,13 @@ public class OrganCap {
             double pSat = 0.0;
 
             if (stack.getItem() instanceof SimpleOrgan organ) {
-                pHunger += organ.getIntAttribute(CSOrganTiers.Attribute.STOMACH_HUNGER);
-                pSat += organ.getDoubleAttribute(CSOrganTiers.Attribute.STOMACH_SAT);
+                IOrganTiers pTier = organ.getTier();
+                pHunger += pTier.getIntAttribute(CSOrganTiers.Attribute.STOMACH_HUNGER);
+                pSat += pTier.getDoubleAttribute(CSOrganTiers.Attribute.STOMACH_SAT);
             } else if (stack.isEmpty()) {
-                pHunger += CSOrganTiers.REMOVED.getIntAttributes(CSOrganTiers.Attribute.STOMACH_HUNGER);
-                pSat += CSOrganTiers.REMOVED.getDoubleAttributes(CSOrganTiers.Attribute.STOMACH_SAT);
+                IOrganTiers pRemovedTier = CSOrganTiers.REMOVED;
+                pHunger += pRemovedTier.getIntAttribute(CSOrganTiers.Attribute.STOMACH_HUNGER);
+                pSat += pRemovedTier.getDoubleAttribute(CSOrganTiers.Attribute.STOMACH_SAT);
             }
 
             modifyPlayerFoodStats(pHunger, pSat);
@@ -360,43 +376,35 @@ public class OrganCap {
         private boolean hasCyberBrain() {
             ItemStack brainStack = getStackInSlot(CSAugUtil.OrganSlots.BRAIN);
             if (!brainStack.isEmpty() && brainStack.getItem() instanceof SimpleOrgan organ) {
-                return organ.getTier().isAboveOrEqual(CSOrganTiers.CYBERNETIC);
+                IOrganTiers tier = organ.getTier();
+                return tier.isAboveOrEqual(CSOrganTiers.CYBERNETIC);
             }
             return false;
         }
 
-        private boolean isTierAboveProsthetic() {
-            int[] Slots = new int[]{
-                    CSAugUtil.OrganSlots.RIGHT_ARM,
-                    CSAugUtil.OrganSlots.LEFT_ARM,
-                    CSAugUtil.OrganSlots.RIGHT_LEG,
-                    CSAugUtil.OrganSlots.LEFT_LEG
-            };
-
-            for (int slot : Slots) {
-                ItemStack stack = getStackInSlot(slot);
-                CSOrganTiers tier = getOrganTier(stack);
-
-                if (tier.isAboveOrEqual(CSOrganTiers.CYBERNETIC)) {
-                    return true;
-                }
+        public boolean isTierAboveProsthetic(int slot) {
+            ItemStack stack = getStackInSlot(slot);
+            if (!stack.isEmpty() && stack.getItem() instanceof SimpleOrgan organ) {
+                IOrganTiers tier = organ.getTier();
+                return tier.isAboveOrEqual(CSOrganTiers.CYBERNETIC);
             }
             return false;
         }
 
-        private double calculateLegBuffs(boolean enable) {
+        private double calculateLegBuffs(boolean legsEnabled) {
             double totalSpeedBonus = 0.0;
             int[] legSlots = new int[]{CSAugUtil.OrganSlots.RIGHT_LEG, CSAugUtil.OrganSlots.LEFT_LEG};
 
             for (int slot : legSlots) {
                 ItemStack stack = getStackInSlot(slot);
                 if (!stack.isEmpty() && stack.getItem() instanceof SimpleOrgan organ && organ.hasAttribute(CSOrganTiers.Attribute.SPEED)) {
-                    if (isTierAboveProsthetic() && hasCyberBrain()) {
-                        totalSpeedBonus += enable
-                                ? organ.getDoubleAttribute(CSOrganTiers.Attribute.SPEED)
-                                : CSOrganTiers.NATURAL.getDoubleAttributes(CSOrganTiers.Attribute.SPEED);
+                    IOrganTiers tier = organ.getTier();
+                    if (isTierAboveProsthetic(slot) && hasCyberBrain()) {
+                        totalSpeedBonus += legsEnabled
+                                ? tier.getDoubleAttribute(CSOrganTiers.Attribute.SPEED)
+                                : CSOrganTiers.NATURAL.getDoubleAttribute(CSOrganTiers.Attribute.SPEED);
                     } else {
-                        totalSpeedBonus += organ.getDoubleAttribute(CSOrganTiers.Attribute.SPEED);
+                        totalSpeedBonus += tier.getDoubleAttribute(CSOrganTiers.Attribute.SPEED);
                     }
                 }
             }
@@ -404,7 +412,7 @@ public class OrganCap {
             return totalSpeedBonus;
         }
 
-        private double[] calculateArmBuffs(boolean enable) {
+        private double[] calculateArmBuffs(boolean armsEnabled) {
             double totalAttackBonus = 0.0;
             double totalAttackSpeedBonus = 0.0;
             int[] armSlots = new int[]{CSAugUtil.OrganSlots.RIGHT_ARM, CSAugUtil.OrganSlots.LEFT_ARM};
@@ -412,23 +420,24 @@ public class OrganCap {
             for (int slot : armSlots) {
                 ItemStack stack = getStackInSlot(slot);
                 if (!stack.isEmpty() && stack.getItem() instanceof SimpleOrgan organ) {
-                    if (isTierAboveProsthetic() && hasCyberBrain()) {
+                    IOrganTiers tier = organ.getTier();
+                    if (isTierAboveProsthetic(slot) && hasCyberBrain()) {
                         if (organ.hasAttribute(CSOrganTiers.Attribute.ATTACK_DAMAGE)) {
-                            totalAttackBonus += enable
-                                    ? organ.getDoubleAttribute(CSOrganTiers.Attribute.ATTACK_DAMAGE)
-                                    : CSOrganTiers.NATURAL.getDoubleAttributes(CSOrganTiers.Attribute.ATTACK_DAMAGE);
+                            totalAttackBonus += armsEnabled
+                                    ? tier.getDoubleAttribute(CSOrganTiers.Attribute.ATTACK_DAMAGE)
+                                    : CSOrganTiers.NATURAL.getDoubleAttribute(CSOrganTiers.Attribute.ATTACK_DAMAGE);
                         }
                         if (organ.hasAttribute(CSOrganTiers.Attribute.ATTACK_SPEED)) {
-                            totalAttackSpeedBonus += enable
-                                    ? organ.getDoubleAttribute(CSOrganTiers.Attribute.ATTACK_SPEED)
-                                    : CSOrganTiers.NATURAL.getDoubleAttributes(CSOrganTiers.Attribute.ATTACK_SPEED);
+                            totalAttackSpeedBonus += armsEnabled
+                                    ? tier.getDoubleAttribute(CSOrganTiers.Attribute.ATTACK_SPEED)
+                                    : CSOrganTiers.NATURAL.getDoubleAttribute(CSOrganTiers.Attribute.ATTACK_SPEED);
                         }
                     } else {
                         if (organ.hasAttribute(CSOrganTiers.Attribute.ATTACK_DAMAGE)) {
-                            totalAttackBonus += organ.getDoubleAttribute(CSOrganTiers.Attribute.ATTACK_DAMAGE);
+                            totalAttackBonus += tier.getDoubleAttribute(CSOrganTiers.Attribute.ATTACK_DAMAGE);
                         }
                         if (organ.hasAttribute(CSOrganTiers.Attribute.ATTACK_SPEED)) {
-                            totalAttackSpeedBonus += organ.getDoubleAttribute(CSOrganTiers.Attribute.ATTACK_SPEED);
+                            totalAttackSpeedBonus += tier.getDoubleAttribute(CSOrganTiers.Attribute.ATTACK_SPEED);
                         }
                     }
                 }
@@ -437,7 +446,6 @@ public class OrganCap {
             return new double[]{totalAttackBonus, totalAttackSpeedBonus};
         }
 
-        //outdated
         private void handleLungs(boolean isUnderWater, boolean wasUnderWater) {
             ItemStack lungs = getStackInSlot(CSAugUtil.OrganSlots.LUNGS);
             if (lungs.getItem() instanceof SimpleLungs) {
@@ -456,11 +464,12 @@ public class OrganCap {
             for (int slot : armorSlots) {
                 ItemStack stack = getStackInSlot(slot);
                 if (!stack.isEmpty() && stack.getItem() instanceof SimpleOrgan organ) {
+                    IOrganTiers tier = organ.getTier();
                     double attributeValue = 0.0;
                     if (slot == CSAugUtil.OrganSlots.RIBS && organ.hasAttribute(CSOrganTiers.Attribute.RIBS_ARMOR)) {
-                        attributeValue = organ.getDoubleAttribute(CSOrganTiers.Attribute.RIBS_ARMOR);
+                        attributeValue = tier.getDoubleAttribute(CSOrganTiers.Attribute.RIBS_ARMOR);
                     } else if (organ.hasAttribute(CSOrganTiers.Attribute.GENERAL_ARMOR)) {
-                        attributeValue = organ.getDoubleAttribute(CSOrganTiers.Attribute.GENERAL_ARMOR);
+                        attributeValue = tier.getDoubleAttribute(CSOrganTiers.Attribute.GENERAL_ARMOR);
                     }
                     totalArmor += attributeValue;
                 }
@@ -469,7 +478,7 @@ public class OrganCap {
             return totalArmor;
         }
 
-        private int calculateTotalCyberwareValue() {
+        public int calculateTotalCyberwareValue() {
             int totalValue = 0;
             for (int i = 0; i < getSlots(); i++) {
                 ItemStack stack = getStackInSlot(i);
@@ -489,13 +498,5 @@ public class OrganCap {
             foodStats.setSaturation(newSaturation);
         }
     }
-
-        public static OrganData getOrganData(Player player) {
-            return player.getCapability(ORGAN_DATA).orElseGet(() -> {
-                OrganData newData = new OrganData(16);
-                newData.setPlayer(player);
-                return newData;
-            });
-        }
-    }
+}
 

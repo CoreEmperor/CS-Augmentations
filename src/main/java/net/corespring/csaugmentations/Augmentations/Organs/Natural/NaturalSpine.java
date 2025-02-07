@@ -1,11 +1,11 @@
 package net.corespring.csaugmentations.Augmentations.Organs.Natural;
 
 import net.corespring.csaugmentations.Augmentations.Base.Organs.SimpleSpine;
-import net.corespring.csaugmentations.Registry.Utility.CSOrganTiers;
+import net.corespring.csaugmentations.Utility.IOrganTiers;
 import net.minecraft.world.entity.player.Player;
 
 public class NaturalSpine extends SimpleSpine {
-    public NaturalSpine(CSOrganTiers pTier, Properties pProperties) {
+    public NaturalSpine(IOrganTiers pTier, Properties pProperties) {
         super(pTier, pProperties);
     }
 
@@ -16,9 +16,6 @@ public class NaturalSpine extends SimpleSpine {
 
     @Override
     public void applyEffects(Player pPlayer) {
-
     }
-
-
 }
 

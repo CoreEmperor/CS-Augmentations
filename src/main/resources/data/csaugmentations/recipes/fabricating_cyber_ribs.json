@@ -1,0 +1,41 @@
+{
+  "type": "csaugmentations:fabricating",
+  "group": "fabricating",
+  "ingredients": [
+    {
+      "ingredient": {
+        "tag": "forge:plates/steel"
+      },
+      "count": 4
+    },
+    {
+      "ingredient": {
+        "tag": "forge:rods/steel"
+      },
+      "count": 24
+    },
+    {
+      "ingredient": {
+        "item": "csaugmentations:power_control_module"
+      },
+      "count": 1
+    },
+    {
+      "ingredient": {
+        "item": "csaugmentations:refined_plastic"
+      },
+      "count": 8
+    },
+    {
+      "ingredient": {
+        "item": "csaugmentations:hydraulic"
+      },
+      "count": 24
+    }
+  ],
+  "result": {
+    "item": "csaugmentations:cyber_ribs",
+    "count": 1
+  },
+  "craftingTime": 12000
+}

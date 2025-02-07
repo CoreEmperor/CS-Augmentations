@@ -1,0 +1,35 @@
+{
+  "type": "csaugmentations:fabricating",
+  "group": "fabricating",
+  "ingredients": [
+    {
+      "ingredient": {
+        "tag": "forge:wires/gold"
+      },
+      "count": 4
+    },
+    {
+      "ingredient": {
+        "item": "csaugmentations:artificial_nerves"
+      },
+      "count": 4
+    },
+    {
+      "ingredient": {
+        "tag": "forge:nuggets/silver"
+      },
+      "count": 4
+    },
+    {
+      "ingredient": {
+        "item": "cslibrary:refined_circuit_board"
+      },
+      "count": 2
+    }
+  ],
+  "result": {
+    "item": "csaugmentations:neural_interface",
+    "count": 1
+  },
+  "craftingTime": 1600
+}

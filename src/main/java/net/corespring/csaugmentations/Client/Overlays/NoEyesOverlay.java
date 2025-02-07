@@ -3,7 +3,7 @@ package net.corespring.csaugmentations.Client.Overlays;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.corespring.csaugmentations.CSAugmentations;
 import net.corespring.csaugmentations.Capability.OrganCap;
-import net.corespring.csaugmentations.Registry.Utility.CSAugUtil;
+import net.corespring.csaugmentations.Utility.CSAugUtil;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.resources.ResourceLocation;
@@ -12,9 +12,9 @@ import net.minecraftforge.client.gui.overlay.ForgeGui;
 import net.minecraftforge.client.gui.overlay.IGuiOverlay;
 
 public class NoEyesOverlay implements IGuiOverlay {
+    private static final ResourceLocation NO_EYES = new ResourceLocation(CSAugmentations.MOD_ID, "textures/gui/no_eyes.png");
     protected int screenWidth;
     protected int screenHeight;
-    private static final ResourceLocation NO_EYES = new ResourceLocation(CSAugmentations.MOD_ID, "textures/gui/no_eyes.png");
 
     @Override
     public void render(ForgeGui forgeGui, GuiGraphics pGuiGraphics, float partialTicks, int screenWidth, int screenHeight) {
@@ -31,7 +31,7 @@ public class NoEyesOverlay implements IGuiOverlay {
         player.getCapability(OrganCap.ORGAN_DATA).ifPresent(organData -> {
             if (!OrganCap.getOrganData(player).isPresent(CSAugUtil.OrganSlots.BRAIN) || !OrganCap.getOrganData(player).isPresent(CSAugUtil.OrganSlots.EYES) && !player.isSpectator()) {
                 this.renderTextureOverlay(pGuiGraphics, NO_EYES, 1F);
-        }
+            }
         });
     }
 

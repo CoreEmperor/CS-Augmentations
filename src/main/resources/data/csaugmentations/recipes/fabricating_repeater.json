@@ -1,0 +1,29 @@
+{
+  "type": "csaugmentations:fabricating",
+  "group": "fabricating",
+  "ingredients": [
+    {
+      "ingredient": {
+        "item": "minecraft:stone"
+      },
+      "count": 3
+    },
+    {
+      "ingredient": {
+        "tag": "forge:dusts/redstone"
+      },
+      "count": 3
+    },
+    {
+      "ingredient": {
+        "tag": "forge:rods/wooden"
+      },
+      "count": 2
+    }
+  ],
+  "result": {
+    "item": "minecraft:repeater",
+    "count": 1
+  },
+  "craftingTime": 400
+}

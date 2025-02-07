@@ -1,0 +1,41 @@
+{
+  "type": "csaugmentations:fabricating",
+  "group": "fabricating",
+  "ingredients": [
+    {
+      "ingredient": {
+        "tag": "forge:ingots/brass"
+      },
+      "count": 2
+    },
+    {
+      "ingredient": {
+        "tag": "forge:ingots/lead"
+      },
+      "count": 5
+    },
+    {
+      "ingredient": {
+        "tag": "forge:nuggets/iron"
+      },
+      "count": 1
+    },
+    {
+      "ingredient": {
+        "tag": "forge:ingots/lithium"
+      },
+      "count": 4
+    },
+    {
+      "ingredient": {
+        "item": "cslibrary:beaker_battery_acid"
+      },
+      "count": 1
+    }
+  ],
+  "result": {
+    "item": "cslibrary:refined_battery",
+    "count": 1
+  },
+  "craftingTime": 600
+}

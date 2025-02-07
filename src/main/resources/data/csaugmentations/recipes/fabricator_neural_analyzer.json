@@ -1,0 +1,47 @@
+{
+  "type": "csaugmentations:fabricating",
+  "group": "fabricating",
+  "ingredients": [
+    {
+      "ingredient": {
+        "tag": "forge:wires/gold"
+      },
+      "count": 4
+    },
+    {
+      "ingredient": {
+        "item": "csaugmentations:refined_logic_component"
+      },
+      "count": 2
+    },
+    {
+      "ingredient": {
+        "tag": "forge:nuggets/tin"
+      },
+      "count": 24
+    },
+    {
+      "ingredient": {
+        "item": "cslibrary:refined_battery"
+      },
+      "count": 2
+    },
+    {
+      "ingredient": {
+        "item": "minecraft:redstone_torch"
+      },
+      "count": 1
+    },
+    {
+      "ingredient": {
+        "item": "cslibrary:monitor"
+      },
+      "count": 1
+    }
+  ],
+  "result": {
+    "item": "csaugmentations:neural_analyzer",
+    "count": 1
+  },
+  "craftingTime": 800
+}

@@ -38,7 +38,7 @@ public class Scalpel extends SurgicalToolItem {
     @Override
     public boolean hurtEnemy(ItemStack pStack, LivingEntity pTarget, LivingEntity pAttacker) {
         if (!pAttacker.level().isClientSide && pTarget instanceof Player && pTarget.hasEffect(CSEffects.SILK.get())) {
-                    pAttacker.getItemInHand(getHand()).hurtAndBreak(1, pAttacker, livingEntity -> {
+            pAttacker.getItemInHand(getHand()).hurtAndBreak(1, pAttacker, livingEntity -> {
             });
             pTarget.addEffect(new MobEffectInstance(CSEffects.INCISION.get(), 6000, 0, false, false, true));
         }

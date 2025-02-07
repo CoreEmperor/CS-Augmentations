@@ -3,17 +3,18 @@ package net.corespring.csaugmentations.Events;
 import com.google.common.util.concurrent.AtomicDouble;
 import net.corespring.csaugmentations.Augmentations.Base.IMixinMobEffectInstance;
 import net.corespring.csaugmentations.Augmentations.Base.IOrganTickable;
-import net.corespring.csaugmentations.Augmentations.Base.Organs.SimpleOrgan;
+import net.corespring.csaugmentations.Augmentations.Base.SimpleOrgan;
 import net.corespring.csaugmentations.CSAugmentations;
 import net.corespring.csaugmentations.CSCommonConfigs;
 import net.corespring.csaugmentations.Capability.Cyberpsychosis;
 import net.corespring.csaugmentations.Capability.OrganCap;
 import net.corespring.csaugmentations.Capability.OrganCapProvider;
-import net.corespring.csaugmentations.Registry.Utility.CSOrganTiers;
+import net.corespring.csaugmentations.Utility.CSOrganTiers;
 import net.corespring.csaugmentations.Network.CSNetwork;
 import net.corespring.csaugmentations.Network.Packets.S2CSyncDataPacket;
 import net.corespring.csaugmentations.Registry.CSEffects;
-import net.corespring.csaugmentations.Registry.Utility.CSAugUtil;
+import net.corespring.csaugmentations.Utility.CSAugUtil;
+import net.corespring.csaugmentations.Utility.IOrganTiers;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.damagesource.DamageTypes;
@@ -88,8 +89,8 @@ public class ForgeEvents {
                         for (int slot : legSlots) {
                             ItemStack stack = cap.getStackInSlot(slot);
                             if (!stack.isEmpty()) {
-                                CSOrganTiers tier = cap.getOrganTier(stack);
-                                fallDamageReductionFactor += tier.getFallDamageReduction();
+                                    IOrganTiers tier = cap.getOrganTier(stack);
+                                    fallDamageReductionFactor += tier.getFallDamageReduction();
                             }
                         }
 
@@ -132,6 +133,11 @@ public class ForgeEvents {
         @SubscribeEvent
         public static void onPlayerRespawn(PlayerEvent.PlayerRespawnEvent event) {
             ServerPlayer player = (ServerPlayer) event.getEntity();
+
+            if(!CSCommonConfigs.CYBERNETICS_DROP_ON_DEATH.get()) {
+                player.addEffect(new MobEffectInstance(CSEffects.Immunosuppressant.get(), 6000, 0, false, false, true));
+            }
+
             player.getCapability(OrganCap.ORGAN_DATA).ifPresent(cap -> {
                 if (CSCommonConfigs.CYBERNETICS_DROP_ON_DEATH.get()) {
                     cap.pDefaultOrgans();
@@ -180,6 +186,18 @@ public class ForgeEvents {
 
         @Mod.EventBusSubscriber(modid = CSAugmentations.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
         public static class EffectHandler {
+
+            @SubscribeEvent
+            public static void onDimensionChange(PlayerEvent.PlayerChangedDimensionEvent event) {
+                ServerPlayer player = (ServerPlayer) event.getEntity();
+                player.getCapability(OrganCap.ORGAN_DATA).ifPresent(cap -> {
+                    cap.updateOrganData();
+                    CSNetwork.NETWORK_CHANNEL.send(
+                            PacketDistributor.PLAYER.with(() -> player),
+                            new S2CSyncDataPacket(cap, player.getId())
+                    );
+                });
+            }
 
             @SubscribeEvent
             public static void onPlayerTick(TickEvent.PlayerTickEvent event) {

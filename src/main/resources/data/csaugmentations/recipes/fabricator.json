@@ -1,0 +1,35 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "514",
+    "262",
+    "373"
+  ],
+  "key": {
+    "1": {
+      "item": "cslibrary:monitor"
+    },
+    "2": {
+      "item": "cslibrary:refined_circuit_board"
+    },
+    "3": {
+      "item": "cslibrary:steel_casing"
+    },
+    "4": {
+      "tag": "forge:storage_blocks/tin"
+    },
+    "5": {
+      "item": "csaugmentations:blueprint"
+    },
+    "6": {
+      "item": "csaugmentations:power_control_module"
+    },
+    "7": {
+      "item": "csaugmentations:refined_plastic"
+    }
+  },
+  "result": {
+    "item": "csaugmentations:fabricator",
+    "count": 1
+  }
+}

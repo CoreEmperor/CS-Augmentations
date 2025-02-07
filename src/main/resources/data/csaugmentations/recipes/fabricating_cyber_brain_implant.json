@@ -1,0 +1,47 @@
+{
+  "type": "csaugmentations:fabricating",
+  "group": "fabricating",
+  "ingredients": [
+    {
+      "ingredient": {
+        "tag": "forge:wires/gold"
+      },
+      "count": 16
+    },
+    {
+      "ingredient": {
+        "tag": "forge:nuggets/platinum"
+      },
+      "count": 8
+    },
+    {
+      "ingredient": {
+        "item": "csaugmentations:refined_plastic"
+      },
+      "count": 4
+    },
+    {
+      "ingredient": {
+        "item": "csaugmentations:neural_interface"
+      },
+      "count": 1
+    },
+    {
+      "ingredient": {
+        "item": "csaugmentations:power_control_module"
+      },
+      "count": 4
+    },
+    {
+      "ingredient": {
+        "item": "csaugmentations:refined_logic_component"
+      },
+      "count": 2
+    }
+  ],
+  "result": {
+    "item": "csaugmentations:cyber_brain_implant",
+    "count": 1
+  },
+  "craftingTime": 24000
+}

@@ -1,0 +1,35 @@
+{
+  "type": "csaugmentations:fabricating",
+  "group": "fabricating",
+  "ingredients": [
+    {
+      "ingredient": {
+        "item": "minecraft:stone"
+      },
+      "count": 3
+    },
+    {
+      "ingredient": {
+        "tag": "forge:dusts/redstone"
+      },
+      "count": 3
+    },
+    {
+      "ingredient": {
+        "tag": "forge:rods/wooden"
+      },
+      "count": 3
+    },
+    {
+      "ingredient": {
+        "tag": "forge:gems/quartz"
+      },
+      "count": 1
+    }
+  ],
+  "result": {
+    "item": "minecraft:comparator",
+    "count": 1
+  },
+  "craftingTime": 400
+}

@@ -1,0 +1,53 @@
+{
+  "type": "csaugmentations:fabricating",
+  "group": "fabricating",
+  "ingredients": [
+    {
+      "ingredient": {
+        "tag": "forge:wires/gold"
+      },
+      "count": 4
+    },
+    {
+      "ingredient": {
+        "tag": "forge:nuggets/zinc"
+      },
+      "count": 4
+    },
+    {
+      "ingredient": {
+        "item": "minecraft:redstone"
+      },
+      "count": 3
+    },
+    {
+      "ingredient": {
+        "item": "minecraft:stick"
+      },
+      "count": 3
+    },
+    {
+      "ingredient": {
+        "item": "minecraft:quartz"
+      },
+      "count": 1
+    },
+    {
+      "ingredient": {
+        "item": "minecraft:stone"
+      },
+      "count": 3
+    },
+    {
+      "ingredient": {
+        "tag": "forge:plates/gold"
+      },
+      "count": 2
+    }
+  ],
+  "result": {
+    "item": "csaugmentations:transformer",
+    "count": 1
+  },
+  "craftingTime": 200
+}

@@ -1,6 +1,7 @@
 package net.corespring.csaugmentations.Network.Packets;
 
 import net.corespring.csaugmentations.Capability.OrganCap;
+import net.corespring.csaugmentations.Utility.CSAugUtil;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraftforge.network.NetworkEvent;
@@ -34,7 +35,7 @@ public class C2SToggleLegBuffsPacket {
 
     private void handleToggleLegBuffsPacket(boolean legsEnabled, ServerPlayer player) {
         player.getCapability(OrganCap.ORGAN_DATA).ifPresent(data -> {
-            data.applyEffects(legsEnabled);
+            data.applyEffects(legsEnabled, CSAugUtil.armsEnabled);
         });
     }
 }

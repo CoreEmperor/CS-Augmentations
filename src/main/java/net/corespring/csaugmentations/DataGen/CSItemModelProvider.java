@@ -38,9 +38,13 @@ public class CSItemModelProvider extends ItemModelProvider {
         simpleItem((RegistryObject<Item>) CSItems.PROSTHETIC_LIVER);
         simpleItem((RegistryObject<Item>) CSItems.PROSTHETIC_STOMACH);
 
+        simpleItem((RegistryObject<Item>) CSItems.CYBER_BRAIN);
+        simpleItem((RegistryObject<Item>) CSItems.CYBER_BRAIN_IMPLANT);
+
         evenSimplerBlockItem(CSBlocks.CULTIVATOR);
         evenSimplerBlockItem(CSBlocks.REFINERY);
         evenSimplerBlockItem(CSBlocks.CHEMISTRY_TABLE);
+        evenSimplerBlockItem(CSBlocks.FABRICATOR);
 
         simpleItem((RegistryObject<Item>) CSItems.UNFINISHED_MORTAR);
         simpleItem((RegistryObject<Item>) CSItems.UNFINISHED_PESTLE);
@@ -49,6 +53,7 @@ public class CSItemModelProvider extends ItemModelProvider {
         simpleItem((RegistryObject<Item>) CSItems.CRUDE_PETRI_DISH);
         simpleItem((RegistryObject<Item>) CSItems.REFINED_PETRI_DISH);
 
+        simpleItem((RegistryObject<Item>) CSItems.NEURAL_ANALYZER);
         handheldItem((RegistryObject<Item>) CSItems.SCALPEL);
         simpleItem((RegistryObject<Item>) CSItems.HEMOSTAT);
         simpleItem((RegistryObject<Item>) CSItems.RETRACTORS);
@@ -57,14 +62,18 @@ public class CSItemModelProvider extends ItemModelProvider {
         simpleItem((RegistryObject<Item>) CSItems.LOADED_CRUDE_PETRI_DISH);
         simpleItem((RegistryObject<Item>) CSItems.LOADED_REFINED_PETRI_DISH);
 
+        simpleItem((RegistryObject<Item>) CSItems.BLUEPRINT);
+
         simpleItem((RegistryObject<Item>) CSItems.CRUSHED_ACID_MUSHROOM);
 
+        simpleItem((RegistryObject<Item>) CSItems.NEURAL_INTERFACE);
         simpleItem((RegistryObject<Item>) CSItems.HYDRAULIC);
         simpleItem((RegistryObject<Item>) CSItems.STEEL_WIRE);
         simpleItem((RegistryObject<Item>) CSItems.FUSE);
         simpleItem((RegistryObject<Item>) CSItems.TRANSFORMER);
         simpleItem((RegistryObject<Item>) CSItems.POWER_CONTROL_MODULE);
         simpleItem((RegistryObject<Item>) CSItems.CRUDE_LOGIC_COMPONENT);
+        simpleItem((RegistryObject<Item>) CSItems.REFINED_LOGIC_COMPONENT);
 
         simpleItem((RegistryObject<Item>) CSItems.DMEM);
         simpleItem((RegistryObject<Item>) CSItems.NUTRIOGLOOP);
@@ -81,6 +90,8 @@ public class CSItemModelProvider extends ItemModelProvider {
         simpleItem((RegistryObject<Item>) CSItems.BRASS_LIMB_BASE);
         simpleItem((RegistryObject<Item>) CSItems.CRUDE_AUGMENTED_MUSCLE);
         simpleItem((RegistryObject<Item>) CSItems.CRUDE_AUGMENTED_TISSUE);
+        simpleItem((RegistryObject<Item>) CSItems.REFINED_AUGMENTED_MUSCLE);
+        simpleItem((RegistryObject<Item>) CSItems.REFINED_AUGMENTED_TISSUE);
 
         simpleItem((RegistryObject<Item>) CSItems.FOSSIL);
 
@@ -95,7 +106,9 @@ public class CSItemModelProvider extends ItemModelProvider {
 
         simpleBlockItemBlockTexture((RegistryObject<Block>) CSBlocks.CYCLOFUNGI);
         simpleItem((RegistryObject<Item>) CSItems.BEAKER_CYCLOSPORINE);
+        simpleItem((RegistryObject<Item>) CSItems.BEAKER_SPORINE);
         simpleItem((RegistryObject<Item>) CSItems.IMMUNOSUPPRESSANT);
+        simpleItem((RegistryObject<Item>) CSItems.REFINED_IMMUNOSUPPRESSANT);
 
 
         simpleBlockItemBlockTexture((RegistryObject<Block>) CSBlocks.WILD_SOMNIFERUM);

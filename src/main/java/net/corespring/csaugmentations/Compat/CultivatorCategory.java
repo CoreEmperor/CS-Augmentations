@@ -9,7 +9,7 @@ import mezz.jei.api.recipe.RecipeIngredientRole;
 import mezz.jei.api.recipe.RecipeType;
 import mezz.jei.api.recipe.category.IRecipeCategory;
 import net.corespring.csaugmentations.CSAugmentations;
-import net.corespring.csaugmentations.Registry.Recipes.CultivatorRecipe;
+import net.corespring.csaugmentations.Recipes.CultivatorRecipe;
 import net.corespring.csaugmentations.Registry.CSBlocks;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;

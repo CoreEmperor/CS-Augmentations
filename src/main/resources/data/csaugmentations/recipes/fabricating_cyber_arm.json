@@ -1,0 +1,59 @@
+{
+  "type": "csaugmentations:fabricating",
+  "group": "fabricating",
+  "ingredients": [
+    {
+      "ingredient": {
+        "item": "csaugmentations:brass_limb_base"
+      },
+      "count": 1
+    },
+    {
+      "ingredient": {
+        "tag": "forge:wires/gold"
+      },
+      "count": 8
+    },
+    {
+      "ingredient": {
+        "tag": "forge:nuggets/silver"
+      },
+      "count": 8
+    },
+    {
+      "ingredient": {
+        "tag": "forge:plates/steel"
+      },
+      "count": 4
+    },
+    {
+      "ingredient": {
+        "item": "csaugmentations:neural_interface"
+      },
+      "count": 1
+    },
+    {
+      "ingredient": {
+        "item": "csaugmentations:power_control_module"
+      },
+      "count": 2
+    },
+    {
+      "ingredient": {
+        "item": "csaugmentations:refined_logic_component"
+      },
+      "count": 2
+    },
+    {
+      "ingredient": {
+        "item": "csaugmentations:refined_augmented_muscle"
+      },
+      "count": 4
+    }
+  ],
+  "result": {
+    "item": "csaugmentations:cyber_arm",
+    "count": 1
+  },
+  "craftingTime": 12000
+}

@@ -1,0 +1,29 @@
+{
+  "type": "csaugmentations:fabricating",
+  "group": "fabricating",
+  "ingredients": [
+    {
+      "ingredient": {
+        "item": "csaugmentations:crude_augmented_muscle"
+      },
+      "count": 1
+    },
+    {
+      "ingredient": {
+        "tag": "forge:nuggets/silver"
+      },
+      "count": 4
+    },
+    {
+      "ingredient": {
+        "tag": "forge:wires/gold"
+      },
+      "count": 2
+    }
+  ],
+  "result": {
+    "item": "csaugmentations:refined_augmented_muscle",
+    "count": 1
+  },
+  "craftingTime": 1600
+}

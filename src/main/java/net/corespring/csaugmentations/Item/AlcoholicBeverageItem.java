@@ -20,18 +20,18 @@ public abstract class AlcoholicBeverageItem extends DrinkableItem {
     @NotNull
     @Override
     public ItemStack finishUsingItem(ItemStack pStack, Level pLevel, LivingEntity pLivingEntity) {
-            applyIntoxicationEffect(pLivingEntity);
-            applyPositiveEffects(pLivingEntity);
+        applyIntoxicationEffect(pLivingEntity);
+        applyPositiveEffects(pLivingEntity);
 
-            if (pStack.isEmpty()) {
-                return new ItemStack(CSItems.ALCOHOL_BOTTLE.get());
-            } else {
-                if (pLivingEntity instanceof Player player && !player.getAbilities().instabuild) {
-                    handleEmptyBottle(player);
-                    pStack.shrink(1);
-                }
+        if (pStack.isEmpty()) {
+            return new ItemStack(CSItems.ALCOHOL_BOTTLE.get());
+        } else {
+            if (pLivingEntity instanceof Player player && !player.getAbilities().instabuild) {
+                handleEmptyBottle(player);
+                pStack.shrink(1);
             }
-            return pStack;
+        }
+        return pStack;
     }
 
     protected void applyIntoxicationEffect(LivingEntity entity) {

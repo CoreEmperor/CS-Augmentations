@@ -8,11 +8,13 @@ import mezz.jei.api.registration.IRecipeRegistration;
 import net.corespring.csaugmentations.CSAugmentations;
 import net.corespring.csaugmentations.Client.Screens.ChemistryScreen;
 import net.corespring.csaugmentations.Client.Screens.CultivatorScreen;
+import net.corespring.csaugmentations.Client.Screens.FabricatorScreen;
 import net.corespring.csaugmentations.Client.Screens.RefineryScreen;
+import net.corespring.csaugmentations.Recipes.ChemistryRecipe;
+import net.corespring.csaugmentations.Recipes.CultivatorRecipe;
+import net.corespring.csaugmentations.Recipes.FabricatorRecipe;
+import net.corespring.csaugmentations.Recipes.RefineryRecipe;
 import net.corespring.csaugmentations.Registry.CSRecipeTypes;
-import net.corespring.csaugmentations.Registry.Recipes.ChemistryRecipe;
-import net.corespring.csaugmentations.Registry.Recipes.CultivatorRecipe;
-import net.corespring.csaugmentations.Registry.Recipes.RefineryRecipe;
 import net.minecraft.client.Minecraft;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.crafting.RecipeManager;
@@ -31,6 +33,7 @@ public class JEICSAugmentationsPlugin implements IModPlugin {
         registration.addRecipeCategories(new CultivatorCategory(registration.getJeiHelpers().getGuiHelper()));
         registration.addRecipeCategories(new RefineryCategory(registration.getJeiHelpers().getGuiHelper()));
         registration.addRecipeCategories(new ChemistryCategory(registration.getJeiHelpers().getGuiHelper()));
+        registration.addRecipeCategories(new FabricatorCategory(registration.getJeiHelpers().getGuiHelper()));
     }
 
     @Override
@@ -43,6 +46,8 @@ public class JEICSAugmentationsPlugin implements IModPlugin {
         registration.addRecipes(RefineryCategory.REFINING, refiningrecipes);
         List<ChemistryRecipe> chemistryrecipes = recipeManager.getAllRecipesFor(CSRecipeTypes.CHEMISTRY.get());
         registration.addRecipes(ChemistryCategory.CHEMISTRY, chemistryrecipes);
+        List<FabricatorRecipe> fabricatorrecipes = recipeManager.getAllRecipesFor(CSRecipeTypes.FABRICATING.get());
+        registration.addRecipes(FabricatorCategory.FABRICATING, fabricatorrecipes);
     }
 
     @Override
@@ -53,6 +58,8 @@ public class JEICSAugmentationsPlugin implements IModPlugin {
                 RefineryCategory.REFINING);
         registration.addRecipeClickArea(ChemistryScreen.class, 76, 24, 34, 18,
                 ChemistryCategory.CHEMISTRY);
+        registration.addRecipeClickArea(FabricatorScreen.class, 16, 61, 34, 18,
+                FabricatorCategory.FABRICATING);
     }
 
 }

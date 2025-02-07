@@ -37,10 +37,10 @@ public class Suture extends SurgicalToolItem {
 
     @Override
     public boolean hurtEnemy(ItemStack pStack, LivingEntity pTarget, LivingEntity pAttacker) {
+        pTarget.removeEffect(net.corespring.cslibrary.Registry.CSEffects.BLEEDING.get());
         if (!pAttacker.level().isClientSide && pTarget.hasEffect(CSEffects.INCISION.get())) {
             pTarget.removeEffect(CSEffects.INCISION.get());
             pTarget.removeEffect(CSEffects.HEMOSTAT.get());
-            pTarget.removeEffect(net.corespring.cslibrary.Registry.CSEffects.BLEEDING.get());
             pStack.shrink(1);
         }
         return super.hurtEnemy(pStack, pTarget, pAttacker);

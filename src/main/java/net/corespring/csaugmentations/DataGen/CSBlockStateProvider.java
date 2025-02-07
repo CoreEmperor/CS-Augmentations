@@ -26,9 +26,11 @@ public class CSBlockStateProvider extends BlockStateProvider {
     @Override
     protected void registerStatesAndModels() {
         blockWithItem(CSBlocks.INVISIBLE_CHEM);
+        blockWithItem(CSBlocks.INVISIBLE_FAB);
         CustomHorizontalBlock(CSBlocks.CULTIVATOR.get(), "cultivator");
         CustomHorizontalLightBlock(CSBlocks.REFINERY.get(), "refinery");
         CustomHorizontalBlock(CSBlocks.CHEMISTRY_TABLE.get(), "chemistry_table");
+        CustomHorizontalBlock(CSBlocks.FABRICATOR.get(), "fabricator");
 
         blockWithItem(CSBlocks.FOSSIL_ORE);
         blockWithItem(CSBlocks.DEEPSLATE_FOSSIL_ORE);

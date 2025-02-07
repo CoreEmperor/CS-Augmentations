@@ -1,11 +1,11 @@
 package net.corespring.csaugmentations.Augmentations.Organs.Prosthetic;
 
 import net.corespring.csaugmentations.Augmentations.Base.Organs.SimpleStomach;
-import net.corespring.csaugmentations.Registry.Utility.CSOrganTiers;
+import net.corespring.csaugmentations.Utility.IOrganTiers;
 import net.minecraft.world.entity.player.Player;
 
 public class ProstheticStomach extends SimpleStomach {
-    public ProstheticStomach(CSOrganTiers pTier, Properties pProperties) {
+    public ProstheticStomach(IOrganTiers pTier, Properties pProperties) {
         super(pTier, pProperties);
     }
 

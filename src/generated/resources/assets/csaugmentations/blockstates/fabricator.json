@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "csaugmentations:block/fabricator",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "csaugmentations:block/fabricator"
+    },
+    "facing=south": {
+      "model": "csaugmentations:block/fabricator",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "csaugmentations:block/fabricator",
+      "y": 270
+    }
+  }
+}

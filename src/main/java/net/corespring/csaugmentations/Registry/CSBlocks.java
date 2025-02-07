@@ -23,12 +23,16 @@ public class CSBlocks {
 
     public static final Supplier<Block> INVISIBLE_CHEM = registerBlock("invisible_chem",
             () -> new InvisibleChemBlock(BlockBehaviour.Properties.of().strength(3f).sound(SoundType.COPPER).noOcclusion().noLootTable()));
+    public static final Supplier<Block> INVISIBLE_FAB = registerBlock("invisible_fab",
+            () -> new InvisibleFabBlock(BlockBehaviour.Properties.of().strength(4f).sound(SoundType.COPPER).noOcclusion().noLootTable().lightLevel(state -> 8)));
     public static final Supplier<Block> CULTIVATOR = registerBlock("cultivator",
             () -> new CultivatorBlock(BlockBehaviour.Properties.copy(Blocks.ANVIL)));
     public static final Supplier<Block> REFINERY = registerBlock("refinery",
             () -> new RefineryBlock(BlockBehaviour.Properties.copy(Blocks.ANVIL).lightLevel(litBlockEmission(15))));
     public static final Supplier<Block> CHEMISTRY_TABLE = registerBlock("chemistry_table",
             () -> new ChemistryBlock(BlockBehaviour.Properties.of().strength(4f).sound(SoundType.COPPER).noOcclusion().noLootTable(), INVISIBLE_CHEM.get()));
+    public static final Supplier<Block> FABRICATOR = registerBlock("fabricator",
+            () -> new FabricatorBlock(BlockBehaviour.Properties.of().strength(4f).sound(SoundType.COPPER).noOcclusion().lightLevel(state -> 8), INVISIBLE_FAB.get()));
 
     public static final Supplier<Block> FOSSIL_ORE = registerBlock("fossil_ore",
             () -> new Block(BlockBehaviour.Properties.of().strength(5f).sound(SoundType.STONE)

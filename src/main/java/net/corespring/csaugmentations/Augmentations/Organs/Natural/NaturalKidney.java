@@ -1,11 +1,11 @@
 package net.corespring.csaugmentations.Augmentations.Organs.Natural;
 
 import net.corespring.csaugmentations.Augmentations.Base.Organs.SimpleKidney;
-import net.corespring.csaugmentations.Registry.Utility.CSOrganTiers;
+import net.corespring.csaugmentations.Utility.IOrganTiers;
 import net.minecraft.world.entity.player.Player;
 
 public class NaturalKidney extends SimpleKidney {
-    public NaturalKidney(CSOrganTiers pTier, Properties pProperties) {
+    public NaturalKidney(IOrganTiers pTier, Properties pProperties) {
         super(pTier, pProperties);
     }
 
@@ -16,9 +16,6 @@ public class NaturalKidney extends SimpleKidney {
 
     @Override
     public void applyEffects(Player pPlayer) {
-
     }
-
-
 }
 

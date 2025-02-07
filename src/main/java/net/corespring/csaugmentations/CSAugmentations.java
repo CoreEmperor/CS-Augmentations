@@ -23,7 +23,7 @@ import org.slf4j.Logger;
 @Mod(CSAugmentations.MOD_ID)
 public class CSAugmentations {
     public static final String MOD_ID = "csaugmentations";
-    private static final Logger LOGGER = LogUtils.getLogger();
+    public static final Logger LOGGER = LogUtils.getLogger();
 
     public CSAugmentations() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
@@ -43,9 +43,8 @@ public class CSAugmentations {
         CSSoundEvents.register(modEventBus);
 
         MinecraftForge.EVENT_BUS.register(this);
-        modEventBus.addListener(this::addCreative);
-
         MinecraftForge.EVENT_BUS.register(ForgeEvents.InventoryEvents.class);
+        modEventBus.addListener(this::addCreative);
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, CSCommonConfigs.SPEC, "csaugmentations-common.toml");
     }
 

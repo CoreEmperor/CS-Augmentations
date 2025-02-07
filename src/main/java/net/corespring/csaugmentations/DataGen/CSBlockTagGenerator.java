@@ -40,6 +40,8 @@ public class CSBlockTagGenerator extends BlockTagsProvider {
                         CSBlocks.FOSSIL_BLOCK.get(),
                         CSBlocks.CHEMISTRY_TABLE.get(),
                         CSBlocks.INVISIBLE_CHEM.get(),
+                        CSBlocks.FABRICATOR.get(),
+                        CSBlocks.INVISIBLE_FAB.get(),
                         CSBlocks.SALT.get(),
                         CSBlocks.SALT_SLAB.get(),
                         CSBlocks.SALT_STAIRS.get(),

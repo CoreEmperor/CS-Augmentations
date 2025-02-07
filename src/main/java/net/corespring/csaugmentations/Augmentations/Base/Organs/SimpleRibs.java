@@ -1,6 +1,8 @@
 package net.corespring.csaugmentations.Augmentations.Base.Organs;
 
-import net.corespring.csaugmentations.Registry.Utility.CSOrganTiers;
+import net.corespring.csaugmentations.Augmentations.Base.SimpleOrgan;
+import net.corespring.csaugmentations.Utility.CSOrganTiers;
+import net.corespring.csaugmentations.Utility.IOrganTiers;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ItemStack;
@@ -11,20 +13,27 @@ import org.jetbrains.annotations.Nullable;
 import java.util.List;
 
 public abstract class SimpleRibs extends SimpleOrgan {
-    public SimpleRibs(CSOrganTiers pTier, Properties pProperties) {
+    public SimpleRibs(IOrganTiers pTier, Properties pProperties) {
         super(pTier, pProperties);
     }
 
     @Override
     public void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
-        double ribsArmor = getTier().getRibsArmor() / 2;
-        pTooltipComponents.add(Component.translatable("")
-                .append("" + getOrganValue())
-                .append(Component.translatable("tooltip.csaugmentations.cost"))
-                .withStyle(ChatFormatting.RED));
+        super.appendHoverText(pStack, pLevel, pTooltipComponents, pIsAdvanced);
+        double pRibsArmor = getDoubleAttribute(CSOrganTiers.Attribute.RIBS_ARMOR) / 2;
         pTooltipComponents.add(Component.translatable("tooltip.csaugmentations.plus")
-                .append("" + ribsArmor)
+                .append("" + pRibsArmor)
                 .append(Component.translatable("tooltip.csaugmentations.armor"))
                 .withStyle(ChatFormatting.BLUE));
+    }
+
+    @Override
+    public ItemStack getCraftingRemainingItem(ItemStack itemStack) {
+        return itemStack.copy();
+    }
+
+    @Override
+    public boolean hasCraftingRemainingItem(ItemStack stack) {
+        return true;
     }
 }

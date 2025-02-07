@@ -11,9 +11,9 @@ import net.minecraftforge.client.gui.overlay.ForgeGui;
 import net.minecraftforge.client.gui.overlay.IGuiOverlay;
 
 public class LiverFailureOverlay implements IGuiOverlay {
+    private static final ResourceLocation LIVER_FAILURE = new ResourceLocation(CSAugmentations.MOD_ID, "textures/gui/liver_failure_overlay.png");
     protected int screenWidth;
     protected int screenHeight;
-    private static final ResourceLocation LIVER_FAILURE = new ResourceLocation(CSAugmentations.MOD_ID, "textures/gui/liver_failure_overlay.png");
 
     @Override
     public void render(ForgeGui forgeGui, GuiGraphics pGuiGraphics, float partialTicks, int screenWidth, int screenHeight) {
@@ -21,7 +21,7 @@ public class LiverFailureOverlay implements IGuiOverlay {
         this.screenHeight = pGuiGraphics.guiHeight();
         Player player = Minecraft.getInstance().player;
 
-        if(player != null && player.hasEffect(CSEffects.LIVER_FAILURE.get())) {
+        if (player != null && player.hasEffect(CSEffects.LIVER_FAILURE.get())) {
             renderTextureOverlay(pGuiGraphics, LIVER_FAILURE, 0.75F);
         }
 

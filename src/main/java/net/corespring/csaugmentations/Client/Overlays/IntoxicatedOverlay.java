@@ -11,9 +11,9 @@ import net.minecraftforge.client.gui.overlay.ForgeGui;
 import net.minecraftforge.client.gui.overlay.IGuiOverlay;
 
 public class IntoxicatedOverlay implements IGuiOverlay {
+    private static final ResourceLocation INTOXICATED = new ResourceLocation(CSAugmentations.MOD_ID, "textures/gui/intoxicated_overlay.png");
     protected int screenWidth;
     protected int screenHeight;
-    private static final ResourceLocation INTOXICATED = new ResourceLocation(CSAugmentations.MOD_ID, "textures/gui/intoxicated_overlay.png");
 
     @Override
     public void render(ForgeGui forgeGui, GuiGraphics pGuiGraphics, float partialTicks, int screenWidth, int screenHeight) {
@@ -21,7 +21,7 @@ public class IntoxicatedOverlay implements IGuiOverlay {
         this.screenHeight = pGuiGraphics.guiHeight();
         Player player = Minecraft.getInstance().player;
 
-        if(player != null && player.hasEffect(CSEffects.INTOXICATED.get()) && player.getEffect(CSEffects.INTOXICATED.get()).getAmplifier() >= 5) {
+        if (player != null && player.hasEffect(CSEffects.INTOXICATED.get()) && player.getEffect(CSEffects.INTOXICATED.get()).getAmplifier() >= 5) {
             renderTextureOverlay(pGuiGraphics, INTOXICATED, 0.75F);
         }
 

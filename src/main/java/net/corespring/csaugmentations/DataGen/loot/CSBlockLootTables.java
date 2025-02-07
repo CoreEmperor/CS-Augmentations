@@ -33,6 +33,7 @@ public class CSBlockLootTables extends BlockLootSubProvider {
     protected void generate() {
         this.dropSelf(CSBlocks.CULTIVATOR.get());
         this.dropSelf(CSBlocks.REFINERY.get());
+        this.dropSelf(CSBlocks.FABRICATOR.get());
 
         this.add(CSBlocks.FOSSIL_ORE.get(),
                 block -> createOreDrop(CSBlocks.FOSSIL_ORE.get(), CSItems.FOSSIL.get()));

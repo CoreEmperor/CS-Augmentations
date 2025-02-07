@@ -28,8 +28,9 @@ public class Hemostat extends SurgicalToolItem {
     @Override
     public void onUseTick(Level pLevel, LivingEntity pLivingEntity, ItemStack pStack, int pRemainingUseDuration) {
         if (pRemainingUseDuration == 1 && !pLevel.isClientSide) {
+            pLivingEntity.getItemInHand(getHand()).hurtAndBreak(1, pLivingEntity, (livingEntity -> {
+            }));
             pLivingEntity.addEffect(new MobEffectInstance(CSEffects.HEMOSTAT.get(), 500, 0, false, false, true));
-            pStack.shrink(1);
             pLevel.playLocalSound(pLivingEntity.getBlockX(), pLivingEntity.getBlockY(), pLivingEntity.getBlockZ(), SoundEvents.SLIME_BLOCK_BREAK, SoundSource.PLAYERS, 1.0F, 1.0F, false);
         }
     }
@@ -37,10 +38,12 @@ public class Hemostat extends SurgicalToolItem {
     @Override
     public boolean hurtEnemy(ItemStack pStack, LivingEntity pTarget, LivingEntity pAttacker) {
         if (!pAttacker.level().isClientSide && pTarget.hasEffect(CSEffects.INCISION.get())) {
+            pAttacker.getItemInHand(getHand()).hurtAndBreak(1, pAttacker, (livingEntity -> {
+            }));
             pTarget.addEffect(new MobEffectInstance(CSEffects.HEMOSTAT.get(), 500, 0, false, false, true));
-            pStack.shrink(1);
+
         }
-        pTarget.level().playLocalSound(pTarget.getBlockX(), pTarget.getBlockY(), pTarget.getBlockZ(), SoundEvents.SLIME_BLOCK_BREAK, SoundSource.PLAYERS, 1.0F, 1.0F, false);
+        pTarget.level().playSound(null, pTarget.getBlockX(), pTarget.getBlockY(), pTarget.getBlockZ(), SoundEvents.SLIME_BLOCK_BREAK, SoundSource.PLAYERS, 1.0F, 1.0F);
         return super.hurtEnemy(pStack, pTarget, pAttacker);
     }
 }

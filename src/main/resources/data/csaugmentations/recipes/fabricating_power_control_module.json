@@ -1,0 +1,59 @@
+{
+  "type": "csaugmentations:fabricating",
+  "group": "fabricating",
+  "ingredients": [
+    {
+      "ingredient": {
+        "tag": "forge:wires/gold"
+      },
+      "count": 7
+    },
+    {
+      "ingredient": {
+        "item": "cslibrary:makeshift_circuit_board"
+      },
+      "count": 1
+    },
+    {
+      "ingredient": {
+        "tag": "forge:nuggets/zinc"
+      },
+      "count": 7
+    },
+    {
+      "ingredient": {
+        "item": "minecraft:stone"
+      },
+      "count": 6
+    },
+    {
+      "ingredient": {
+        "item": "minecraft:redstone"
+      },
+      "count": 6
+    },
+    {
+      "ingredient": {
+        "item": "minecraft:stick"
+      },
+      "count": 5
+    },
+    {
+      "ingredient": {
+        "item": "minecraft:quartz"
+      },
+      "count": 1
+    },
+    {
+      "ingredient": {
+        "tag": "forge:plates/gold"
+      },
+      "count": 2
+    }
+  ],
+  "result": {
+    "item": "csaugmentations:power_control_module",
+    "count": 1
+  },
+  "craftingTime": 800
+}

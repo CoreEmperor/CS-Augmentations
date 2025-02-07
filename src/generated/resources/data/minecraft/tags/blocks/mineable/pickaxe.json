@@ -7,6 +7,8 @@
     "csaugmentations:fossil_block",
     "csaugmentations:chemistry_table",
     "csaugmentations:invisible_chem",
+    "csaugmentations:fabricator",
+    "csaugmentations:invisible_fab",
     "csaugmentations:salt",
     "csaugmentations:salt_slab",
     "csaugmentations:salt_stairs",

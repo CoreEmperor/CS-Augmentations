@@ -4,11 +4,12 @@ import net.corespring.csaugmentations.CSAugmentations;
 import net.corespring.csaugmentations.Capability.OrganCap;
 import net.corespring.csaugmentations.Client.Overlays.*;
 import net.corespring.csaugmentations.Network.CSNetwork;
+import net.corespring.csaugmentations.Network.Packets.C2SActivateSpinePacket;
 import net.corespring.csaugmentations.Network.Packets.C2SToggleArmBuffsPacket;
 import net.corespring.csaugmentations.Network.Packets.C2SToggleLegBuffsPacket;
 import net.corespring.csaugmentations.Network.Packets.S2CSyncDataPacket;
-import net.corespring.csaugmentations.Registry.Utility.CSAugUtil;
-import net.corespring.csaugmentations.Registry.Utility.KeyBinding;
+import net.corespring.csaugmentations.Utility.CSAugUtil;
+import net.corespring.csaugmentations.Utility.KeyBinding;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraftforge.api.distmarker.Dist;
@@ -36,6 +37,9 @@ public class ClientEvents {
                 CSAugUtil.legsEnabled = !CSAugUtil.legsEnabled;
                 CSNetwork.NETWORK_CHANNEL.sendToServer(new C2SToggleLegBuffsPacket(CSAugUtil.legsEnabled));
             }
+            if (KeyBinding.SPINE_KEY.consumeClick()) {
+                CSNetwork.NETWORK_CHANNEL.sendToServer(new C2SActivateSpinePacket());
+            }
         }
     }
 
@@ -48,6 +52,7 @@ public class ClientEvents {
             event.register(KeyBinding.NVG_KEY);
             event.register(KeyBinding.ARMS_KEY);
             event.register(KeyBinding.LEGS_KEY);
+            event.register(KeyBinding.SPINE_KEY);
         }
 
         @SubscribeEvent

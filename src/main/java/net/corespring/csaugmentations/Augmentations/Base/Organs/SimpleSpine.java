@@ -1,25 +1,19 @@
 package net.corespring.csaugmentations.Augmentations.Base.Organs;
 
-import net.corespring.csaugmentations.Registry.Utility.CSOrganTiers;
-import net.minecraft.ChatFormatting;
-import net.minecraft.network.chat.Component;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.TooltipFlag;
-import net.minecraft.world.level.Level;
-import org.jetbrains.annotations.Nullable;
-
-import java.util.List;
+import net.corespring.csaugmentations.Augmentations.Base.SimpleOrgan;
+import net.corespring.csaugmentations.Utility.IOrganTiers;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.entity.player.Player;
 
 public abstract class SimpleSpine extends SimpleOrgan {
-    public SimpleSpine(CSOrganTiers pTier, Properties pProperties) {
+    public SimpleSpine(IOrganTiers pTier, Properties pProperties) {
         super(pTier, pProperties);
     }
 
-    @Override
-    public void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
-        pTooltipComponents.add(Component.translatable("")
-                .append("" + getOrganValue())
-                .append(Component.translatable("tooltip.csaugmentations.cost"))
-                .withStyle(ChatFormatting.RED));
+    public void onActivate(ServerPlayer player) {
+    }
+
+    public boolean canActivate(Player player) {
+        return false;
     }
 }

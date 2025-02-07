@@ -1,8 +1,8 @@
 package net.corespring.csaugmentations.Network.Packets;
 
 import net.corespring.csaugmentations.Capability.OrganCap;
-import net.corespring.csaugmentations.Network.CSNetwork;
 import net.corespring.csaugmentations.Events.ClientEvents;
+import net.corespring.csaugmentations.Network.CSNetwork;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraftforge.network.NetworkEvent;

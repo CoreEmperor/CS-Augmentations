@@ -1,0 +1,23 @@
+{
+  "type": "csaugmentations:fabricating",
+  "group": "fabricating",
+  "ingredients": [
+    {
+      "ingredient": {
+        "tag": "forge:wires/gold"
+      },
+      "count": 1
+    },
+    {
+      "ingredient": {
+        "tag": "forge:plates/brass"
+      },
+      "count": 2
+    }
+  ],
+  "result": {
+    "item": "cslibrary:refined_circuit_board",
+    "count": 1
+  },
+  "craftingTime": 200
+}

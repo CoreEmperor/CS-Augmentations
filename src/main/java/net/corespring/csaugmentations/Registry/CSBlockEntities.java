@@ -1,6 +1,7 @@
 package net.corespring.csaugmentations.Registry;
 
 import net.corespring.csaugmentations.Block.BlockEntities.ChemistryBlockEntity;
+import net.corespring.csaugmentations.Block.BlockEntities.FabricatorBlockEntity;
 import net.corespring.csaugmentations.Block.BlockEntities.RefineryBlockEntity;
 import net.corespring.csaugmentations.CSAugmentations;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -23,6 +24,11 @@ public class CSBlockEntities {
             BLOCK_ENTITY.register("chemistry_table_be", () ->
                     BlockEntityType.Builder.of(ChemistryBlockEntity::new,
                             CSBlocks.CHEMISTRY_TABLE.get()).build(null));
+
+    public static final Supplier<BlockEntityType<FabricatorBlockEntity>> FABRICATOR_BE =
+            BLOCK_ENTITY.register("fabricator_be", () ->
+                    BlockEntityType.Builder.of(FabricatorBlockEntity::new,
+                            CSBlocks.FABRICATOR.get()).build(null));
 
     public static void register(IEventBus eventBus) {
         BLOCK_ENTITY.register(eventBus);

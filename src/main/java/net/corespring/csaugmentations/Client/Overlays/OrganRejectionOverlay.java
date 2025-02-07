@@ -11,9 +11,9 @@ import net.minecraftforge.client.gui.overlay.ForgeGui;
 import net.minecraftforge.client.gui.overlay.IGuiOverlay;
 
 public class OrganRejectionOverlay implements IGuiOverlay {
+    private static final ResourceLocation ORGAN_REJECTION = new ResourceLocation(CSAugmentations.MOD_ID, "textures/gui/organ_rejection_overlay.png");
     protected int screenWidth;
     protected int screenHeight;
-    private static final ResourceLocation ORGAN_REJECTION = new ResourceLocation(CSAugmentations.MOD_ID, "textures/gui/organ_rejection_overlay.png");
 
     @Override
     public void render(ForgeGui forgeGui, GuiGraphics pGuiGraphics, float partialTicks, int screenWidth, int screenHeight) {
@@ -21,7 +21,7 @@ public class OrganRejectionOverlay implements IGuiOverlay {
         this.screenHeight = pGuiGraphics.guiHeight();
         Player player = Minecraft.getInstance().player;
 
-        if(player != null && player.hasEffect(CSEffects.ORGAN_REJECTION.get()) && player.getEffect(CSEffects.ORGAN_REJECTION.get()).getAmplifier() >= 3) {
+        if (player != null && player.hasEffect(CSEffects.ORGAN_REJECTION.get()) && player.getEffect(CSEffects.ORGAN_REJECTION.get()).getAmplifier() >= 3) {
             renderTextureOverlay(pGuiGraphics, ORGAN_REJECTION, 1.0F);
         }
 

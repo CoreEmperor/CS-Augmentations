@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " 2 ",
+    "212",
+    " 3 "
+  ],
+  "key": {
+    "1": {
+      "item": "csaugmentations:beaker_sporine"
+    },
+    "2": {
+      "tag": "forge:ingots/steel"
+    },
+    "3": {
+      "tag": "forge:nuggets/silver"
+    }
+  },
+  "result": {
+    "item": "csaugmentations:refined_immunosuppressant",
+    "count": 4
+  }
+}

@@ -1,11 +1,11 @@
 package net.corespring.csaugmentations.Augmentations.Organs.Natural;
 
 import net.corespring.csaugmentations.Augmentations.Base.Organs.SimpleRibs;
-import net.corespring.csaugmentations.Registry.Utility.CSOrganTiers;
+import net.corespring.csaugmentations.Utility.IOrganTiers;
 import net.minecraft.world.entity.player.Player;
 
 public class NaturalRibs extends SimpleRibs {
-    public NaturalRibs(CSOrganTiers pTier, Properties pProperties) {
+    public NaturalRibs(IOrganTiers pTier, Properties pProperties) {
         super(pTier, pProperties);
     }
 

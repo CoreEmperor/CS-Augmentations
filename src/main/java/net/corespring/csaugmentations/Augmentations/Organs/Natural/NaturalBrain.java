@@ -1,11 +1,11 @@
 package net.corespring.csaugmentations.Augmentations.Organs.Natural;
 
 import net.corespring.csaugmentations.Augmentations.Base.Organs.SimpleBrain;
-import net.corespring.csaugmentations.Registry.Utility.CSOrganTiers;
+import net.corespring.csaugmentations.Utility.IOrganTiers;
 import net.minecraft.world.entity.player.Player;
 
 public class NaturalBrain extends SimpleBrain {
-    public NaturalBrain(CSOrganTiers pTier, Properties pProperties) {
+    public NaturalBrain(IOrganTiers pTier, Properties pProperties) {
         super(pTier, pProperties);
     }
 

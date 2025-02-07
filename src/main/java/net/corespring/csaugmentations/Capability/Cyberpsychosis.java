@@ -55,25 +55,25 @@ public class Cyberpsychosis {
     );
 
     private static final List<Component> FAKE_ACTIONBAR_MESSAGES = Arrays.asList(
-            Component.translatable("cyberpsychosis.csaugmentations.fake_actionbar_1"),
-            Component.translatable("cyberpsychosis.csaugmentations.fake_actionbar_2"),
-            Component.translatable("cyberpsychosis.csaugmentations.fake_actionbar_3"),
-            Component.translatable("cyberpsychosis.csaugmentations.fake_actionbar_4"),
-            Component.translatable("cyberpsychosis.csaugmentations.fake_actionbar_5"),
-            Component.translatable("cyberpsychosis.csaugmentations.fake_actionbar_6"),
-            Component.translatable("cyberpsychosis.csaugmentations.fake_actionbar_7"),
-            Component.translatable("cyberpsychosis.csaugmentations.fake_actionbar_8")
+            Component.translatable("message.csaugmentations.fake_actionbar_1"),
+            Component.translatable("message.csaugmentations.fake_actionbar_2"),
+            Component.translatable("message.csaugmentations.fake_actionbar_3"),
+            Component.translatable("message.csaugmentations.fake_actionbar_4"),
+            Component.translatable("message.csaugmentations.fake_actionbar_5"),
+            Component.translatable("message.csaugmentations.fake_actionbar_6"),
+            Component.translatable("message.csaugmentations.fake_actionbar_7"),
+            Component.translatable("message.csaugmentations.fake_actionbar_8")
     );
 
     private static final List<Component> FAKE_PLAYER_MESSAGES = Arrays.asList(
-            Component.translatable("cyberpsychosis.csaugmentations.fake_player_1"),
-            Component.translatable("cyberpsychosis.csaugmentations.fake_player_2"),
-            Component.translatable("cyberpsychosis.csaugmentations.fake_player_3"),
-            Component.translatable("cyberpsychosis.csaugmentations.fake_player_4"),
-            Component.translatable("cyberpsychosis.csaugmentations.fake_player_5"),
-            Component.translatable("cyberpsychosis.csaugmentations.fake_player_6"),
-            Component.translatable("cyberpsychosis.csaugmentations.fake_player_7"),
-            Component.translatable("cyberpsychosis.csaugmentations.fake_player_8")
+            Component.translatable("message.csaugmentations.fake_player_1"),
+            Component.translatable("message.csaugmentations.fake_player_2"),
+            Component.translatable("message.csaugmentations.fake_player_3"),
+            Component.translatable("message.csaugmentations.fake_player_4"),
+            Component.translatable("message.csaugmentations.fake_player_5"),
+            Component.translatable("message.csaugmentations.fake_player_6"),
+            Component.translatable("message.csaugmentations.fake_player_7"),
+            Component.translatable("message.csaugmentations.fake_player_8")
     );
 
     private boolean hasSlept = false;
@@ -167,7 +167,7 @@ public class Cyberpsychosis {
     private void schizophrenia(ServerPlayer player) {
         SoundEvent sound = PHANTOM_SOUNDS.get(RANDOM.nextInt(PHANTOM_SOUNDS.size()));
         Vec3 pos = randomOffsetPosition(player.position());
-        player.level().playSound(null, pos.x, pos.y, pos.z, sound, SoundSource.AMBIENT, 1.0F, 1.0F);
+        player.level().playSound(player, pos.x, pos.y, pos.z, sound, SoundSource.AMBIENT, 1.0F, 1.0F);
     }
 
     private Vec3 randomOffsetPosition(Vec3 original) {

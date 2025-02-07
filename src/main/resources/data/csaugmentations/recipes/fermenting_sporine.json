@@ -1,0 +1,22 @@
+{
+  "type": "cslibrary:fermenting",
+  "group": "fermenting",
+  "ingredients": [
+    {
+      "item": "csaugmentations:beaker_cyclosporine"
+    },
+    {
+      "item": "csaugmentations:beaker_cyclosporine"
+    },
+    {
+      "item": "csaugmentations:beaker_cyclosporine"
+    }
+  ],
+  "result": {
+    "item": "csaugmentations:beaker_sporine",
+    "count": 3
+  },
+  "craftingTime": 6400,
+  "needsYeast": "true",
+  "needsBottle": "false"
+}

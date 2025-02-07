@@ -1,10 +1,7 @@
 package net.corespring.csaugmentations.Registry;
 
 import net.corespring.csaugmentations.CSAugmentations;
-import net.corespring.csaugmentations.Client.Screens.AugmentScreen;
-import net.corespring.csaugmentations.Client.Screens.ChemistryScreen;
-import net.corespring.csaugmentations.Client.Screens.CultivatorScreen;
-import net.corespring.csaugmentations.Client.Screens.RefineryScreen;
+import net.corespring.csaugmentations.Client.Screens.*;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -19,6 +16,7 @@ public class CSRenderers {
         MenuScreens.register(CSMenu.REFINERY_MENU.get(), RefineryScreen::new);
         MenuScreens.register(CSMenu.AUGMENT_MENU.get(), AugmentScreen::new);
         MenuScreens.register(CSMenu.CHEMISTRY_MENU.get(), ChemistryScreen::new);
+        MenuScreens.register(CSMenu.FABRICATOR_MENU.get(), FabricatorScreen::new);
     }
 
 }

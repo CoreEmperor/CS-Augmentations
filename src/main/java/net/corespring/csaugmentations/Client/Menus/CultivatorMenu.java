@@ -2,7 +2,7 @@ package net.corespring.csaugmentations.Client.Menus;
 
 import com.google.common.collect.Lists;
 import net.corespring.csaugmentations.Registry.CSRecipeTypes;
-import net.corespring.csaugmentations.Registry.Recipes.CultivatorRecipe;
+import net.corespring.csaugmentations.Recipes.CultivatorRecipe;
 import net.corespring.csaugmentations.Registry.CSBlocks;
 import net.corespring.csaugmentations.Registry.CSMenu;
 import net.minecraft.network.FriendlyByteBuf;
