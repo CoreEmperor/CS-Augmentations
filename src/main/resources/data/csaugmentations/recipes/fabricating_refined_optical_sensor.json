@@ -1,0 +1,35 @@
+{
+  "type": "csaugmentations:fabricating",
+  "group": "fabricating",
+  "ingredients": [
+    {
+      "ingredient": {
+        "tag": "forge:nuggets/silver"
+      },
+      "count": 8
+    },
+    {
+      "ingredient": {
+        "tag": "forge:wires/gold"
+      },
+      "count": 2
+    },
+    {
+      "ingredient": {
+        "item": "csaugmentations:refined_augmented_tissue"
+      },
+      "count": 1
+    },
+    {
+      "ingredient": {
+        "item": "csaugmentations:refined_augmented_muscle"
+      },
+      "count": 1
+    }
+  ],
+  "result": {
+    "item": "csaugmentations:refined_optical_sensor",
+    "count": 1
+  },
+  "craftingTime": 6000
+}

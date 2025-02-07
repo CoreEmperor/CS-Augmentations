@@ -40,7 +40,7 @@ public class RefinedImmunosuppressantItem extends Item {
     @Override
     public ItemStack finishUsingItem(ItemStack pStack, Level pLevel, LivingEntity pLivingEntity) {
         if (!pLevel.isClientSide && pLivingEntity instanceof Player player) {
-            player.addEffect(new MobEffectInstance(CSEffects.Immunosuppressant.get(), 72000, 0, false, false, true));
+            player.addEffect(new MobEffectInstance(CSEffects.Immunosuppressant.get(), 108000, 0, false, false, true));
 
             player.getCapability(OrganCap.ORGAN_DATA).ifPresent(cap -> {
                 if (cap.isCyberpsycho()) {

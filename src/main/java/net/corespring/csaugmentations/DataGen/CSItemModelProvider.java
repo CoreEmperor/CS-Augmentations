@@ -40,6 +40,9 @@ public class CSItemModelProvider extends ItemModelProvider {
 
         simpleItem((RegistryObject<Item>) CSItems.CYBER_BRAIN);
         simpleItem((RegistryObject<Item>) CSItems.CYBER_BRAIN_IMPLANT);
+        simpleItem((RegistryObject<Item>) CSItems.CYBER_HEART);
+        simpleItem((RegistryObject<Item>) CSItems.CYBER_KIDNEY);
+        simpleItem((RegistryObject<Item>) CSItems.CYBER_LIVER);
 
         evenSimplerBlockItem(CSBlocks.CULTIVATOR);
         evenSimplerBlockItem(CSBlocks.REFINERY);
@@ -69,6 +72,7 @@ public class CSItemModelProvider extends ItemModelProvider {
         simpleItem((RegistryObject<Item>) CSItems.NEURAL_INTERFACE);
         simpleItem((RegistryObject<Item>) CSItems.HYDRAULIC);
         simpleItem((RegistryObject<Item>) CSItems.STEEL_WIRE);
+        simpleItem((RegistryObject<Item>) CSItems.WARP_DRIVE);
         simpleItem((RegistryObject<Item>) CSItems.FUSE);
         simpleItem((RegistryObject<Item>) CSItems.TRANSFORMER);
         simpleItem((RegistryObject<Item>) CSItems.POWER_CONTROL_MODULE);
@@ -84,6 +88,9 @@ public class CSItemModelProvider extends ItemModelProvider {
         simpleItem((RegistryObject<Item>) CSItems.CRUDE_BLOOD_PUMP);
         simpleItem((RegistryObject<Item>) CSItems.CRUDE_BLOOD_FILTER);
         simpleItem((RegistryObject<Item>) CSItems.CRUDE_OPTICAL_SENSOR);
+        simpleItem((RegistryObject<Item>) CSItems.REFINED_BLOOD_PUMP);
+        simpleItem((RegistryObject<Item>) CSItems.REFINED_BLOOD_FILTER);
+        simpleItem((RegistryObject<Item>) CSItems.REFINED_OPTICAL_SENSOR);
         simpleItem((RegistryObject<Item>) CSItems.ARTIFICIAL_MUSCLE);
         simpleItem((RegistryObject<Item>) CSItems.ARTIFICIAL_TISSUE);
         simpleItem((RegistryObject<Item>) CSItems.ARTIFICIAL_NERVES);

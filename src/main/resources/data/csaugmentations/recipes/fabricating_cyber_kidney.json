@@ -1,0 +1,53 @@
+{
+  "type": "csaugmentations:fabricating",
+  "group": "fabricating",
+  "ingredients": [
+    {
+      "ingredient": {
+        "tag": "forge:nuggets/silver"
+      },
+      "count": 10
+    },
+    {
+      "ingredient": {
+        "tag": "forge:wires/gold"
+      },
+      "count": 8
+    },
+    {
+      "ingredient": {
+        "item": "csaugmentations:refined_blood_filter"
+      },
+      "count": 1
+    },
+    {
+      "ingredient": {
+        "item": "csaugmentations:refined_augmented_tissue"
+      },
+      "count": 2
+    },
+    {
+      "ingredient": {
+        "item": "csaugmentations:refined_logic_component"
+      },
+      "count": 1
+    },
+    {
+      "ingredient": {
+        "item": "csaugmentations:power_control_module"
+      },
+      "count": 1
+    },
+    {
+      "ingredient": {
+        "item": "csaugmentations:fuse"
+      },
+      "count": 2
+    }
+  ],
+  "result": {
+    "item": "csaugmentations:cyber_kidney",
+    "count": 1
+  },
+  "craftingTime": 12000
+}

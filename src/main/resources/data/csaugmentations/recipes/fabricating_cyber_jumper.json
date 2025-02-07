@@ -1,0 +1,59 @@
+{
+  "type": "csaugmentations:fabricating",
+  "group": "fabricating",
+  "ingredients": [
+    {
+      "ingredient": {
+        "tag": "forge:plates/steel"
+      },
+      "count": 8
+    },
+    {
+      "ingredient": {
+        "item": "cslibrary:silver_bulb"
+      },
+      "count": 4
+    },
+    {
+      "ingredient": {
+        "tag": "forge:wires/gold"
+      },
+      "count": 32
+    },
+    {
+      "ingredient": {
+        "item": "csaugmentations:artificial_nerves"
+      },
+      "count": 12
+    },
+    {
+      "ingredient": {
+        "item": "csaugmentations:power_control_module"
+      },
+      "count": 2
+    },
+    {
+      "ingredient": {
+        "item": "csaugmentations:refined_logic_component"
+      },
+      "count": 1
+    },
+    {
+      "ingredient": {
+        "item": "csaugmentations:refined_plastic"
+      },
+      "count": 6
+    },
+    {
+      "ingredient": {
+        "item": "csaugmentations:hydraulic"
+      },
+      "count": 6
+    }
+  ],
+  "result": {
+    "item": "csaugmentations:cyber_jumper",
+    "count": 1
+  },
+  "craftingTime": 24000
+}

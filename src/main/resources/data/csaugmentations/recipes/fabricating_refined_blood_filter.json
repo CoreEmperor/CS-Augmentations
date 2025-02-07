@@ -1,0 +1,35 @@
+{
+  "type": "csaugmentations:fabricating",
+  "group": "fabricating",
+  "ingredients": [
+    {
+      "ingredient": {
+        "tag": "forge:nuggets/silver"
+      },
+      "count": 8
+    },
+    {
+      "ingredient": {
+        "tag": "forge:nuggets/gold"
+      },
+      "count": 8
+    },
+    {
+      "ingredient": {
+        "item": "minecraft:string"
+      },
+      "count": 16
+    },
+    {
+      "ingredient": {
+        "item": "csaugmentations:refined_logic_component"
+      },
+      "count": 2
+    }
+  ],
+  "result": {
+    "item": "csaugmentations:refined_blood_filter",
+    "count": 1
+  },
+  "craftingTime": 6000
+}

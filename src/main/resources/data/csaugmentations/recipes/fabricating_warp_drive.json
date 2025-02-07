@@ -1,0 +1,41 @@
+{
+  "type": "csaugmentations:fabricating",
+  "group": "fabricating",
+  "ingredients": [
+    {
+      "ingredient": {
+        "tag": "forge:nuggets/platinum"
+      },
+      "count": 8
+    },
+    {
+      "ingredient": {
+        "tag": "forge:wires/gold"
+      },
+      "count": 4
+    },
+    {
+      "ingredient": {
+        "item": "csaugmentations:power_control_module"
+      },
+      "count": 2
+    },
+    {
+      "ingredient": {
+        "item": "csaugmentations:refined_plastic"
+      },
+      "count": 8
+    },
+    {
+      "ingredient": {
+        "item": "minecraft:ender_pearl"
+      },
+      "count": 4
+    }
+  ],
+  "result": {
+    "item": "csaugmentations:warp_drive",
+    "count": 1
+  },
+  "craftingTime": 48000
+}

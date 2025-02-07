@@ -1,0 +1,35 @@
+{
+  "type": "csaugmentations:fabricating",
+  "group": "fabricating",
+  "ingredients": [
+    {
+      "ingredient": {
+        "tag": "forge:nuggets/silver"
+      },
+      "count": 16
+    },
+    {
+      "ingredient": {
+        "tag": "forge:nuggets/gold"
+      },
+      "count": 8
+    },
+    {
+      "ingredient": {
+        "tag": "forge:wires/gold"
+      },
+      "count": 4
+    },
+    {
+      "ingredient": {
+        "item": "cslibrary:refined_circuit_board"
+      },
+      "count": 1
+    }
+  ],
+  "result": {
+    "item": "csaugmentations:refined_blood_pump",
+    "count": 1
+  },
+  "craftingTime": 8000
+}

@@ -1,6 +1,7 @@
 package net.corespring.csaugmentations.Item;
 
 import net.corespring.csaugmentations.Capability.OrganCap;
+import net.corespring.csaugmentations.Registry.CSEffects;
 import net.corespring.csaugmentations.Registry.CSItems;
 import net.corespring.csaugmentations.Utility.CSAugUtil;
 import net.minecraft.ChatFormatting;
@@ -49,7 +50,7 @@ public class CyberBrainImplantItem extends Item {
             OrganCap.OrganData organData = OrganCap.getOrganData(player);
             ItemStack brainStack = organData.getStackInSlot(CSAugUtil.OrganSlots.BRAIN);
 
-            if (brainStack.getItem() == CSItems.NATURAL_BRAIN.get()) {
+            if (brainStack.getItem() == CSItems.NATURAL_BRAIN.get() && player.hasEffect(CSEffects.INCISION.get())) {
                 organData.setStackInSlot(CSAugUtil.OrganSlots.BRAIN, new ItemStack(CSItems.CYBER_BRAIN.get()));
                 organData.updateOrganData();
 

@@ -1,0 +1,53 @@
+{
+  "type": "csaugmentations:fabricating",
+  "group": "fabricating",
+  "ingredients": [
+    {
+      "ingredient": {
+        "tag": "forge:nuggets/silver"
+      },
+      "count": 10
+    },
+    {
+      "ingredient": {
+        "tag": "forge:wires/gold"
+      },
+      "count": 16
+    },
+    {
+      "ingredient": {
+        "item": "csaugmentations:refined_blood_filter"
+      },
+      "count": 2
+    },
+    {
+      "ingredient": {
+        "item": "csaugmentations:refined_augmented_tissue"
+      },
+      "count": 4
+    },
+    {
+      "ingredient": {
+        "item": "csaugmentations:refined_logic_component"
+      },
+      "count": 2
+    },
+    {
+      "ingredient": {
+        "item": "csaugmentations:power_control_module"
+      },
+      "count": 1
+    },
+    {
+      "ingredient": {
+        "item": "csaugmentations:artificial_nerves"
+      },
+      "count": 4
+    }
+  ],
+  "result": {
+    "item": "csaugmentations:cyber_liver",
+    "count": 1
+  },
+  "craftingTime": 24000
+}

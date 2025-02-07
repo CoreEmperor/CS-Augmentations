@@ -24,16 +24,13 @@ public class CSCommonConfigs {
     static {
         BUILDER.push("Config for [CS] Augmentations");
 
-        CYBERNETICS_DROP_ON_DEATH = BUILDER.comment("Do Cybernetics Drop on Death? (default: true)")
-                .define("dropCybernetics", true);
+        CYBERNETICS_DROP_ON_DEATH = BUILDER.comment("Do Cybernetics Drop on Death? (default: true)").define("dropCybernetics", true);
 
-        CYBERPSYCHOSIS_TOGGLE = BUILDER.comment("Should Cyberpsychosis be active? (default: true)")
-                .define("togglePsychosis", true);
+        CYBERPSYCHOSIS_TOGGLE = BUILDER.comment("Should Cyberpsychosis be active? (default: true)").define("togglePsychosis", true);
 
-        ORGAN_REJECTION_TOGGLE = BUILDER.comment("Should Organ Rejection be active? (default: true)")
-                .define("toggleRejection", true);
+        ORGAN_REJECTION_TOGGLE = BUILDER.comment("Should Organ Rejection be active? (default: true)").define("toggleRejection", true);
 
-        CYBERPSYCHOSIS_MIN_INTERVAL = BUILDER.comment("Minimum interval for cyberpsychosis events in ticks (default: 1200)").defineInRange("cyberpsychosisMinInterval", 1200L, 0L, Long.MAX_VALUE);
+        CYBERPSYCHOSIS_MIN_INTERVAL = BUILDER.comment("Minimum interval for cyberpsychosis events in ticks (default: 4800)").defineInRange("cyberpsychosisMinInterval", 4800L, 0L, Long.MAX_VALUE);
         CYBERPSYCHOSIS_MAX_INTERVAL = BUILDER.comment("Maximum interval for cyberpsychosis events in ticks (default: 168000)").defineInRange("cyberpsychosisMaxInterval", 168000L, 0L, Long.MAX_VALUE);
         CYBERPSYCHOSIS_SEVERITY_INCREASE_INTERVAL = BUILDER.comment("Interval in ticks for increasing cyberpsychosis severity (default: 1200)").defineInRange("cyberpsychosisSeverityIncreaseInterval", 1200L, 0L, Long.MAX_VALUE);
         CYBERPSYCHOSIS_TRADING_THRESHOLD = BUILDER.comment("The severity level threshold for villagers refusing to trade (default: 70)").defineInRange("cyberpsychosisTradingThreshold", 70, 0, 100);

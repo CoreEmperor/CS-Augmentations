@@ -10,26 +10,12 @@ public class CSAugUtil {
     public static boolean armsEnabled = true;
     public static boolean legsEnabled = true;
 
-    public static void onDeath(Player player) {
-        player.getCapability(OrganCap.ORGAN_DATA).ifPresent(cap -> {
-            if (CSCommonConfigs.CYBERNETICS_DROP_ON_DEATH.get()) {
-                for (int slotIndex = 0; slotIndex < cap.getSlots(); slotIndex++) {
-                    ItemStack organStack = cap.getStackInSlot(slotIndex);
-                    if (shouldDropOrgan(organStack)) {
-                        player.spawnAtLocation(organStack);
-                        cap.setStackInSlot(slotIndex, ItemStack.EMPTY);
-                    }
-                }
-            }
-        });
-    }
-
-    private static boolean shouldDropOrgan(ItemStack organStack) {
+    public static boolean shouldDropOrgan(ItemStack organStack) {
         return organStack.getItem() instanceof SimpleOrgan organ &&
                 !isNaturalOrgan(organ);
     }
 
-    private static boolean isNaturalOrgan(SimpleOrgan organ) {
+    public static boolean isNaturalOrgan(SimpleOrgan organ) {
         return organ.getTierName().equalsIgnoreCase(CSOrganTiers.NATURAL.name());
     }
 

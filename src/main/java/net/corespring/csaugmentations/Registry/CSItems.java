@@ -58,8 +58,11 @@ public class CSItems {
     public static final Supplier<Item> CYBER_ARM = ITEMS.register("cyber_arm", () -> new CyberArm(CSOrganTiers.CYBERNETIC, pOrganItem()));
     public static final Supplier<Item> CYBER_BRAIN = ITEMS.register("cyber_brain", () -> new CyberBrain(CSOrganTiers.CYBERNETIC, pOrganItem()));
     public static final Supplier<Item> CYBER_BRAIN_IMPLANT = ITEMS.register("cyber_brain_implant", () -> new CyberBrainImplantItem(pOrganItem()));
+    public static final Supplier<Item> CYBER_HEART = ITEMS.register("cyber_heart", () -> new CyberHeart(CSOrganTiers.CYBERNETIC, pOrganItem()));
+    public static final Supplier<Item> CYBER_KIDNEY = ITEMS.register("cyber_kidney", () -> new CyberKidney(CSOrganTiers.CYBERNETIC, pOrganItem()));
+    public static final Supplier<Item> CYBER_LIVER = ITEMS.register("cyber_liver", () -> new CyberLiver(CSOrganTiers.CYBERNETIC, pOrganItem()));
     public static final Supplier<Item> CYBER_RIBS = ITEMS.register("cyber_ribs", () -> new CyberRibs(CSOrganTiers.CYBERNETIC, pOrganItem()));
-    public static final Supplier<Item> CYBER_SPINE = ITEMS.register("cyber_spine", () -> new CyberSpine(CSOrganTiers.CYBERNETIC, pOrganItem()));
+    public static final Supplier<Item> CYBER_JUMPER = ITEMS.register("cyber_jumper", () -> new CyberJumper(CSOrganTiers.CYBERNETIC, pOrganItem(), 1.13, 1200, 4.0f));
     public static final Supplier<Item> CYBER_WARPER = ITEMS.register("cyber_warper", () -> new CyberWarper(CSOrganTiers.CYBERNETIC, pOrganItem(), 15, 1200, 4.0f, 40));
 
     public static final Supplier<Item> UNFINISHED_MORTAR = ITEMS.register("unfinished_mortar", () -> new Item(new Item.Properties()));
@@ -86,6 +89,7 @@ public class CSItems {
     public static final Supplier<Item> NEURAL_INTERFACE = ITEMS.register("neural_interface", () -> new Item(new Item.Properties()));
     public static final Supplier<Item> HYDRAULIC = ITEMS.register("hydraulic", () -> new Item(new Item.Properties()));
     public static final Supplier<Item> STEEL_WIRE = ITEMS.register("steel_wire", () -> new Item(new Item.Properties()));
+    public static final Supplier<Item> WARP_DRIVE = ITEMS.register("warp_drive", () -> new Item(new Item.Properties()));
     public static final Supplier<Item> FUSE = ITEMS.register("fuse", () -> new Item(new Item.Properties()));
     public static final Supplier<Item> TRANSFORMER = ITEMS.register("transformer", () -> new Item(new Item.Properties()));
     public static final Supplier<Item> POWER_CONTROL_MODULE = ITEMS.register("power_control_module", () -> new Item(new Item.Properties()));
@@ -101,6 +105,9 @@ public class CSItems {
     public static final Supplier<Item> CRUDE_BLOOD_PUMP = ITEMS.register("crude_blood_pump", () -> new Item(new Item.Properties()));
     public static final Supplier<Item> CRUDE_BLOOD_FILTER = ITEMS.register("crude_blood_filter", () -> new Item(new Item.Properties()));
     public static final Supplier<Item> CRUDE_OPTICAL_SENSOR = ITEMS.register("crude_optical_sensor", () -> new Item(new Item.Properties()));
+    public static final Supplier<Item> REFINED_BLOOD_PUMP = ITEMS.register("refined_blood_pump", () -> new Item(new Item.Properties()));
+    public static final Supplier<Item> REFINED_BLOOD_FILTER = ITEMS.register("refined_blood_filter", () -> new Item(new Item.Properties()));
+    public static final Supplier<Item> REFINED_OPTICAL_SENSOR = ITEMS.register("refined_optical_sensor", () -> new Item(new Item.Properties()));
     public static final Supplier<Item> ARTIFICIAL_MUSCLE = ITEMS.register("artificial_muscle", () -> new Item(new Item.Properties()));
     public static final Supplier<Item> ARTIFICIAL_TISSUE = ITEMS.register("artificial_tissue", () -> new Item(new Item.Properties()));
     public static final Supplier<Item> ARTIFICIAL_NERVES = ITEMS.register("artificial_nerves", () -> new Item(new Item.Properties()));

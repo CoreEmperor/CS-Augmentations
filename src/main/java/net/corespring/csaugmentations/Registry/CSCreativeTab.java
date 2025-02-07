@@ -60,8 +60,11 @@ public class CSCreativeTab {
                         pOutput.accept(CSItems.CYBER_ARM.get());
                         pOutput.accept(CSItems.CYBER_BRAIN.get());
                         pOutput.accept(CSItems.CYBER_BRAIN_IMPLANT.get());
+                        pOutput.accept(CSItems.CYBER_HEART.get());
+                        pOutput.accept(CSItems.CYBER_KIDNEY.get());
+                        pOutput.accept(CSItems.CYBER_LIVER.get());
                         pOutput.accept(CSItems.CYBER_RIBS.get());
-                        pOutput.accept(CSItems.CYBER_SPINE.get());
+                        pOutput.accept(CSItems.CYBER_JUMPER.get());
                         pOutput.accept(CSItems.CYBER_WARPER.get());
 
                         pOutput.accept(CSItems.UNFINISHED_MORTAR.get());
@@ -87,6 +90,7 @@ public class CSCreativeTab {
                         pOutput.accept(CSItems.NEURAL_INTERFACE.get());
                         pOutput.accept(CSItems.HYDRAULIC.get());
                         pOutput.accept(CSItems.STEEL_WIRE.get());
+                        pOutput.accept(CSItems.WARP_DRIVE.get());
                         pOutput.accept(CSItems.FUSE.get());
                         pOutput.accept(CSItems.TRANSFORMER.get());
                         pOutput.accept(CSItems.POWER_CONTROL_MODULE.get());
@@ -102,6 +106,9 @@ public class CSCreativeTab {
                         pOutput.accept(CSItems.CRUDE_BLOOD_PUMP.get());
                         pOutput.accept(CSItems.CRUDE_BLOOD_FILTER.get());
                         pOutput.accept(CSItems.CRUDE_OPTICAL_SENSOR.get());
+                        pOutput.accept(CSItems.REFINED_BLOOD_PUMP.get());
+                        pOutput.accept(CSItems.REFINED_BLOOD_FILTER.get());
+                        pOutput.accept(CSItems.REFINED_OPTICAL_SENSOR.get());
                         pOutput.accept(CSItems.ARTIFICIAL_MUSCLE.get());
                         pOutput.accept(CSItems.ARTIFICIAL_TISSUE.get());
                         pOutput.accept(CSItems.ARTIFICIAL_NERVES.get());

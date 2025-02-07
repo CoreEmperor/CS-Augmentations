@@ -204,7 +204,7 @@ public abstract class SimpleWarper extends SimpleSpine {
 
         if (!data.isTierAboveProsthetic(CSAugUtil.OrganSlots.BRAIN)) {
             player.displayClientMessage(
-                    Component.translatable("message.csaugmentations.warper.missing_brain")
+                    Component.translatable("message.csaugmentations.missing_brain")
                             .withStyle(ChatFormatting.RED),
                     true
             );
@@ -212,7 +212,7 @@ public abstract class SimpleWarper extends SimpleSpine {
 
         if (!data.isTierAboveProsthetic(CSAugUtil.OrganSlots.RIBS)) {
             player.displayClientMessage(
-                    Component.translatable("message.csaugmentations.warper.missing_ribs")
+                    Component.translatable("message.csaugmentations.missing_ribs")
                             .withStyle(ChatFormatting.RED),
                     true
             );
@@ -237,10 +237,18 @@ public abstract class SimpleWarper extends SimpleSpine {
         BlockPos blockPos = BlockPos.containing(pos);
         BlockPos belowPos = blockPos.below();
 
-        return level.getBlockState(belowPos).isSolid() &&
-                level.getBlockState(blockPos).isAir() &&
-                level.getBlockState(blockPos.above()).isAir() &&
-                level.noCollision(player, player.getBoundingBox().move(pos.subtract(player.position())));
+        if (!level.getBlockState(belowPos).isSolid() && !level.getBlockState(belowPos).canBeReplaced()) {
+            return false;
+        }
+
+        if (!level.getBlockState(blockPos).isAir() && !level.getBlockState(blockPos).canBeReplaced()) {
+            return false;
+        }
+        if (!level.getBlockState(blockPos.above()).isAir() && !level.getBlockState(blockPos.above()).canBeReplaced()) {
+            return false;
+        }
+
+        return level.noCollision(player, player.getBoundingBox().move(pos.subtract(player.position())));
     }
 
     private boolean hasRequiredCyberware(Player player) {

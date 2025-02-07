@@ -1,0 +1,59 @@
+{
+  "type": "csaugmentations:fabricating",
+  "group": "fabricating",
+  "ingredients": [
+    {
+      "ingredient": {
+        "tag": "forge:nuggets/silver"
+      },
+      "count": 16
+    },
+    {
+      "ingredient": {
+        "tag": "forge:wires/gold"
+      },
+      "count": 6
+    },
+    {
+      "ingredient": {
+        "item": "csaugmentations:refined_blood_pump"
+      },
+      "count": 1
+    },
+    {
+      "ingredient": {
+        "item": "csaugmentations:refined_augmented_muscle"
+      },
+      "count": 2
+    },
+    {
+      "ingredient": {
+        "item": "csaugmentations:refined_augmented_tissue"
+      },
+      "count": 2
+    },
+    {
+      "ingredient": {
+        "item": "csaugmentations:refined_logic_component"
+      },
+      "count": 2
+    },
+    {
+      "ingredient": {
+        "item": "csaugmentations:power_control_module"
+      },
+      "count": 1
+    },
+    {
+      "ingredient": {
+        "item": "csaugmentations:refined_plastic"
+      },
+      "count": 2
+    }
+  ],
+  "result": {
+    "item": "csaugmentations:cyber_heart",
+    "count": 1
+  },
+  "craftingTime": 24000
+}

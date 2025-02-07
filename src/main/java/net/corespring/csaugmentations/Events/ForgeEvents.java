@@ -21,12 +21,15 @@ import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.common.capabilities.RegisterCapabilitiesEvent;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
+import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.minecraftforge.event.entity.living.LivingEntityUseItemEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
@@ -124,11 +127,31 @@ public class ForgeEvents {
         }
 
         @SubscribeEvent
-        public static void onPlayerDeath(LivingDeathEvent event) {
+        public static void onPlayerDeath(LivingDropsEvent event) {
             if (event.getEntity() instanceof Player player) {
-                CSAugUtil.onDeath(player);
+                    player.getCapability(OrganCap.ORGAN_DATA).ifPresent(cap -> {
+                        if (CSCommonConfigs.CYBERNETICS_DROP_ON_DEATH.get()) {
+
+                            List<ItemStack> organDrops = new ArrayList<>();
+
+                            for (int slotIndex = 0; slotIndex < cap.getSlots(); slotIndex++) {
+                                ItemStack organStack = cap.getStackInSlot(slotIndex);
+                                if (CSAugUtil.shouldDropOrgan(organStack)) {
+                                    organDrops.add(organStack.copy());
+                                    cap.setStackInSlot(slotIndex, ItemStack.EMPTY);
+                                }
+                            }
+
+                            Level level = player.level();
+                            for (ItemStack drop : organDrops) {
+                                ItemEntity itemEntity = new ItemEntity(level, player.getX(), player.getY(), player.getZ(), drop);
+                                event.getDrops().add(itemEntity);
+                            }
+                        }
+                    });
             }
         }
+
 
         @SubscribeEvent
         public static void onPlayerRespawn(PlayerEvent.PlayerRespawnEvent event) {
