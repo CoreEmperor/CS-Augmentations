@@ -60,7 +60,7 @@ public class ClientEvents {
                 LocalPlayer player = Minecraft.getInstance().player;
                 if (player == null) return;
 
-                if (CSAugUtil.hasCyberEyes(player) && CSAugUtil.nvgEnabled && !CSAugUtil.hasCyberbrain(player)) {
+                if (CSAugUtil.hasCyberEyes(player) && !CSAugUtil.nvgEnabled && !CSAugUtil.hasCyberbrain(player)) {
                     CSAugUtil.nvgEnabled = true;
                 } else if(!CSAugUtil.hasCyberEyes(player) && CSAugUtil.nvgEnabled) {
                     CSAugUtil.nvgEnabled = false;

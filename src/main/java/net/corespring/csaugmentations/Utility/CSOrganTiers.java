@@ -6,8 +6,8 @@ import java.util.Map;
 public enum CSOrganTiers implements IOrganTiers {
     REMOVED(0, 2.0, 0.0, 0.0, 0.0, 0.0, 0, 0.0, 0.0, 0.0, 0.0, -5, -20.0),
     NATURAL(1, 20.0, 0.0500000007451, 0.0, 0.5, 2.0, 0, 0.5, 1.0, 0.0, 0.0, 0, 0.0),
-    PROSTHETIC(2, 24.0, 0.0600000007451, 0.05, 1.0, 2.5, 60, 0.65, 1.25, 4.0, 1.0, 2, 0.2),
-    CYBERNETIC(3, 32.0, 0.0700000007451, 0.1, 2.0, 3.0, 120, 0.75, 1.5, 8.0, 2.0, 3, 0.6);
+    PROSTHETIC(2, 24.0, 0.0600000007451, 0.10, 1.0, 2.5, 60, 0.65, 1.25, 4.0, 1.0, 2, 0.2),
+    CYBERNETIC(3, 32.0, 0.0700000007451, 0.40, 2.0, 3.0, 120, 0.75, 1.5, 8.0, 2.0, 3, 0.6);
 
     private final int tierLevel;
     private final Map<CSOrganTiers.Attribute, Double> doubleAttributes = new EnumMap<>(CSOrganTiers.Attribute.class);
