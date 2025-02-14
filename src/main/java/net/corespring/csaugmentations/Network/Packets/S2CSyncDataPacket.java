@@ -46,7 +46,7 @@ public class S2CSyncDataPacket {
                     handleCapabilityUpdate(player);
                 }
             } else {
-                ClientEvents.ClientModBusEvents.updateClientCapability(this);
+                ClientEvents.ClientModEvents.updateClientCapability(this);
             }
         });
         ctx.get().setPacketHandled(true);

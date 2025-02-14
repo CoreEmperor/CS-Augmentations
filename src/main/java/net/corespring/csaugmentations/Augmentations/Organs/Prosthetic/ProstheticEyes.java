@@ -13,7 +13,7 @@ public class ProstheticEyes extends SimpleEyes {
 
     @Override
     public int getOrganValue() {
-        return 6;
+        return 9;
     }
 
     @Override

@@ -58,6 +58,7 @@ public class CSItems {
     public static final Supplier<Item> CYBER_ARM = ITEMS.register("cyber_arm", () -> new CyberArm(CSOrganTiers.CYBERNETIC, pOrganItem()));
     public static final Supplier<Item> CYBER_BRAIN = ITEMS.register("cyber_brain", () -> new CyberBrain(CSOrganTiers.CYBERNETIC, pOrganItem()));
     public static final Supplier<Item> CYBER_BRAIN_IMPLANT = ITEMS.register("cyber_brain_implant", () -> new CyberBrainImplantItem(pOrganItem()));
+    public static final Supplier<Item> CYBER_EYES = ITEMS.register("cyber_eyes", () -> new CyberEyes(CSOrganTiers.CYBERNETIC, pOrganItem()));
     public static final Supplier<Item> CYBER_HEART = ITEMS.register("cyber_heart", () -> new CyberHeart(CSOrganTiers.CYBERNETIC, pOrganItem()));
     public static final Supplier<Item> CYBER_KIDNEY = ITEMS.register("cyber_kidney", () -> new CyberKidney(CSOrganTiers.CYBERNETIC, pOrganItem()));
     public static final Supplier<Item> CYBER_LIVER = ITEMS.register("cyber_liver", () -> new CyberLiver(CSOrganTiers.CYBERNETIC, pOrganItem()));
@@ -72,6 +73,7 @@ public class CSItems {
     public static final Supplier<Item> CRUDE_PETRI_DISH = ITEMS.register("crude_petri_dish", () -> new Item(new Item.Properties()));
     public static final Supplier<Item> REFINED_PETRI_DISH = ITEMS.register("refined_petri_dish", () -> new Item(new Item.Properties()));
 
+    public static final Supplier<Item> SYRINGE_GUN = ITEMS.register("syringe_gun", () -> new SyringeGunItem(pOrganItem()));
     public static final Supplier<Item> NEURAL_ANALYZER = ITEMS.register("neural_analyzer", () -> new NeuralAnalyzerItem(new Item.Properties()));
     public static final Supplier<Item> SCALPEL = ITEMS.register("scalpel", () -> new Scalpel(new Item.Properties().stacksTo(1).durability(10)));
     public static final Supplier<Item> HEMOSTAT = ITEMS.register("hemostat", () -> new Hemostat(new Item.Properties().stacksTo(1).durability(10)));

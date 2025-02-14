@@ -1,6 +1,5 @@
 package net.corespring.csaugmentations.Client.Menus;
 
-import net.corespring.csaugmentations.Block.BlockEntities.ChemistrySlots;
 import net.corespring.csaugmentations.Block.BlockEntities.FabricatorBlockEntity;
 import net.corespring.csaugmentations.Block.BlockEntities.FabricatorSlots;
 import net.corespring.csaugmentations.Registry.CSBlocks;
@@ -11,7 +10,6 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
@@ -76,19 +74,16 @@ public class FabricatorMenu extends AbstractContainerMenu {
                 if (!this.moveItemStackTo(itemstack1, 10, 46, true)) {
                     return ItemStack.EMPTY;
                 }
-            }
-            else if (index == 9) {
+            } else if (index == 9) {
                 if (!this.moveItemStackTo(itemstack1, 10, 46, true)) {
                     return ItemStack.EMPTY;
                 }
-            }
-            else {
+            } else {
                 if (isBlueprint(itemstack1)) {
                     if (!this.moveItemStackTo(itemstack1, 8, 9, false)) {
                         return ItemStack.EMPTY;
                     }
-                }
-                else if (!this.moveItemStackTo(itemstack1, 0, 8, false)) {
+                } else if (!this.moveItemStackTo(itemstack1, 0, 8, false)) {
                     return ItemStack.EMPTY;
                 }
             }

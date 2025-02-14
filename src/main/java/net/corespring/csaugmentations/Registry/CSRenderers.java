@@ -17,6 +17,7 @@ public class CSRenderers {
         MenuScreens.register(CSMenu.AUGMENT_MENU.get(), AugmentScreen::new);
         MenuScreens.register(CSMenu.CHEMISTRY_MENU.get(), ChemistryScreen::new);
         MenuScreens.register(CSMenu.FABRICATOR_MENU.get(), FabricatorScreen::new);
+        MenuScreens.register(CSMenu.SYRINGE_MENU.get(), SyringeGunScreen::new);
     }
 
 }

@@ -23,38 +23,38 @@ public class NeuralAnalyzerItem extends Item {
     }
 
     @Override
-    public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
-        ItemStack stack = player.getItemInHand(hand);
-        player.startUsingItem(hand);
+    public InteractionResultHolder<ItemStack> use(Level pLevel, Player pPlayer, InteractionHand pUsedHand) {
+        ItemStack stack = pPlayer.getItemInHand(pUsedHand);
+        pPlayer.startUsingItem(pUsedHand);
         return InteractionResultHolder.consume(stack);
     }
 
     @Override
-    public ItemStack finishUsingItem(ItemStack stack, Level level, LivingEntity entity) {
-        if (!level.isClientSide() && entity instanceof Player player) {
+    public ItemStack finishUsingItem(ItemStack pStack, Level pLevel, LivingEntity pLivingEntity) {
+        if (!pLevel.isClientSide() && pLivingEntity instanceof Player player) {
             OrganCap.OrganData organData = OrganCap.getOrganData(player);
 
             int humanityLevel = organData.getHumanityLimit();
             int totalCyberwareValue = organData.calculateTotalCyberwareValue();
 
-            player.sendSystemMessage(Component.translatable("neural_analyzer.csaugmentations.self_scan_humanity", humanityLevel));
-            player.sendSystemMessage(Component.translatable("neural_analyzer.csaugmentations.self_scan_cyberware", totalCyberwareValue));
+            player.sendSystemMessage(Component.translatable("message.csaugmentations.self_scan_humanity", humanityLevel));
+            player.sendSystemMessage(Component.translatable("message.csaugmentations.self_scan_cyberware", totalCyberwareValue));
         }
 
-        return super.finishUsingItem(stack, level, entity);
+        return super.finishUsingItem(pStack, pLevel, pLivingEntity);
     }
 
     @Override
-    public InteractionResult interactLivingEntity(ItemStack stack, Player player, LivingEntity target, InteractionHand hand) {
-        if (!player.level().isClientSide() && target instanceof Player) {
-            OrganCap.OrganData targetData = OrganCap.getOrganData((Player) target);
+    public InteractionResult interactLivingEntity(ItemStack pStack, Player pPlayer, LivingEntity pInteractionTarget, InteractionHand pUsedHand) {
+        if (!pPlayer.level().isClientSide() && pInteractionTarget instanceof Player) {
+            OrganCap.OrganData targetData = OrganCap.getOrganData((Player) pInteractionTarget);
 
             int targetHumanityLevel = targetData.getHumanityLimit();
             int targetCyberwareValue = targetData.calculateTotalCyberwareValue();
 
-            player.sendSystemMessage(Component.translatable("neural_analyzer.csaugmentations.player_scan", target.getName().getString()));
-            player.sendSystemMessage(Component.translatable("neural_analyzer.csaugmentations.player_scan_humanity", targetHumanityLevel));
-            player.sendSystemMessage(Component.translatable("neural_analyzer.csaugmentations.player_scan_cyberware", targetCyberwareValue));
+            pPlayer.sendSystemMessage(Component.translatable("message.csaugmentations.player_scan", pInteractionTarget.getName().getString()));
+            pPlayer.sendSystemMessage(Component.translatable("message.csaugmentations.player_scan_humanity", targetHumanityLevel));
+            pPlayer.sendSystemMessage(Component.translatable("message.csaugmentations.player_scan_cyberware", targetCyberwareValue));
 
             return InteractionResult.SUCCESS;
         }
@@ -63,9 +63,9 @@ public class NeuralAnalyzerItem extends Item {
     }
 
     @Override
-    public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> tooltip, TooltipFlag flag) {
-        super.appendHoverText(stack, level, tooltip, flag);
-        tooltip.add(Component.translatable("tooltip.csaugmentations.neural_analyzer"));
+    public void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
+        super.appendHoverText(pStack, pLevel, pTooltipComponents, pIsAdvanced);
+        pTooltipComponents.add(Component.translatable("tooltip.csaugmentations.neural_analyzer"));
     }
 
     @Override

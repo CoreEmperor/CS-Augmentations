@@ -24,6 +24,9 @@ import org.jetbrains.annotations.Nullable;
 import java.util.List;
 
 public class CyberBrainImplantItem extends Item {
+    private Player pPlayer;
+    private OrganCap.OrganData organData;
+    private ItemStack brainStack;
 
     public CyberBrainImplantItem(Properties properties) {
         super(properties);
@@ -37,20 +40,30 @@ public class CyberBrainImplantItem extends Item {
         player.addEffect(new MobEffectInstance(MobEffects.DIG_SLOWDOWN, 400, 0, false, false, true));
     }
 
+    private void playerData(Player player) {
+        this.pPlayer = player;
+        this.organData = OrganCap.getOrganData(pPlayer);
+        this.brainStack = organData.getStackInSlot(CSAugUtil.OrganSlots.BRAIN);
+    }
+
     @Override
     public InteractionResultHolder<ItemStack> use(Level pLevel, Player pPlayer, InteractionHand pUsedHand) {
         ItemStack itemStack = pPlayer.getItemInHand(pUsedHand);
-        pPlayer.startUsingItem(pUsedHand);
-        return InteractionResultHolder.consume(itemStack);
+        playerData(pPlayer);
+        
+        if (implantPrerequisites(pPlayer, brainStack)) {
+            pPlayer.startUsingItem(pUsedHand);
+            return InteractionResultHolder.consume(itemStack);
+        }
+        return InteractionResultHolder.fail(itemStack);
     }
 
     @Override
     public ItemStack finishUsingItem(ItemStack pStack, Level pLevel, LivingEntity pLivingEntity) {
         if (!pLevel.isClientSide && pLivingEntity instanceof Player player) {
-            OrganCap.OrganData organData = OrganCap.getOrganData(player);
-            ItemStack brainStack = organData.getStackInSlot(CSAugUtil.OrganSlots.BRAIN);
+            playerData(pPlayer);
 
-            if (brainStack.getItem() == CSItems.NATURAL_BRAIN.get() && player.hasEffect(CSEffects.INCISION.get())) {
+            if (implantPrerequisites(player, brainStack)) {
                 organData.setStackInSlot(CSAugUtil.OrganSlots.BRAIN, new ItemStack(CSItems.CYBER_BRAIN.get()));
                 organData.updateOrganData();
 
@@ -63,6 +76,10 @@ public class CyberBrainImplantItem extends Item {
             pLevel.playSound(null, pLivingEntity.getBlockX(), pLivingEntity.getBlockY(), pLivingEntity.getBlockZ(), SoundEvents.SLIME_ATTACK, SoundSource.PLAYERS, 0.7F, 0.2F);
         }
         return super.finishUsingItem(pStack, pLevel, pLivingEntity);
+    }
+
+    private static boolean implantPrerequisites(Player player, ItemStack brainStack) {
+        return brainStack.getItem() == CSItems.NATURAL_BRAIN.get() && player.hasEffect(CSEffects.INCISION.get());
     }
 
     @Override

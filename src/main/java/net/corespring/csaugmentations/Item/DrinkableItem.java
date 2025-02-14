@@ -27,7 +27,6 @@ public abstract class DrinkableItem extends Item {
     @Override
     public abstract ItemStack finishUsingItem(ItemStack pStack, Level pLevel, LivingEntity pLivingEntity);
 
-
     @NotNull
     public UseAnim getUseAnimation(ItemStack pStack) {
         return UseAnim.DRINK;

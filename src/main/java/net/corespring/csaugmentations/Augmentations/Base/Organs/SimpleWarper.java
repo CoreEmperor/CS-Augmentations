@@ -29,6 +29,7 @@ public abstract class SimpleWarper extends SimpleSpine {
     private final long cooldown;
     private final float exhaustion;
     private final int chargeTime;
+    private boolean hasCyberEyes;
 
     public SimpleWarper(IOrganTiers pTier, Properties pProperties, int pTeleportDistance, long pCooldown, float pExhaustion, int pChargeTime) {
         super(pTier, pProperties);
@@ -185,6 +186,10 @@ public abstract class SimpleWarper extends SimpleSpine {
     }
 
     private void sendCooldownMessage(ServerPlayer player) {
+        if (!checkCyberEyes(player)) {
+            return;
+        }
+
         long lastUsed = player.getPersistentData().getLong("WarperLastUsed");
         long remainingCooldown = cooldown - (System.currentTimeMillis() - lastUsed);
 
@@ -192,27 +197,6 @@ public abstract class SimpleWarper extends SimpleSpine {
             player.displayClientMessage(
                     Component.translatable("message.csaugmentations.warper.cooldown")
                             .append(" " + (remainingCooldown / 1000) + "s")
-                            .withStyle(ChatFormatting.RED),
-                    true
-            );
-        }
-    }
-
-    private void sendMissingCyberwareMessage(ServerPlayer player) {
-        OrganCap.OrganData data = OrganCap.getOrganData(player);
-        if (data == null) return;
-
-        if (!data.isTierAboveProsthetic(CSAugUtil.OrganSlots.BRAIN)) {
-            player.displayClientMessage(
-                    Component.translatable("message.csaugmentations.missing_brain")
-                            .withStyle(ChatFormatting.RED),
-                    true
-            );
-        }
-
-        if (!data.isTierAboveProsthetic(CSAugUtil.OrganSlots.RIBS)) {
-            player.displayClientMessage(
-                    Component.translatable("message.csaugmentations.missing_ribs")
                             .withStyle(ChatFormatting.RED),
                     true
             );
@@ -251,11 +235,48 @@ public abstract class SimpleWarper extends SimpleSpine {
         return level.noCollision(player, player.getBoundingBox().move(pos.subtract(player.position())));
     }
 
+    private void sendMissingCyberwareMessage(ServerPlayer player) {
+        OrganCap.OrganData data = OrganCap.getOrganData(player);
+        if (data == null) return;
+
+        if (!hasCyberEyes) {
+            return;
+        }
+
+        boolean hasCyberbrain = !data.getStackInSlot(CSAugUtil.OrganSlots.BRAIN).isEmpty() &&
+                data.isTierAboveProsthetic(CSAugUtil.OrganSlots.BRAIN);
+
+        if (!hasCyberbrain) {
+            player.displayClientMessage(
+                    Component.translatable("message.csaugmentations.missing_brain")
+                            .withStyle(ChatFormatting.RED),
+                    true
+            );
+        }
+        else if (!data.isTierAboveProsthetic(CSAugUtil.OrganSlots.RIBS)) {
+            player.displayClientMessage(
+                    Component.translatable("message.csaugmentations.missing_ribs")
+                            .withStyle(ChatFormatting.RED),
+                    true
+            );
+        }
+    }
+
     private boolean hasRequiredCyberware(Player player) {
         OrganCap.OrganData data = OrganCap.getOrganData(player);
         if (data == null) return false;
 
         return data.isTierAboveProsthetic(CSAugUtil.OrganSlots.BRAIN) &&
                 data.isTierAboveProsthetic(CSAugUtil.OrganSlots.RIBS);
+    }
+
+    private boolean checkCyberEyes(ServerPlayer player) {
+        OrganCap.OrganData data = OrganCap.getOrganData(player);
+        if (data == null) return false;
+
+        hasCyberEyes = !data.getStackInSlot(CSAugUtil.OrganSlots.EYES).isEmpty() &&
+                data.isTierAboveProsthetic(CSAugUtil.OrganSlots.EYES);
+
+        return hasCyberEyes;
     }
 }

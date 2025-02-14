@@ -22,6 +22,7 @@ public abstract class SimpleJumper extends SimpleSpine {
     private final double jumpHeight;
     private final long cooldown;
     private final float exhaustion;
+    private boolean hasCyberEyes;
 
     public SimpleJumper(IOrganTiers pTier, Properties pProperties, double pJumpHeight, long pCooldown, float pExhaustion) {
         super(pTier, pProperties);
@@ -72,12 +73,8 @@ public abstract class SimpleJumper extends SimpleSpine {
         if (player.onGround()) {
             Vec3 motion = player.getDeltaMovement();
 
-            System.out.println("Before Jump - Y Position: " + player.getY() + ", Velocity Y: " + motion.y);
-
             player.setDeltaMovement(motion.x, jumpHeight, motion.z);
             player.hurtMarked = true;
-
-            System.out.println("After Jump - Y Position: " + player.getY() + ", Velocity Y: " + player.getDeltaMovement().y);
 
             player.level().playSound(null, player.getX(), player.getY(), player.getZ(),
                     SoundEvents.ENDER_DRAGON_FLAP, SoundSource.PLAYERS, 1.0F, 1.0F);
@@ -85,6 +82,9 @@ public abstract class SimpleJumper extends SimpleSpine {
             applyCooldown(player);
             applyExhaustion(player);
         } else {
+            if (!hasCyberEyes) {
+                return;
+            }
             player.displayClientMessage(
                     Component.translatable("message.csaugmentations.jumper.not_on_ground")
                             .withStyle(ChatFormatting.RED),
@@ -103,6 +103,10 @@ public abstract class SimpleJumper extends SimpleSpine {
     }
 
     private void sendCooldownMessage(ServerPlayer player) {
+        if (!hasCyberEyes) {
+            return;
+        }
+
         long lastUsed = player.getPersistentData().getLong("JumperLastUsed");
         long remainingCooldown = cooldown - (System.currentTimeMillis() - lastUsed);
 
@@ -120,15 +124,21 @@ public abstract class SimpleJumper extends SimpleSpine {
         OrganCap.OrganData data = OrganCap.getOrganData(player);
         if (data == null) return;
 
-        if (!data.isTierAboveProsthetic(CSAugUtil.OrganSlots.BRAIN)) {
+        if (!hasCyberEyes) {
+            return;
+        }
+
+        boolean hasCyberbrain = !data.getStackInSlot(CSAugUtil.OrganSlots.BRAIN).isEmpty() &&
+                data.isTierAboveProsthetic(CSAugUtil.OrganSlots.BRAIN);
+
+        if (!hasCyberbrain) {
             player.displayClientMessage(
                     Component.translatable("message.csaugmentations.missing_brain")
                             .withStyle(ChatFormatting.RED),
                     true
             );
         }
-
-        if (!data.isTierAboveProsthetic(CSAugUtil.OrganSlots.RIBS)) {
+        else if (!data.isTierAboveProsthetic(CSAugUtil.OrganSlots.RIBS)) {
             player.displayClientMessage(
                     Component.translatable("message.csaugmentations.missing_ribs")
                             .withStyle(ChatFormatting.RED),
@@ -143,6 +153,16 @@ public abstract class SimpleJumper extends SimpleSpine {
 
         return data.isTierAboveProsthetic(CSAugUtil.OrganSlots.BRAIN) &&
                 data.isTierAboveProsthetic(CSAugUtil.OrganSlots.RIBS);
+    }
+
+    private boolean checkCyberEyes(ServerPlayer player) {
+        OrganCap.OrganData data = OrganCap.getOrganData(player);
+        if (data == null) return false;
+
+        hasCyberEyes = !data.getStackInSlot(CSAugUtil.OrganSlots.EYES).isEmpty() &&
+                data.isTierAboveProsthetic(CSAugUtil.OrganSlots.EYES);
+
+        return hasCyberEyes;
     }
 
 }

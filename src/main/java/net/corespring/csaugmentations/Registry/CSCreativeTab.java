@@ -60,6 +60,7 @@ public class CSCreativeTab {
                         pOutput.accept(CSItems.CYBER_ARM.get());
                         pOutput.accept(CSItems.CYBER_BRAIN.get());
                         pOutput.accept(CSItems.CYBER_BRAIN_IMPLANT.get());
+                        pOutput.accept(CSItems.CYBER_EYES.get());
                         pOutput.accept(CSItems.CYBER_HEART.get());
                         pOutput.accept(CSItems.CYBER_KIDNEY.get());
                         pOutput.accept(CSItems.CYBER_LIVER.get());
@@ -74,6 +75,7 @@ public class CSCreativeTab {
                         pOutput.accept(CSItems.CRUDE_PETRI_DISH.get());
                         pOutput.accept(CSItems.REFINED_PETRI_DISH.get());
 
+                        pOutput.accept(CSItems.SYRINGE_GUN.get());
                         pOutput.accept(CSItems.NEURAL_ANALYZER.get());
                         pOutput.accept(CSItems.SCALPEL.get());
                         pOutput.accept(CSItems.HEMOSTAT.get());

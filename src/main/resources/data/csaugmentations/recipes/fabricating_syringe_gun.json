@@ -1,0 +1,35 @@
+{
+  "type": "csaugmentations:fabricating",
+  "group": "fabricating",
+  "ingredients": [
+    {
+      "ingredient": {
+        "tag": "forge:nuggets/silver"
+      },
+      "count": 6
+    },
+    {
+      "ingredient": {
+        "tag": "forge:plates/steel"
+      },
+      "count": 2
+    },
+    {
+      "ingredient": {
+        "tag": "forge:ingots/steel"
+      },
+      "count": 2
+    },
+    {
+      "ingredient": {
+        "item": "cslibrary:beaker"
+      },
+      "count": 1
+    }
+  ],
+  "result": {
+    "item": "csaugmentations:syringe_gun",
+    "count": 1
+  },
+  "craftingTime": 48000
+}

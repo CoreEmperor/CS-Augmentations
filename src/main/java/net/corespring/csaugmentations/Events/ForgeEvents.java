@@ -1,6 +1,7 @@
 package net.corespring.csaugmentations.Events;
 
 import com.google.common.util.concurrent.AtomicDouble;
+import com.mojang.logging.LogUtils;
 import net.corespring.csaugmentations.Augmentations.Base.IMixinMobEffectInstance;
 import net.corespring.csaugmentations.Augmentations.Base.IOrganTickable;
 import net.corespring.csaugmentations.Augmentations.Base.SimpleOrgan;
@@ -9,12 +10,15 @@ import net.corespring.csaugmentations.CSCommonConfigs;
 import net.corespring.csaugmentations.Capability.Cyberpsychosis;
 import net.corespring.csaugmentations.Capability.OrganCap;
 import net.corespring.csaugmentations.Capability.OrganCapProvider;
+import net.corespring.csaugmentations.Capability.SyringeGunCap;
+import net.corespring.csaugmentations.Item.SyringeGunItem;
 import net.corespring.csaugmentations.Utility.CSOrganTiers;
 import net.corespring.csaugmentations.Network.CSNetwork;
 import net.corespring.csaugmentations.Network.Packets.S2CSyncDataPacket;
 import net.corespring.csaugmentations.Registry.CSEffects;
 import net.corespring.csaugmentations.Utility.CSAugUtil;
 import net.corespring.csaugmentations.Utility.IOrganTiers;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.damagesource.DamageTypes;
@@ -28,7 +32,6 @@ import net.minecraft.world.level.Level;
 import net.minecraftforge.common.capabilities.RegisterCapabilitiesEvent;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.TickEvent;
-import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.minecraftforge.event.entity.living.LivingEntityUseItemEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
@@ -36,6 +39,7 @@ import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.network.PacketDistributor;
+import org.slf4j.Logger;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -44,6 +48,7 @@ import java.util.List;
 public class ForgeEvents {
     @Mod.EventBusSubscriber(modid = CSAugmentations.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
     public static class InventoryEvents {
+        private static final Logger LOGGER = LogUtils.getLogger();
 
         @SubscribeEvent
         public static void playerInventory(TickEvent.PlayerTickEvent event) {
@@ -344,8 +349,17 @@ public class ForgeEvents {
             }
 
             @SubscribeEvent
+            public static void attachItemCapabilities(AttachCapabilitiesEvent<ItemStack> event) {
+                if(event.getObject().getItem() instanceof SyringeGunItem) {
+                    event.addCapability(new ResourceLocation(CSAugmentations.MOD_ID, "syringe_data"), new SyringeGunCap.Provider());
+                }
+            }
+
+            @SubscribeEvent
             public static void registerCapabilities(RegisterCapabilitiesEvent event) {
                 event.register(OrganCap.OrganData.class);
+                event.register(SyringeGunCap.SyringeData.class);
+                LOGGER.info(String.valueOf(Component.literal("[CS] Augmentations Capabilities Registered")));
             }
         }
     }

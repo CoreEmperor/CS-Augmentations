@@ -14,42 +14,42 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 public class ChemistryScreen extends AbstractContainerScreen<ChemistryMenu> {
     private static final ResourceLocation BG_LOCATION = new ResourceLocation(CSAugmentations.MOD_ID, "textures/gui/chemistry_gui.png");
 
-    public ChemistryScreen(ChemistryMenu menu, Inventory playerInventory, Component title) {
-        super(menu, playerInventory, title);
+    public ChemistryScreen(ChemistryMenu pMenu, Inventory pPlayerInventory, Component pTitle) {
+        super(pMenu, pPlayerInventory, pTitle);
         this.imageWidth = 176;
         this.imageHeight = 166;
     }
 
     @Override
-    protected void renderBg(GuiGraphics guiGraphics, float partialTicks, int mouseX, int mouseY) {
+    protected void renderBg(GuiGraphics pGuiGraphics, float partialTicks, int mouseX, int mouseY) {
         int x = this.leftPos;
         int y = this.topPos;
-        guiGraphics.blit(BG_LOCATION, x, y, 0, 0, this.imageWidth, this.imageHeight);
+        pGuiGraphics.blit(BG_LOCATION, x, y, 0, 0, this.imageWidth, this.imageHeight);
 
         int fuel = this.menu.getScaledFuelProgress();
         if (fuel > 0) {
             int height = 24;
-            guiGraphics.blit(BG_LOCATION, x + 151, y + 24 + (height - fuel), 176, (height - fuel), 14, fuel);
+            pGuiGraphics.blit(BG_LOCATION, x + 151, y + 24 + (height - fuel), 176, (height - fuel), 14, fuel);
         }
 
         if (this.menu.isCrafting()) {
             int progress = this.menu.getScaledProgress();
-            guiGraphics.blit(BG_LOCATION, x + 76, y + 24, 176, 26, progress, 24);
+            pGuiGraphics.blit(BG_LOCATION, x + 76, y + 24, 176, 26, progress, 24);
         }
     }
 
 
     @Override
-    public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTicks) {
-        this.renderBackground(guiGraphics);
-        this.renderBg(guiGraphics, partialTicks, mouseX, mouseY);
-        super.render(guiGraphics, mouseX, mouseY, partialTicks);
-        this.renderTooltip(guiGraphics, mouseX, mouseY);
+    public void render(GuiGraphics pGuiGraphics, int mouseX, int mouseY, float partialTicks) {
+        this.renderBackground(pGuiGraphics);
+        this.renderBg(pGuiGraphics, partialTicks, mouseX, mouseY);
+        super.render(pGuiGraphics, mouseX, mouseY, partialTicks);
+        this.renderTooltip(pGuiGraphics, mouseX, mouseY);
     }
 
     @Override
-    protected void renderTooltip(GuiGraphics guiGraphics, int mouseX, int mouseY) {
-        super.renderTooltip(guiGraphics, mouseX, mouseY);
+    protected void renderTooltip(GuiGraphics pGuiGraphics, int mouseX, int mouseY) {
+        super.renderTooltip(pGuiGraphics, mouseX, mouseY);
 
         int fuelBarX = this.leftPos + 152;
         int fuelBarY = this.topPos + 24;
@@ -61,7 +61,7 @@ public class ChemistryScreen extends AbstractContainerScreen<ChemistryMenu> {
             int currentFuel = this.menu.getFuel();
             int maxFuel = this.menu.getMaxFuel();
 
-            guiGraphics.renderTooltip(this.font, Component.literal("Fuel: " + currentFuel + " / " + maxFuel), mouseX, mouseY);
+            pGuiGraphics.renderTooltip(this.font, Component.literal("Fuel: " + currentFuel + " / " + maxFuel), mouseX, mouseY);
         }
     }
 

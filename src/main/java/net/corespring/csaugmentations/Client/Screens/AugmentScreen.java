@@ -21,23 +21,23 @@ public class AugmentScreen extends AbstractContainerScreen<AugmentMenu> {
     }
 
     @Override
-    protected void renderBg(GuiGraphics guiGraphics, float partialTicks, int mouseX, int mouseY) {
+    protected void renderBg(GuiGraphics pGuiGraphics, float partialTicks, int mouseX, int mouseY) {
         int x = this.leftPos;
         int y = this.topPos;
-        guiGraphics.blit(BG_LOCATION, x, y, 0, 0, this.imageWidth, this.imageHeight);
+        pGuiGraphics.blit(BG_LOCATION, x, y, 0, 0, this.imageWidth, this.imageHeight);
     }
 
     @Override
-    public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTicks) {
-        this.renderBackground(guiGraphics);
-        this.renderBg(guiGraphics, partialTicks, mouseX, mouseY);
-        super.render(guiGraphics, mouseX, mouseY, partialTicks);
-        this.renderTooltip(guiGraphics, mouseX, mouseY);
+    public void render(GuiGraphics pGuiGraphics, int mouseX, int mouseY, float partialTicks) {
+        this.renderBackground(pGuiGraphics);
+        this.renderBg(pGuiGraphics, partialTicks, mouseX, mouseY);
+        super.render(pGuiGraphics, mouseX, mouseY, partialTicks);
+        this.renderTooltip(pGuiGraphics, mouseX, mouseY);
     }
 
     @Override
-    protected void renderLabels(GuiGraphics guiGraphics, int mouseX, int mouseY) {
-        guiGraphics.drawString(this.font, this.title.getString(), 12, 6, 0xbda4e0, true);
-        guiGraphics.drawString(this.font, this.playerInventoryTitle.getString(), 8, this.imageHeight - 96 + 2, 0xbda4e0, true);
+    protected void renderLabels(GuiGraphics pGuiGraphics, int mouseX, int mouseY) {
+        pGuiGraphics.drawString(this.font, this.title.getString(), 12, 6, 0xbda4e0, true);
+        pGuiGraphics.drawString(this.font, this.playerInventoryTitle.getString(), 8, this.imageHeight - 96 + 2, 0xbda4e0, true);
     }
 }

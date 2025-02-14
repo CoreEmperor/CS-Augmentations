@@ -14,7 +14,6 @@ import net.minecraft.world.entity.animal.Wolf;
 import net.minecraft.world.entity.monster.EnderMan;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.phys.Vec3;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -166,16 +165,7 @@ public class Cyberpsychosis {
 
     private void schizophrenia(ServerPlayer player) {
         SoundEvent sound = PHANTOM_SOUNDS.get(RANDOM.nextInt(PHANTOM_SOUNDS.size()));
-        Vec3 pos = randomOffsetPosition(player.position());
-        player.level().playSound(player, pos.x, pos.y, pos.z, sound, SoundSource.AMBIENT, 1.0F, 1.0F);
-    }
-
-    private Vec3 randomOffsetPosition(Vec3 original) {
-        return original.add(
-                RANDOM.nextDouble() * 10 - 5,
-                0,
-                RANDOM.nextDouble() * 10 - 5
-        );
+        player.playNotifySound(sound, SoundSource.AMBIENT, 1.0F, 1.0F);
     }
 
     private void actionbarMessages(ServerPlayer player) {
@@ -228,13 +218,13 @@ public class Cyberpsychosis {
             String culpritName = culprit instanceof Player ?
                     culprit.getDisplayName().getString() :
                     culprit.getName().getString();
-            Component message = Component.translatable("cyberpsychosis.csaugmentations.fake_pet_death_by_mob",
+            Component message = Component.translatable("message.csaugmentations.fake_pet_death_by_mob",
                     pet.getName(),
                     culpritName
             );
             player.displayClientMessage(message, false);
         } else {
-            Component fallbackMessage = Component.translatable("cyberpsychosis.csaugmentations.fake_pet_death",
+            Component fallbackMessage = Component.translatable("message.csaugmentations.fake_pet_death",
                     pet.getName()
             );
             player.displayClientMessage(fallbackMessage, false);

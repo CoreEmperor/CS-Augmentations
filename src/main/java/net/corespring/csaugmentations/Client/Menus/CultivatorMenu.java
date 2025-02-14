@@ -1,10 +1,10 @@
 package net.corespring.csaugmentations.Client.Menus;
 
 import com.google.common.collect.Lists;
-import net.corespring.csaugmentations.Registry.CSRecipeTypes;
 import net.corespring.csaugmentations.Recipes.CultivatorRecipe;
 import net.corespring.csaugmentations.Registry.CSBlocks;
 import net.corespring.csaugmentations.Registry.CSMenu;
+import net.corespring.csaugmentations.Registry.CSRecipeTypes;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -26,17 +26,17 @@ public class CultivatorMenu extends AbstractContainerMenu {
     private static final int INV_SLOT_END = 29;
     private static final int USE_ROW_SLOT_START = 29;
     private static final int USE_ROW_SLOT_END = 38;
+    public final Container container;
+    final Slot inputSlot;
+    final Slot resultSlot;
+    final ResultContainer resultContainer;
     private final ContainerLevelAccess access;
     private final DataSlot selectedRecipeIndex;
     private final Level level;
+    long lastSoundTime;
+    Runnable slotUpdateListener;
     private List<CultivatorRecipe> recipes;
     private ItemStack input;
-    long lastSoundTime;
-    final Slot inputSlot;
-    final Slot resultSlot;
-    Runnable slotUpdateListener;
-    public final Container container;
-    final ResultContainer resultContainer;
 
     public CultivatorMenu(int pContainerId, Inventory pPlayerInventory, FriendlyByteBuf extraData) {
         this(pContainerId, pPlayerInventory, ContainerLevelAccess.NULL);
@@ -75,7 +75,7 @@ public class CultivatorMenu extends AbstractContainerMenu {
                 pAccess.execute((p_40364_, p_40365_) -> {
                     long $$3 = p_40364_.getGameTime();
                     if (CultivatorMenu.this.lastSoundTime != $$3) {
-                        p_40364_.playSound((Player) null, p_40365_, SoundEvents.UI_STONECUTTER_TAKE_RESULT, SoundSource.BLOCKS, 1.0F, 1.0F);
+                        p_40364_.playSound(null, p_40365_, SoundEvents.UI_STONECUTTER_TAKE_RESULT, SoundSource.BLOCKS, 1.0F, 1.0F);
                         CultivatorMenu.this.lastSoundTime = $$3;
                     }
 
@@ -155,7 +155,7 @@ public class CultivatorMenu extends AbstractContainerMenu {
 
     void setupResultSlot() {
         if (!this.recipes.isEmpty() && this.isValidRecipeIndex(this.selectedRecipeIndex.get())) {
-            CultivatorRecipe $$0 = (CultivatorRecipe) this.recipes.get(this.selectedRecipeIndex.get());
+            CultivatorRecipe $$0 = this.recipes.get(this.selectedRecipeIndex.get());
             ItemStack $$1 = $$0.assemble(this.container, this.level.registryAccess());
             if ($$1.isItemEnabled(this.level.enabledFeatures())) {
                 this.resultContainer.setRecipeUsed($$0);
@@ -184,7 +184,7 @@ public class CultivatorMenu extends AbstractContainerMenu {
 
     public ItemStack quickMoveStack(Player pPlayer, int pIndex) {
         ItemStack $$2 = ItemStack.EMPTY;
-        Slot $$3 = (Slot) this.slots.get(pIndex);
+        Slot $$3 = this.slots.get(pIndex);
         if ($$3 != null && $$3.hasItem()) {
             ItemStack $$4 = $$3.getItem();
             Item $$5 = $$4.getItem();
@@ -200,7 +200,7 @@ public class CultivatorMenu extends AbstractContainerMenu {
                 if (!this.moveItemStackTo($$4, 2, 38, false)) {
                     return ItemStack.EMPTY;
                 }
-            } else if (this.level.getRecipeManager().getRecipeFor(CSRecipeTypes.CULTIVATING.get(), new SimpleContainer(new ItemStack[]{$$4}), this.level).isPresent()) {
+            } else if (this.level.getRecipeManager().getRecipeFor(CSRecipeTypes.CULTIVATING.get(), new SimpleContainer($$4), this.level).isPresent()) {
                 if (!this.moveItemStackTo($$4, 0, 1, false)) {
                     return ItemStack.EMPTY;
                 }

@@ -5,7 +5,6 @@ import net.corespring.csaugmentations.Network.CSNetwork;
 import net.corespring.csaugmentations.Registry.CSRecipeSerializers;
 import net.corespring.csaugmentations.Registry.CSRecipeTypes;
 import net.corespring.csaugmentations.Registry.*;
-import net.corespring.csaugmentations.Events.ForgeEvents;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
@@ -43,7 +42,6 @@ public class CSAugmentations {
         CSSoundEvents.register(modEventBus);
 
         MinecraftForge.EVENT_BUS.register(this);
-        MinecraftForge.EVENT_BUS.register(ForgeEvents.InventoryEvents.class);
         modEventBus.addListener(this::addCreative);
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, CSCommonConfigs.SPEC, "csaugmentations-common.toml");
     }
@@ -55,7 +53,7 @@ public class CSAugmentations {
         CSNetwork.init();
     }
 
-    private void clientSetup(final FMLClientSetupEvent event) {
+    private void clientSetup(FMLClientSetupEvent event) {
     }
 
     @SubscribeEvent

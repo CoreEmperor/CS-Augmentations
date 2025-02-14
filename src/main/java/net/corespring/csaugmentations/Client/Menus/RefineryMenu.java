@@ -1,7 +1,7 @@
 package net.corespring.csaugmentations.Client.Menus;
 
-import net.corespring.csaugmentations.Registry.CSRecipeTypes;
 import net.corespring.csaugmentations.Registry.CSMenu;
+import net.corespring.csaugmentations.Registry.CSRecipeTypes;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.Container;
 import net.minecraft.world.entity.player.Inventory;

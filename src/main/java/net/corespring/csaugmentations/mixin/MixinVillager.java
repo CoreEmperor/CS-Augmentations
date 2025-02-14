@@ -21,7 +21,7 @@ public abstract class MixinVillager {
             if (capOptional.isPresent()) {
                 OrganCap.OrganData cap = capOptional.orElseThrow(IllegalStateException::new);
                 if (cap.isCyberpsycho() && cap.shouldRefuseTrade()) {
-                    serverPlayer.displayClientMessage(Component.translatable("cyberpsychosis.csaugmentations.villager_refuse_trade"), true);
+                    serverPlayer.displayClientMessage(Component.translatable("message.csaugmentations.villager_refuse_trade"), true);
                     ci.cancel();
                 }
             }

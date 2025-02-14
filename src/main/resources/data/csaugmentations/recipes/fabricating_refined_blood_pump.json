@@ -25,6 +25,12 @@
         "item": "cslibrary:refined_circuit_board"
       },
       "count": 1
+    },
+    {
+      "ingredient": {
+        "item": "csaugmentations:refined_plastic"
+      },
+      "count": 1
     }
   ],
   "result": {

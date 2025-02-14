@@ -64,6 +64,7 @@
   "item.csaugmentations.crude_petri_dish": "Crude Petri Dish",
   "item.csaugmentations.refined_petri_dish": "Refined Petri Dish",
 
+  "item.csaugmentations.syringe_gun": "Syringe Gun",
   "item.csaugmentations.neural_analyzer": "Neural Analyzer",
   "item.csaugmentations.scalpel": "Scalpel",
   "item.csaugmentations.hemostat": "Hemostat",
@@ -153,12 +154,7 @@
   "tooltip.csaugmentations.jumper.height": " Jump Power",
   "tooltip.csaugmentations.jumper.cooldown": " Cooldown",
   "tooltip.csaugmentations.jumper.exhaustion": " Exhaustion Cost",
-
-  "neural_analyzer.csaugmentations.self_scan_humanity": "Your Humanity: %s",
-  "neural_analyzer.csaugmentations.self_scan_cyberware": "Your Cyberware Total: %s",
-  "neural_analyzer.csaugmentations.player_scan": "Targeted Player: %s",
-  "neural_analyzer.csaugmentations.player_scan_humanity": "Their Humanity: %s",
-  "neural_analyzer.csaugmentations.player_scan_cyberware": "Their Cyberware Total: %s",
+  "tooltip.csaugmentations.syringe_gun.contents": "Contains: ",
 
   "effect.csaugmentations.incision": "Surgical Incision",
   "effect.csaugmentations.hemostat": "Clamped Bleeding",
@@ -240,6 +236,11 @@
   "message.csaugmentations.warper.cooldown": "On Cooldown..",
   "message.csaugmentations.jumper.cooldown": "On Cooldown..",
   "message.csaugmentations.jumper.not_on_ground": "You aren't on the Ground..",
+  "message.csaugmentations.self_scan_humanity": "Your Humanity: %s",
+  "message.csaugmentations.self_scan_cyberware": "Your Cyberware Total: %s",
+  "message.csaugmentations.player_scan": "Targeted Player: %s",
+  "message.csaugmentations.player_scan_humanity": "Their Humanity: %s",
+  "message.csaugmentations.player_scan_cyberware": "Their Cyberware Total: %s",
 
   "commands.resetorgan.failed": "%s's organs were unable to reset!",
   "commands.resetorgan.success": "Successfully reset %s's Organs",

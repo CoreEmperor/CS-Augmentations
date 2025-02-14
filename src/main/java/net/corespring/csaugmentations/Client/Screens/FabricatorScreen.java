@@ -11,8 +11,8 @@ import net.minecraft.world.entity.player.Inventory;
 public class FabricatorScreen extends AbstractContainerScreen<FabricatorMenu> {
     private static final ResourceLocation BG_LOCATION = new ResourceLocation(CSAugmentations.MOD_ID, "textures/gui/fabricator_gui.png");
 
-    public FabricatorScreen(FabricatorMenu menu, Inventory inv, Component component) {
-        super(menu, inv, component);
+    public FabricatorScreen(FabricatorMenu pMenu, Inventory pPlayerInventory, Component pTitle) {
+        super(pMenu, pPlayerInventory, pTitle);
         this.imageWidth = 208;
         this.imageHeight = 166;
     }
@@ -30,16 +30,16 @@ public class FabricatorScreen extends AbstractContainerScreen<FabricatorMenu> {
     }
 
     @Override
-    public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTicks) {
-        this.renderBackground(guiGraphics);
-        this.renderBg(guiGraphics, partialTicks, mouseX, mouseY);
-        super.render(guiGraphics, mouseX, mouseY, partialTicks);
-        this.renderTooltip(guiGraphics, mouseX, mouseY);
+    public void render(GuiGraphics pGuiGraphics, int mouseX, int mouseY, float partialTicks) {
+        this.renderBackground(pGuiGraphics);
+        this.renderBg(pGuiGraphics, partialTicks, mouseX, mouseY);
+        super.render(pGuiGraphics, mouseX, mouseY, partialTicks);
+        this.renderTooltip(pGuiGraphics, mouseX, mouseY);
     }
 
     @Override
-    protected void renderLabels(GuiGraphics guiGraphics, int mouseX, int mouseY) {
-        guiGraphics.drawString(this.font, this.title.getString(), 19, 3, 0x404040, false);
-        guiGraphics.drawString(this.font, this.playerInventoryTitle.getString(), 45, this.imageHeight - 96 + 2, 0xFFFFFF, true);
+    protected void renderLabels(GuiGraphics pGuiGraphics, int mouseX, int mouseY) {
+        pGuiGraphics.drawString(this.font, this.title.getString(), 19, 3, 0x404040, false);
+        pGuiGraphics.drawString(this.font, this.playerInventoryTitle.getString(), 45, this.imageHeight - 96 + 2, 0xFFFFFF, true);
     }
 }
